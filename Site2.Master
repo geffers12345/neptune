@@ -1,0 +1,433 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site2.master.cs" Inherits="Seabase.Site2" %>
+
+<%@ Import Namespace="Acoulite.Models" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+    <link rel="icon" href="Content/img/yellowhub.png" sizes="32x32"/>
+    <link href="content/css/bootstrap-3.3.7.min.css" rel="stylesheet" />
+    <link href="content/css/font-awesome-4.7.0.min.css" rel="stylesheet" />
+    <link href="content/css/ionicons-2.0.1.min.css" rel="stylesheet" />
+    <link href="content/css/jquery-jvectormap-2.0.4.min.css" rel="stylesheet" />
+    <link href="content/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="content/css/sweetalert2.min.css" rel="stylesheet" />
+    <link href="content/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="content/css/animate.min.css" rel="stylesheet" />
+    <link href="content/css/customize.css" rel="stylesheet" />
+    <link href="content/css/select2-4.0.6.min.css" rel="stylesheet" />
+    <link href="content/css/fonts.min.css" rel="stylesheet" />
+    <link href="content/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="content/css/jquerysctipttop.css" rel="stylesheet" />
+    <link href="content/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="content/css/richtext.min.css" rel="stylesheet" />
+    <link href="content/css/fullcalendar-3.9.0.min.css" rel="stylesheet" />
+    <link href="content/css/fullcalendar-3.9.0.print.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+    <title>Travel Documents</title>
+</head>
+<body class="hold-transition skin-purple sidebar-mini">
+<header class="main-header">
+    <a href="/" class="logo">
+        <span class="logo-mini"><b>RPM</b></span>
+        <span class="logo-lg">
+            <span class="banner-name" style="display: inline;"><b>Documents</b></span>
+        </span>
+    </a>
+
+    <nav class="navbar navbar-static-top">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+        </div>
+    </nav>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+
+            <li class="sidebar-link-dashboard">
+                <a role="button" id="cv">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>CV Standard</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-profile">
+                <a role="button" id="rec">
+                   <i class="fa fa-file-text-o fa-fw"></i><span>Seafarer Employment Contract</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-timesheet">
+                <a role="button" data-toggle="modal" data-target="#dutch-modal" id="dc">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>Dutch Contract</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-payslip">
+                <a role="button" data-toggle="modal" data-target="#guarantee-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>Letter of Guarantee</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-security">
+                <a role="button" data-toggle="modal" data-target="#tanker-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>Info to the Master - Tanker</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-security">
+                <a role="button" data-toggle="modal" data-target="#offshore-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>Info to the Master - Cargo/Offshore</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-security">
+                <a role="button" data-toggle="modal" data-target="#jsu-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>JSU Contract</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-security">
+                <a role="button" data-toggle="modal" data-target="#coe-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>Contract of Employment</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-dashboard">
+                <a role="button" id="report-poea">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>POEA Info Sheet</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-dashboard">
+                <a role="button" id="report-info-sheet">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>POEA Seafarer Info</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-security">
+                <a role="button" data-toggle="modal" data-target="#engine-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>Certification(Engine)</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-security">
+                <a role="button" data-toggle="modal" data-target="#engine-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>Certification(Deck)</span>
+                </a>
+            </li>
+
+             <li class="sidebar-link-security">
+                <a role="button" data-toggle="modal" data-target="#engine-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>Certification(Service)</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-dashboard">
+                <a role="button" data-toggle="modal" data-target="#rps-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>RPS</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-dashboard">
+                <a role="button" data-toggle="modal" data-target="#rps-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>RPS Ammendment</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-security">
+                <a role="button" data-toggle="modal" data-target="#disembarkation-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>Panama Consulate Disembarkation</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-security">
+                <a role="button" data-toggle="modal" data-target="#disembarkation-modal">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>Panama Consulate Embarkation</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-dashboard">
+                <a role="button" id="spa">
+                    <i class="fa fa-file-text-o fa-fw"></i><span>SPA</span>
+                </a>
+            </li>
+
+         </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                            <p>Will be 23 on April 24th</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-user bg-yellow"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                            <p>New phone +1(800)555-1234</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                            <p>nora@example.com</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                            <p>Execution time 5 seconds</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Custom Template Design
+                            <span class="label label-danger pull-right">70%</span>
+                        </h4>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Update Resume
+                            <span class="label label-success pull-right">95%</span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Laravel Integration
+                            <span class="label label-warning pull-right">50%</span>
+                        </h4>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Back End Framework
+                            <span class="label label-primary pull-right">68%</span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+        </div>
+        <!-- /.tab-pane -->
+
+        <!-- Settings tab content -->
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+                <h3 class="control-sidebar-heading">General Settings</h3>
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Report panel usage
+
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+
+                    <p>
+                        Some information about this general settings option
+
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Allow mail redirect
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+                    <p>
+                        Other sets of options are available
+
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Expose author name in posts
+
+                        <input type="checkbox" class="pull-right" checked/>
+                    </label>
+                    <p>
+                        Allow the user to show his name in blog posts
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Show me as online
+
+                        <input type="checkbox" class="pull-right" checked/>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Turn off notifications
+
+                        <input type="checkbox" class="pull-right"/>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Delete chat history
+
+                        <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+            </form>
+        </div>
+        <!-- /.tab-pane -->
+    </div>
+</aside>
+<div class="control-sidebar-bg"></div>
+<div>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</div>
+</body>
+</html>
+<script src="Scripts/jquery.min.js"></script>
+<script src="Scripts/jquery-3.2.1.min.js"></script>
+<script src="Scripts/jquery-ui.min.js"></script>
+<script src="Scripts/bootstrap-3.3.7.min.js"></script>
+<script src="Scripts/fastclick.min.js"></script>
+<script src="Scripts/adminlte.min.js"></script>
+<script src="Scripts/jquery.sparkline.min.js"></script>
+<script src="Scripts/jquery.slimscroll.min.js"></script>
+<script src="Scripts/Chart.min.js"></script>
+<script src="Scripts/dashboard2.js"></script>
+<script src="Scripts/sweetalert2.min.js"></script>
+<script src="Scripts/validator.js"></script>
+<script src="Scripts/helpers.js"></script>
+<script src="Scripts/demo.js"></script>
+<script src="Scripts/jquery.dataTables.js"></script>
+<script src="Scripts/sum().js"></script>
+<script src="Scripts/select2.min.js"></script>
+<script src="Scripts/bootstrap-colorpicker.min.js"></script>
+<script src="Scripts/moment.min.js"></script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+<script src="Scripts/jquery.richtext.js"></script>
+<script src="Scripts/fullcalendar.min.js"></script>
+<script src="scripts/WebForms/applicant.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="scripts/FileSaver.js"></script>
+<script src="scripts/jquery.wordexport.js"></script>
+<script>
+    $('#cv').click(function () {
+
+        var url = '/cv?_hsdlwhx=' + applicantID;
+
+        var iframe = '<iframe id="printf" name="printf" src="' + url + '" width="100%" height="800px" frameborder="0"></iframe>';
+
+        $('#iframe').empty().html(iframe);
+
+    });
+
+    $('#rec').click(function () {
+
+        var url = '/report-employment-contract?_hsdlwhx=' + applicantID;
+
+        var iframe = '<iframe id="printf" name="printf" src="' + url + '" width="100%" height="800px" frameborder="0"></iframe>';
+
+        $('#iframe').empty().html(iframe);
+    });
+
+    $('#print-docs').click(function () {
+
+        if ($('#iframe').html().trim() != "") {
+            document.getElementById('printf').contentWindow.print();
+        } else {
+            swal('Oops!', 'Please select atleast one travel document', 'error');
+        }
+    });
+
+    $('#report-poea').click(function () {
+
+        var url = '/report-poea?_hsdlwhx=' + applicantID;
+
+        var iframe = '<iframe id="printf" name="printf" src="' + url + '" width="100%" height="800px" frameborder="0"></iframe>';
+
+        $('#iframe').empty().html(iframe);
+    });
+
+    $('#report-info-sheet').click(function () {
+
+        var url = '/report-info-sheet?_hsdlwhx=' + applicantID;
+
+        var iframe = '<iframe id="printf" name="printf" src="' + url + '" width="100%" height="800px" frameborder="0"></iframe>';
+
+        $('#iframe').empty().html(iframe);
+    });
+
+     $('#spa').click(function () {
+
+        var url = '/report-spa?_hsdlwhx=' + applicantID;
+
+        var iframe = '<iframe id="printf" name="printf" src="' + url + '" width="100%" height="800px" frameborder="0"></iframe>';
+
+        $('#iframe').empty().html(iframe);
+
+    });
+</script>

@@ -1,0 +1,82 @@
+﻿.body, td {
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    FONT-SIZE: 12px;
+}
+
+.cv_report {
+    BORDER-COLLAPSE: collapse;
+    border-spacing: 0
+}
+
+    .cv_report td {
+        BORDER-RIGHT: #000000 1px solid;
+        PADDING-RIGHT: 2px;
+        BORDER-TOP: #000000 1px solid;
+        PADDING-LEFT: 2px;
+        FONT-SIZE: 12px;
+        PADDING-BOTTOM: 2px;
+        BORDER-LEFT: #000000 1px solid;
+        COLOR: #000000;
+        PADDING-TOP: 2px;
+        BORDER-BOTTOM: #000000 1px solid;
+        FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    }
+
+    .cv_report th {
+        BORDER-RIGHT: #000000 1px solid;
+        PADDING-RIGHT: 2px;
+        BORDER-TOP: #000000 1px solid;
+        PADDING-LEFT: 2px;
+        FONT-SIZE: 12px;
+        PADDING-BOTTOM: 2px;
+        BORDER-LEFT: #000000 1px solid;
+        COLOR: #000000;
+        PADDING-TOP: 2px;
+        BORDER-BOTTOM: #000000 1px solid;
+        FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+        font-weight: bold;
+    }
+
+    .cv_report td.collapse {
+        BORDER-RIGHT: #FFFFFF 1px solid;
+        PADDING-RIGHT: 2px;
+        BORDER-TOP: #FFFFFF 1px solid;
+        PADDING-LEFT: 2px;
+        FONT-SIZE: 12px;
+        PADDING-BOTTOM: 2px;
+        BORDER-LEFT: #FFFFFF 1px solid;
+        COLOR: #000000;
+        PADDING-TOP: 2px;
+        BORDER-BOTTOM: #000000 1px solid;
+        FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    }
+
+.title {
+    FONT-SIZE: 12px;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    font-weight: bold;
+}
+
+.data9 {
+    FONT-SIZE: 12px;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+}
+
+.data {
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    FONT-SIZE: 12px;
+}
+
+.photo {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 12px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}

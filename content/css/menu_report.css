@@ -1,0 +1,1364 @@
+﻿body {
+    font-family: verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+p {
+    font-family: verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+li, td {
+    font-family: verdana, arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+.font10 {
+    font-family: verdana, arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+
+.font9 {
+    font-family: verdana, arial, Helvetica, sans-serif;
+    font-size: 9px;
+}
+
+input, textarea, select {
+    font-family: verdana, arial, Helvetica, sans-serif;
+    font-size: 11px;
+    BORDER-BOTTOM: #000022 1px solid;
+    BORDER-LEFT: #000022 1px solid;
+    BORDER-RIGHT: #000022 1px solid;
+    BORDER-TOP: #000022 1px solid;
+}
+
+hr.gray {
+    color: #000000;
+    width: 100%;
+    text-align: center;
+    height: 1px;
+    BACKGROUND-COLOR: #e0e0e0;
+}
+
+.checkbox {
+    font-family: verdana, arial, Helvetica, sans-serif;
+    BORDER-BOTTOM: #000022 0px solid;
+    BORDER-LEFT: #000022 0px solid;
+    BORDER-RIGHT: #000022 0px solid;
+    BORDER-TOP: #000022 0px solid;
+}
+
+.td11 {
+    font-family: verdana, arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+.td12 {
+    font-family: verdana, arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.td13 {
+    font-family: verdana, arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+
+.td14 {
+    font-family: verdana, arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+td.italic {
+    font-family: verdana, arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+td.underline {
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+
+td.color a:link {
+    font-family: verdana, arial;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+td.color a:active {
+    font-family: verdana, arial;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+td.color a:visited {
+    font-family: verdana, arial;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+td.color a:hover {
+    font-family: verdana, arial;
+    color: red;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.td14 a:link, .td14 a:active, .td14 a:visited {
+    font-family: verdana, arial;
+    color: 000000;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.td14 a:hover {
+    font-family: verdana, arial;
+    color: 000000;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+
+.boldlink a:link, .boldlink a:active, .boldlink a:visited {
+    font-family: verdana, arial;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.boldlink a:hover {
+    font-family: verdana, arial;
+    color: red;
+    font-size: 11px;
+    text-decoration: none;
+    font-weight: bold
+}
+
+a:link {
+    font-family: verdana, arial;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:active {
+    font-family: verdana, arial;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:visited {
+    font-family: verdana, arial;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:hover {
+    font-family: verdana, arial;
+    color: red;
+    font-size: 11px;
+    text-decoration: underline;
+}
+
+a.del, a.del:active, a.del:visited {
+    font-family: verdana, arial;
+    color: maroon;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+    a.del:hover {
+        font-family: verdana, arial;
+        color: maroon;
+        font-size: 11px;
+        text-decoration: underline;
+    }
+
+.box {
+    BACKGROUND-COLOR: #f3f3f3;
+    height: 22;
+}
+
+.boxbold {
+    BACKGROUND-COLOR: #f3f3f3;
+    FONT-WEIGHT: bold;
+    height: 22;
+}
+
+.boxhead {
+    BACKGROUND-COLOR: #e0e0e0;
+    FONT-WEIGHT: bold;
+    height: 22;
+}
+
+td.sethead1 {
+    BACKGROUND-COLOR: #330066;
+    color: #ffffff;
+    font-weight: bold;
+    height: 22;
+}
+
+td.sethead2 {
+    BACKGROUND-COLOR: #c0c0c0;
+    color: #000000;
+    font-weight: bold;
+}
+
+td.set1 {
+    BACKGROUND-COLOR: #c0c0c0;
+    text-align: right;
+}
+
+td.set2 {
+    BACKGROUND-COLOR: #e7e3e7;
+}
+
+.box11 {
+    BACKGROUND-COLOR: #f3f3f3;
+    BORDER-BOTTOM: #ffffff 1px solid;
+    BORDER-LEFT: #ffffff 1px solid;
+    BORDER-RIGHT: #ffffff 1px solid;
+    BORDER-TOP: #ffffff 1px solid;
+    COLOR: black;
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 11px;
+    TEXT-DECORATION: none
+}
+
+td.box11 a:link {
+    font-family: verdana, arial;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+td.box11 a:active {
+    font-family: verdana, arial;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+td.box11 a:visited {
+    font-family: verdana, arial;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+td.box11 a:hover {
+    font-family: verdana, arial;
+    color: red;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+td.display2 {
+    BACKGROUND-COLOR: #e4eaf2;
+    BORDER-BOTTOM: #b30000 0px solid;
+    BORDER-LEFT: #b30000 0px solid;
+    BORDER-RIGHT: #b30000 0px solid;
+    BORDER-TOP: #b30000 0px solid;
+}
+
+td.display3 {
+    BACKGROUND-COLOR: #f5f9fd;
+    BORDER-BOTTOM: #b30000 0px solid;
+    BORDER-LEFT: #b30000 0px solid;
+    BORDER-RIGHT: #b30000 0px solid;
+    BORDER-TOP: #b30000 0px solid;
+}
+
+td.display4 {
+    BACKGROUND-COLOR: #c7d2e0;
+    BORDER-BOTTOM: #b30000 0px solid;
+    BORDER-LEFT: #b30000 0px solid;
+    BORDER-RIGHT: #b30000 0px solid;
+    BORDER-TOP: #b30000 0px solid;
+}
+
+td.display5 {
+    BACKGROUND-COLOR: #a5c0e5;
+    BORDER-BOTTOM: #b30000 0px solid;
+    BORDER-LEFT: #b30000 0px solid;
+    BORDER-RIGHT: #b30000 0px solid;
+    BORDER-TOP: #b30000 0px solid;
+}
+
+td.display6 {
+    BACKGROUND-COLOR:;
+    BORDER-BOTTOM: #b30000 0px solid;
+    BORDER-LEFT: #b30000 0px solid;
+    BORDER-RIGHT: #b30000 0px solid;
+    BORDER-TOP: #b30000 0px solid;
+}
+
+th.report {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+td.report {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+td.reporthead {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,verdana,helvetica,geneva,sans-serif;
+    background-color: #cdcdcd;
+    font-weight: bold;
+}
+
+td.reportv {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial,helvetica,geneva,sans-serif;
+}
+
+td.reportnobottom {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    FONT-FAMILY: verdana,arial,helvetica,geneva,sans-serif;
+}
+
+td.report a:link, td.report a:active, td.report a:visited {
+    font-family: arial,verdana;
+    color: blue;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+td.report a:hover {
+    font-family: arial,verdana;
+    color: maroon;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+td.reportbt {
+    BORDER-RIGHT: #000000 0px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 0px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial,helvetica,geneva,sans-serif;
+}
+
+td.linerps1 {
+    BORDER-RIGHT: #636563 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #636563 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    PADDING-TOP: 2px;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+}
+
+td.linerps2 {
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #636563 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    PADDING-TOP: 2px;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+}
+
+td.reportgreen {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 1px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #c6e3c6
+}
+
+td.reportyellow {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 1px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: yellow
+}
+
+/* font 9 */
+td.report9 {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 1px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    FONT-SIZE: 9px;
+}
+
+/* font 10 */
+td.report10 {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 1px;
+    FONT-SIZE: 10px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+}
+
+/* font 11 */
+td.report11 {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 1px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+}
+
+    td.report11 a:link, td.report11 a:active, td.report11 a:visited {
+        font-family: arial,verdana;
+        color: blue;
+        font-size: 11px;
+        text-decoration: none;
+    }
+
+    td.report11 a:hover {
+        font-family: arial,verdana;
+        color: maroon;
+        font-size: 11px;
+        text-decoration: underline;
+    }
+
+
+td.report_gray {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #eeeeee
+}
+
+table.collapse {
+    BORDER-COLLAPSE: collapse;
+    border-spacing: 0
+}
+
+table.report {
+    BORDER-RIGHT: #000000 1px solid;
+    BORDER-TOP: #000000 1px solid;
+    BORDER-LEFT: #000000 1px solid;
+    BORDER-BOTTOM: #000000 1px solid;
+    BORDER-COLLAPSE: collapse;
+    border-spacing: 0
+}
+
+td.report1 {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 9px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+    td.report1 a:link {
+        font-family: arial,verdana;
+        color: blue;
+        font-size: 9px;
+        text-decoration: none;
+    }
+
+    td.report1 a:active {
+        font-family: arial,verdana;
+        color: blue;
+        font-size: 9px;
+        text-decoration: none;
+    }
+
+    td.report1 a:visited {
+        font-family: arial,verdana;
+        color: blue;
+        font-size: 9px;
+        text-decoration: none;
+    }
+
+    td.report1 a:hover {
+        font-family: arial,verdana;
+        color: red;
+        font-size: 9px;
+        text-decoration: none;
+    }
+
+
+td.report2a {
+    BORDER-TOP: #000000 1px solid;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 10px;
+    PADDING-BOTTOM: 2px;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+td.report2 {
+    BORDER-TOP: #000000 1px solid;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+td.report2top {
+    BORDER-TOP: #000000 1px solid;
+    FONT-WEIGHT:;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+td.report3 {
+    BORDER-TOP: #000000 0px solid;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 1px;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+}
+
+td.report3a {
+    BORDER-TOP: #000000 0px solid;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 1px;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #c6e3c6
+}
+
+td.reportbottom {
+    BORDER-TOP: #000000 0px solid;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 0px;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #8C8A8C 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+td.reporttop {
+    BORDER-TOP: #8C8A8C 1px solid;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 0px;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #8C8A8C 0px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+td.reporttotal {
+    BORDER-TOP: #000000 2px solid;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 0px;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+table.reportheavy {
+    BORDER-RIGHT: #000000 2px solid;
+    BORDER-TOP: #000000 2px solid;
+    BORDER-LEFT: #000000 2px solid;
+    BORDER-BOTTOM: #000000 2px solid;
+    BORDER-COLLAPSE: collapse;
+    border-spacing: 0
+}
+
+table.reportlight {
+    BORDER-RIGHT: #919191 1px solid;
+    BORDER-TOP: #919191 1px solid;
+    BORDER-LEFT: #919191 1px solid;
+    BORDER-BOTTOM: #919191 1px solid;
+    BORDER-COLLAPSE: collapse;
+    border-spacing: 0
+}
+
+td.reportlight {
+    BORDER-RIGHT: #919191 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #919191 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #919191 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #919191 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+}
+
+td.reportlighttxt {
+    BORDER-RIGHT: #919191 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #919191 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #919191 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #919191 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #eeeeee
+}
+
+td.reportlightnobottom {
+    BORDER-RIGHT: #919191 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #919191 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #919191 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #919191 0px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+td.reportlightright {
+    BORDER-RIGHT: #919191 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #919191 0px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #919191 0px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #919191 0px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+td.reportlightnoright {
+    BORDER-RIGHT: #919191 0px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #919191 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #919191 0px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #919191 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+td.reportline {
+    BORDER-TOP: #000000 1px solid;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 0px solid;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #ffffff
+}
+
+/*light bottom*/
+td.reportnb {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 1px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #919191 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+}
+/*light top*/
+td.reportnt {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #919191 1px solid;
+    PADDING-LEFT: 1px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+}
+
+td.reportnbgreen {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 1px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #919191 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #c6e3c6
+}
+/*light top*/
+td.reportntgreen {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #919191 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    BACKGROUND-COLOR: #c6e3c6
+}
+
+td.arial13 {
+    font-family: arial, verdana, Helvetica, sans-serif;
+    font-size: 13px;
+    font-style: none;
+}
+
+    td.arial13 a:link, td.is a:active, td.is a:visited {
+        font-family: arial, verdana, Helvetica, sans-serif;
+        font-size: 13px;
+        font-style: none;
+        color: black
+    }
+
+    td.arial13 a:hover {
+        font-family: arial, verdana, Helvetica, sans-serif;
+        font-size: 13px;
+        font-style: none;
+        color: black
+    }
+
+td.is {
+    font-family: arial, verdana, Helvetica, sans-serif;
+    font-size: 13px;
+    font-style: italic;
+}
+
+    td.is a:link, td.is a:active, td.is a:visited {
+        font-family: arial, verdana, Helvetica, sans-serif;
+        font-size: 13px;
+        font-style: italic;
+        color: black
+    }
+
+    td.is a:hover {
+        font-family: arial, verdana, Helvetica, sans-serif;
+        font-size: 13px;
+        font-style: italic;
+        color: black
+    }
+
+td.reportis {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    font-size: 12px;
+}
+
+td.headis {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 13px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    font-style: italic;
+}
+
+td.rps12 {
+    font-family: Arial, verdana, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: italic;
+}
+
+td.rps12u {
+    font-family: Arial, verdana, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    BORDER-BOTTOM: #111111 1px solid;
+    PADDING-BOTTOM: 1px;
+}
+
+td.rps11 {
+    font-family: Arial, verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-style: italic;
+}
+
+td.rps10 {
+    font-family: Arial, verdana, Helvetica, sans-serif;
+    font-size: 10px;
+    font-style: italic;
+}
+
+td.reportrps10 {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 10px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+}
+
+td.reportrps10i {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 10px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    font-style: italic;
+}
+
+td.reportrps12i {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 12px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;
+    font-style: italic;
+}
+
+td.rpsam12 {
+    font-family: Times New Roman, Arial, verdana, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+td.rpsam11 {
+    font-family: Times New Roman, Arial, verdana, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+td.rpsam10 {
+    font-family: Times New Roman, Arial, verdana, Helvetica, sans-serif;
+    font-size: 10px;
+}
+
+.cell_over {
+    BACKGROUND-COLOR: #e0e0e0;
+    BORDER-BOTTOM: #000080 0px solid;
+    BORDER-LEFT: #000080 0px solid;
+    BORDER-RIGHT: #000080 0px solid;
+    BORDER-TOP: #000080 0px solid;
+    height: 20;
+}
+
+    .cell_over A:link {
+        COLOR: black;
+        FONT-FAMILY: verdana;
+        FONT-SIZE: 10px;
+        TEXT-DECORATION: none;
+        height: 20;
+    }
+
+    .cell_over A:active {
+        COLOR: black;
+        FONT-FAMILY: verdana;
+        FONT-SIZE: 10px;
+        TEXT-DECORATION: none;
+        height: 20;
+    }
+
+    .cell_over A:visited {
+        COLOR: black;
+        FONT-FAMILY: verdana;
+        FONT-SIZE: 10px;
+        TEXT-DECORATION: none;
+        height: 20;
+    }
+
+    .cell_over A:hover {
+        COLOR: red;
+        FONT-FAMILY: verdana;
+        FONT-SIZE: 10px;
+        TEXT-DECORATION: none;
+        height: 20;
+    }
+
+
+.cell_out A:link {
+    BACKGROUND-COLOR: #f4f4f4;
+    COLOR: black;
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none;
+    height: 20;
+}
+
+.cell_out A:active {
+    COLOR: black;
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none;
+    height: 20;
+}
+
+.cell_out A:visited {
+    COLOR: black;
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none;
+    height: 20;
+}
+
+.submenu A:link {
+    COLOR: black;
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none;
+    height: 20;
+}
+
+.submenu A:active {
+    COLOR: black;
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none height:20;
+}
+
+.submenu A:visited {
+    COLOR: black;
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none height:20;
+}
+
+.submenu A:hover {
+    COLOR: blue;
+    FONT-FAMILY: verdana;
+    FONT-SIZE: 10px;
+    TEXT-DECORATION: none height:20;
+}
+
+.tr_over {
+    BACKGROUND-COLOR: #ffd993;
+}
+
+.tr_out {
+    BACKGROUND-COLOR:;
+}
+
+td.reportis1 {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    font-size: 10px;
+}
+
+td.reportisnoborder {
+    COLOR: #000000;
+    FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif;
+    font-size: 10px;
+}
+
+
+
+.reportse {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    /*BORDER-BOTTOM: #000000 1px solid;*/
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_header {
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    font-size: 12px;
+    PADDING-BOTTOM: 1px;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+td.reportse_header a:link, td.reportse_header a:active, td.reportse_header a:visited {
+    font-family: arial, verdana, Helvetica, sans-serif;
+    font-size: 16px;
+    font-style: italic;
+    color: black
+}
+
+.reportse_small {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    font-size: 8px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    /*BORDER-BOTTOM: #000000 1px solid;*/
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+
+
+
+.reportse_bottomonly {
+    /*BORDER-RIGHT: #000000 1px solid; */
+    PADDING-RIGHT: 2px;
+    /*BORDER-TOP: #000000 1px solid;*/
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    /*BORDER-LEFT: #000000 1px solid; */
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_noborder {
+    /*BORDER-RIGHT: #000000 1px solid; */
+    PADDING-RIGHT: 2px;
+    /*BORDER-TOP: #000000 1px solid;*/
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    /*BORDER-LEFT: #000000 1px solid; */
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    /*BORDER-BOTTOM: #000000 1px solid;*/
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_notopbottomborder {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    /*BORDER-TOP: #000000 1px solid;*/
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    /*BORDER-BOTTOM: #000000 1px solid;*/
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_notopleftborder {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    /*BORDER-TOP: #000000 1px solid;*/
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    /*BORDER-LEFT: #000000 1px solid;*/
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_norightbottomborder {
+    /*BORDER-RIGHT: #000000 1px solid;*/
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    /*BORDER-BOTTOM: #000000 1px solid;*/
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_noleftbottomborder {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    /*BORDER-LEFT: #000000 1px solid;*/
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    /*BORDER-BOTTOM: #000000 1px solid;*/
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_leftonly {
+    /*BORDER-RIGHT: #000000 1px solid; */
+    PADDING-RIGHT: 2px;
+    /*BORDER-TOP: #000000 1px solid;*/
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    /*BORDER-BOTTOM: #000000 1px solid; */
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_rightonly {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    /*BORDER-TOP: #000000 1px solid;*/
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    /*BORDER-LEFT: #000000 1px solid; */
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    /*BORDER-BOTTOM: #000000 1px solid; */
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_notopleft {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    /*BORDER-TOP: #000000 1px solid; */
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    /*BORDER-LEFT: #000000 1px solid; */
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_notopright {
+    /*BORDER-RIGHT: #000000 1px solid;  */
+    PADDING-RIGHT: 2px;
+    /*BORDER-TOP: #000000 1px solid; */
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_noleft {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    /*BORDER-LEFT: #000000 1px solid; */
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_noright {
+    /*BORDER-RIGHT: #000000 1px solid; */
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_nobottom {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: #000000 1px solid;
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    /*BORDER-BOTTOM: #000000 1px solid;*/
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}
+
+.reportse_notop {
+    BORDER-RIGHT: #000000 1px solid;
+    PADDING-RIGHT: 2px;
+    /*BORDER-TOP: #000000 1px solid; */
+    PADDING-LEFT: 2px;
+    font-size: 11px;
+    PADDING-BOTTOM: 1px;
+    BORDER-LEFT: #000000 1px solid;
+    COLOR: #000000;
+    PADDING-TOP: 1px;
+    BORDER-BOTTOM: #000000 1px solid;
+    FONT-FAMILY: arial,verdana,helvetica,geneva,sans-serif;
+}

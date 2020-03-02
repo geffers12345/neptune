@@ -1,0 +1,593 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Mobile.master.cs" Inherits="Seabase.Site_Mobile" %>
+<%@ Register Src="~/ViewSwitcher.ascx" TagPrefix="friendlyUrls" TagName="ViewSwitcher" %>
+
+<%@ Import Namespace="Acoulite.Models" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+    <link rel="icon" href="Content/img/yellowhub.png" sizes="32x32"/>
+    <link href="content/css/bootstrap-3.3.7.min.css" rel="stylesheet" />
+    <link href="content/css/font-awesome-4.7.0.min.css" rel="stylesheet" />
+    <link href="content/css/ionicons-2.0.1.min.css" rel="stylesheet" />
+    <link href="content/css/jquery-jvectormap-2.0.4.min.css" rel="stylesheet" />
+    <link href="content/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="content/css/sweetalert2.min.css" rel="stylesheet" />
+    <link href="content/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="content/css/animate.min.css" rel="stylesheet" />
+    <link href="content/css/customize.css" rel="stylesheet" />
+    <link href="content/css/select2-4.0.6.min.css" rel="stylesheet" />
+    <link href="content/css/fonts.min.css" rel="stylesheet" />
+    <link href="content/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="content/css/jquerysctipttop.css" rel="stylesheet" />
+    <link href="content/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="content/css/richtext.min.css" rel="stylesheet" />
+    <link href="content/css/fullcalendar-3.9.0.min.css" rel="stylesheet" />
+    <link href="content/css/fullcalendar-3.9.0.print.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+    <title></title>
+</head>
+<body class="hold-transition skin-purple sidebar-mini">
+<header class="main-header">
+    <a href="/" class="logo">
+        <span class="logo-mini"><b>RPM</b></span>
+        <span class="logo-lg">
+            <span class="banner-name" style="display: inline;"><b>Neptune</b></span>
+        </span>
+    </a>
+
+    <nav class="navbar navbar-static-top">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user-circle"></i>
+                        <span class="hidden-xs"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="https://png.icons8.com/windows/90/ffffff/user-male-circle.png" class="img-circle"/>
+                            <p>
+                                <%if (Auth.Check()){%>
+                                     <%= Auth.user().Firstname + " " + Auth.user().Lastname%>
+                                <%}; %>
+                            </p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" id="gear" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+
+            <li class="sidebar-link-dashboard">
+                <a href="/dashboard">
+                    <i class="fa fa-dashboard fa-fw"></i> <span>Dashboard</span>
+                </a>
+            </li>
+
+            <%--<li class="sidebar-link-dashboard">
+                <a href="/company">
+                    <i class="fa fa-university fa-fw"></i> <span>Company Information</span>
+                </a>
+            </li>--%>
+
+            <li class="treeview sidebar-link-manning">
+                <a href="#">
+                    <i class="fa fa-users fa-fw"></i>
+                    <span>Manning</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/openings"><i class="fa fa-circle-o"></i>Post Job Openings</a></li>
+                    <li><a href="/add_applicant"><i class="fa fa-circle-o"></i>Add Applicant</a></li>
+                    <li><a href="/applicants?_knmsdlpsjsw=1"><i class="fa fa-circle-o"></i>New Applicants</a></li>
+                    <li><a href="/applicants?_knmsdlpsjsw=8"><i class="fa fa-circle-o"></i>Pool</a></li>
+                    <li><a href="/applicants?_knmsdlpsjsw=9"><i class="fa fa-circle-o"></i>Operation</a></li>
+                    <li><a href="/applicants?_knmsdlpsjsw=6"><i class="fa fa-circle-o"></i>Rejected Applicants</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview sidebar-link-crew">
+                <a href="#">
+                    <i class="fa fa-anchor fa-fw"></i>
+                    <span>Crew Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/crews"><i class="fa fa-circle-o"></i>All Crew</a></li>
+                    <li><a href="/crews?_knmsdlpsjsw=2"><i class="fa fa-circle-o"></i>On Board</a></li>
+                    <li><a href="/crews?_knmsdlpsjsw=3"><i class="fa fa-circle-o"></i>On Vacation</a></li>
+                    <li><a href="/crews?_knmsdlpsjsw=4"><i class="fa fa-circle-o"></i>On Training</a></li>
+                    <li><a href="/crews?_knmsdlpsjsw=5"><i class="fa fa-circle-o"></i>Old Crew/Resigned</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview sidebar-link-board">
+                <a href="#">
+                    <i class="fa fa-clipboard fa-fw"></i>
+                    <span>On-Board Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/joborders"><i class="fa fa-circle-o"></i>Job Order</a></li>
+                    <li><a href="/vessel-assignments"><i class="fa fa-circle-o"></i>Vessel Assignment</a></li>
+                    <li><a href="/document-monitoring"><i class="fa fa-circle-o"></i>Document Monitoring</a></li>
+                    <li><a href="/embarkation-lists"><i class="fa fa-circle-o"></i>Embarkation</a></li>
+                    <li><a href="/disembarkation-lists"><i class="fa fa-circle-o"></i>Disembarkation</a></li>
+                    <li><a href="/crew-planning"><i class="fa fa-circle-o"></i>Crew Planning</a></li>
+                </ul>
+            </li>
+
+            <%--<li class="treeview sidebar-link-seafarer">
+                <a href="#">
+                    <i class="fa fa-ship fa-fw"></i>
+                    <span>Seafarer</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/designations"><i class="fa fa-circle-o"></i>Designation & Rank</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>Document Management</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i>STCW 95</a></li>
+                </ul>
+            </li>--%>
+
+            <li class="treeview sidebar-link-hr">
+                <a href="#">
+                    <i class="fa fa-files-o fa-fw"></i>
+                    <span>Human Resources</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/crew-timesheets"><i class="fa fa-circle-o"></i>Crew Timesheet</a></li>
+                    <%--<li><a href="#"><i class="fa fa-circle-o"></i>Training Request</a></li>--%>
+                    <%--<li><a href="#"><i class="fa fa-circle-o"></i>Payroll</a></li>--%>
+                </ul>
+            </li>
+
+            <li class="treeview sidebar-link-vp sidebar-link-vessel">
+                <a href="#">
+                    <i class="fa fa-binoculars fa-fw"></i>
+                    <span>Vessel and Principal</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/principals"><i class="fa fa-circle-o"></i>Principal Management</a></li>
+                    <li><a href="/invoices"><i class="fa fa-circle-o"></i>Invoice Management</a></li>
+                    <li><a href="/_vessels"><i class="fa fa-circle-o"></i>Vessel Management</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview sidebar-link-maintenance">
+                <a href="#">
+                    <i class="fa fa-cogs fa-fw"></i>
+                    <span>Maintenance</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/agents"><i class="fa fa-circle-o"></i>Agents</a></li>
+                    <li><a href="/banks"><i class="fa fa-circle-o"></i>Banks</a></li>
+                    <li><a href="/branches"><i class="fa fa-circle-o"></i>Branches</a></li>
+                    <li><a href="/departments"><i class="fa fa-circle-o"></i>Departments</a></li>
+                    <li><a href="/positions"><i class="fa fa-circle-o"></i>Positions</a></li>
+                    <li><a href="/vessels"><i class="fa fa-circle-o"></i>Vessel Types</a></li>
+                    <li><a href="/seaports"><i class="fa fa-circle-o"></i>Seaports</a></li>
+                    <li><a href="/airports"><i class="fa fa-circle-o"></i>Airports</a></li>
+                    <li><a href="/flags"><i class="fa fa-circle-o"></i>Flags</a></li>
+                    <li><a href="/unions"><i class="fa fa-circle-o"></i>Vessel Union And Affiliated</a></li>
+                    <li><a href="/clinics"><i class="fa fa-circle-o"></i>Medical Clinics</a></li>
+                    <li><a href="/mannings"><i class="fa fa-circle-o"></i>Manning Agencies</a></li>
+                    <li><a href="/gears"><i class="fa fa-circle-o"></i>Working Gears</a></li>
+                    <li><a href="/routes"><i class="fa fa-circle-o"></i>Routing and Trading Area</a></li>
+                    <li><a href="/ranks"><i class="fa fa-circle-o"></i>Ranks</a></li>
+                    <li><a href="/airlines"><i class="fa fa-circle-o"></i>Airlines</a></li>
+                    <li><a href="/travels"><i class="fa fa-circle-o"></i>Travel Agencies</a></li>
+                    <li><a href="/centers"><i class="fa fa-circle-o"></i>Training Centers</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview sidebar-link-documents">
+                <a href="#">
+                    <i class="fa fa-cogs fa-fw"></i>
+                    <span>Document Manager</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/documents"><i class="fa fa-circle-o"></i>Documents</a></li>
+                    <li><a href="/licenses"><i class="fa fa-circle-o"></i>Licenses</a></li>
+                    <li><a href="/medicals"><i class="fa fa-circle-o"></i>Medical Certificates</a></li>
+                    <li><a href="/vaccines"><i class="fa fa-circle-o"></i>Vaccines</a></li>
+                    <li><a href="/seminars"><i class="fa fa-circle-o"></i>Seminars and Trainings</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview sidebar-link-security">
+                <a href="#">
+                    <i class="fa fa-lock fa-fw"></i>
+                    <span>Security</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/accounts"><i class="fa fa-circle-o"></i>User Accounts</a></li>
+                    <li><a href="/roles"><i class="fa fa-circle-o"></i>User Roles</a></li>
+                    <li><a href="/logs"><i class="fa fa-circle-o"></i>Activity Logs</a></li>
+                </ul>
+            </li>
+
+         </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                            <p>Will be 23 on April 24th</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-user bg-yellow"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                            <p>New phone +1(800)555-1234</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                            <p>nora@example.com</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                            <p>Execution time 5 seconds</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Custom Template Design
+                            <span class="label label-danger pull-right">70%</span>
+                        </h4>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Update Resume
+                            <span class="label label-success pull-right">95%</span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Laravel Integration
+                            <span class="label label-warning pull-right">50%</span>
+                        </h4>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Back End Framework
+                            <span class="label label-primary pull-right">68%</span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+        </div>
+        <!-- /.tab-pane -->
+
+        <!-- Settings tab content -->
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+                <h3 class="control-sidebar-heading">General Settings</h3>
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Report panel usage
+
+                        <input type="checkbox" class="pull-right" checked/>
+                    </label>
+
+                    <p>
+                        Some information about this general settings option
+
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Allow mail redirect
+                        <input type="checkbox" class="pull-right" checked/>
+                    </label>
+                    <p>
+                        Other sets of options are available
+
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Expose author name in posts
+
+                        <input type="checkbox" class="pull-right" checked/>
+                    </label>
+                    <p>
+                        Allow the user to show his name in blog posts
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Show me as online
+
+                        <input type="checkbox" class="pull-right" checked/>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Turn off notifications
+
+                        <input type="checkbox" class="pull-right"/>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Delete chat history
+
+                        <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+            </form>
+        </div>
+        <!-- /.tab-pane -->
+    </div>
+</aside>
+<div class="control-sidebar-bg"></div>
+<div>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</div>
+
+    <div class="modal fade" id="prefix-modal" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-primary">
+                        <span class="fa fa-plus-circle"></span> &nbsp;
+                        System Prefix</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-primary">Enter the prefix you want for the invoices.</label><br />
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                    <input id="prefix-name" placeholder="Prefix" type="text" class="form-control" data-name="Prefix"/>
+                                </div>
+                                <label id="error-prefix-name" style="display: none" class="text-danger"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-prefix" class="btn btn-primary">Save Prefix
+                        <i class="fa fa-spinner fa-spin hidden"></i>
+                    </button>
+                    <button data-dismiss="modal" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+    var permissionForUserDashboard = {
+        viewDashboard: <%= DashboardPermissions.Contains(Seabase.Helpers.Ability.View) ? "true" : "false" %>,
+        editDashboard: <%= DashboardPermissions.Contains(Seabase.Helpers.Ability.Update) ? "true" : "false" %>,
+        createDashboard: <%= DashboardPermissions.Contains(Seabase.Helpers.Ability.Create) ? "true" : "false" %>,
+        removeDashboard: <%= DashboardPermissions.Contains(Seabase.Helpers.Ability.Delete) ? "true" : "false" %>,
+    };
+
+    var permissionForUserManning = {
+        viewManning: <%= ManningPermissions.Contains(Seabase.Helpers.Ability.View) ? "true" : "false" %>,
+        editManning: <%= ManningPermissions.Contains(Seabase.Helpers.Ability.Update) ? "true" : "false" %>,
+        createManning: <%= ManningPermissions.Contains(Seabase.Helpers.Ability.Create) ? "true" : "false" %>,
+        removeManning: <%= ManningPermissions.Contains(Seabase.Helpers.Ability.Delete) ? "true" : "false" %>,
+    };
+
+    var permissionForCrew = {
+        viewCrew: <%= CrewPermissions.Contains(Seabase.Helpers.Ability.View) ? "true" : "false" %>,
+        editCrew: <%= CrewPermissions.Contains(Seabase.Helpers.Ability.Update) ? "true" : "false" %>,
+        createCrew: <%= CrewPermissions.Contains(Seabase.Helpers.Ability.Create) ? "true" : "false" %>,
+        removeCrew: <%= CrewPermissions.Contains(Seabase.Helpers.Ability.Delete) ? "true" : "false" %>,
+    };
+
+    var permissionBoard = {
+        viewBoard: <%= BoardPermissions.Contains(Seabase.Helpers.Ability.View) ? "true" : "false" %>,
+        editBoard: <%= BoardPermissions.Contains(Seabase.Helpers.Ability.Update) ? "true" : "false" %>,
+        createBoard: <%= BoardPermissions.Contains(Seabase.Helpers.Ability.Create) ? "true" : "false" %>,
+        removeBoard: <%= BoardPermissions.Contains(Seabase.Helpers.Ability.Delete) ? "true" : "false" %>,
+    };
+
+    var permissionHuman = {
+        viewHuman: <%= HumanPermissions.Contains(Seabase.Helpers.Ability.View) ? "true" : "false" %>,
+        editHuman: <%= HumanPermissions.Contains(Seabase.Helpers.Ability.Update) ? "true" : "false" %>,
+        createHuman: <%= HumanPermissions.Contains(Seabase.Helpers.Ability.Create) ? "true" : "false" %>,
+        removeHuman: <%= HumanPermissions.Contains(Seabase.Helpers.Ability.Delete) ? "true" : "false" %>,
+    };
+
+    var permissionVessel = {
+        viewVessel: <%= VesselPermissions.Contains(Seabase.Helpers.Ability.View) ? "true" : "false" %>,
+        editVessel: <%= VesselPermissions.Contains(Seabase.Helpers.Ability.Update) ? "true" : "false" %>,
+        createVessel: <%= VesselPermissions.Contains(Seabase.Helpers.Ability.Create) ? "true" : "false" %>,
+        removeVessel: <%= VesselPermissions.Contains(Seabase.Helpers.Ability.Delete) ? "true" : "false" %>,
+    };
+
+    var permissionMaintenance = {
+        viewMaintenance: <%= MaintenancePermissions.Contains(Seabase.Helpers.Ability.View) ? "true" : "false" %>,
+        editMaintenance: <%= MaintenancePermissions.Contains(Seabase.Helpers.Ability.Update) ? "true" : "false" %>,
+        createMaintenance: <%= MaintenancePermissions.Contains(Seabase.Helpers.Ability.Create) ? "true" : "false" %>,
+        removeMaintenance: <%= MaintenancePermissions.Contains(Seabase.Helpers.Ability.Delete) ? "true" : "false" %>,
+    };
+
+    var permissionDocument = {
+        viewDocument: <%= DocumentPermissions.Contains(Seabase.Helpers.Ability.View) ? "true" : "false" %>,
+        editDocument: <%= DocumentPermissions.Contains(Seabase.Helpers.Ability.Update) ? "true" : "false" %>,
+        createDocument: <%= DocumentPermissions.Contains(Seabase.Helpers.Ability.Create) ? "true" : "false" %>,
+        removeDocument: <%= DocumentPermissions.Contains(Seabase.Helpers.Ability.Delete) ? "true" : "false" %>,
+    };
+
+    var permissionSecurity = {
+        viewSecurity: <%= SecurityPermissions.Contains(Seabase.Helpers.Ability.View) ? "true" : "false" %>,
+        editSecurity: <%= SecurityPermissions.Contains(Seabase.Helpers.Ability.Update) ? "true" : "false" %>,
+        createSecurity: <%= SecurityPermissions.Contains(Seabase.Helpers.Ability.Create) ? "true" : "false" %>,
+        removeSecurity: <%= SecurityPermissions.Contains(Seabase.Helpers.Ability.Delete) ? "true" : "false" %>,
+    };
+</script>
+<script src="Scripts/jquery.min.js"></script>
+<script src="Scripts/jquery-3.2.1.min.js"></script>
+<script src="Scripts/jquery-ui.min.js"></script>
+<script src="Scripts/bootstrap-3.3.7.min.js"></script>
+<script src="Scripts/fastclick.min.js"></script>
+<script src="Scripts/adminlte.min.js"></script>
+<script src="Scripts/jquery.sparkline.min.js"></script>
+<script src="Scripts/jquery.slimscroll.min.js"></script>
+<script src="Scripts/Chart.min.js"></script>
+<script src="Scripts/dashboard2.js"></script>
+<script src="Scripts/sweetalert2.min.js"></script>
+<script src="Scripts/validator.js"></script>
+<script src="Scripts/helpers.js"></script>
+<script src="Scripts/demo.js"></script>
+<script src="Scripts/jquery.dataTables.js"></script>
+<script src="Scripts/sum().js"></script>
+<script src="Scripts/select2.min.js"></script>
+<script src="Scripts/bootstrap-colorpicker.min.js"></script>
+<script src="Scripts/moment.min.js"></script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+<script src="Scripts/jquery.richtext.js"></script>
+<script src="Scripts/fullcalendar.min.js"></script>
+<script src="scripts/WebForms/permissions.js"></script>
+<script>
+    $(document).ready(function () {
+        //prefix();
+    });
+
+    function prefix() {
+        (new http).post("header.aspx/prefix", {
+
+        }).then(function (response) {
+
+            var items = response.d;
+
+            $('#prefix-name').val(items);
+        }).run();
+    }
+
+    $(document).on('click', '#save-prefix', function () {
+        (new http).post("header.aspx/update_prefix", {
+            id: 1,
+            prefix: $('#prefix-name').val()
+        }).then(function (response) {
+            swal('Successfully Updated', 'System Prefix Has Been Updated.', 'success');
+        }).run();
+    })
+
+</script>

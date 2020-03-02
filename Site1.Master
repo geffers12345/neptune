@@ -1,0 +1,390 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Seabase.Site1" %>
+
+<%@ Import Namespace="Acoulite.Models" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+    <link rel="icon" href="Content/img/yellowhub.png" sizes="32x32"/>
+    <link href="content/css/bootstrap-3.3.7.min.css" rel="stylesheet" />
+    <link href="content/css/font-awesome-4.7.0.min.css" rel="stylesheet" />
+    <link href="content/css/ionicons-2.0.1.min.css" rel="stylesheet" />
+    <link href="content/css/jquery-jvectormap-2.0.4.min.css" rel="stylesheet" />
+    <link href="content/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="content/css/sweetalert2.min.css" rel="stylesheet" />
+    <link href="content/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="content/css/animate.min.css" rel="stylesheet" />
+    <link href="content/css/customize.css" rel="stylesheet" />
+    <link href="content/css/select2-4.0.6.min.css" rel="stylesheet" />
+    <link href="content/css/fonts.min.css" rel="stylesheet" />
+    <link href="content/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="content/css/jquerysctipttop.css" rel="stylesheet" />
+    <link href="content/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="content/css/richtext.min.css" rel="stylesheet" />
+    <link href="content/css/fullcalendar-3.9.0.min.css" rel="stylesheet" />
+    <link href="content/css/fullcalendar-3.9.0.print.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+    <title></title>
+</head>
+<body class="hold-transition skin-purple sidebar-mini">
+<header class="main-header">
+    <a href="/" class="logo">
+        <span class="logo-mini"><b>RPM</b></span>
+        <span class="logo-lg">
+            <span class="banner-name" style="display: inline;"><b>Portal</b></span>
+        </span>
+    </a>
+
+    <nav class="navbar navbar-static-top">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user-circle"></i>
+                        <span class="hidden-xs"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="https://png.icons8.com/windows/90/ffffff/user-male-circle.png" class="img-circle"/>
+                            <p>
+                                <%if (Auth.Check()){%>
+                                     <%= Auth.user().Firstname + " " + Auth.user().Lastname%>
+                                <%}; %>
+                            </p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="/out" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" id="gear" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+
+            <li class="sidebar-link-dashboard">
+                <a href="/crew-dashboard?_hsdlwhx=<%= Auth.user().ID%>">
+                    <i class="fa fa-dashboard fa-fw"></i> <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-profile">
+                <a href="/portal?_hsdlwhx=<%= Auth.user().ID%>">
+                    <i class="fa fa-user fa-fw"></i> <span>My Profile</span>
+                </a>
+            </li>
+
+            <li class="sidebar-link-security">
+                <a role="button" data-toggle="modal" data-target="#change-password-modal">
+                    <i class="fa fa-lock fa-fw"></i> <span>Change Password</span>
+                </a>
+            </li>
+
+         </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                            <p>Will be 23 on April 24th</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-user bg-yellow"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                            <p>New phone +1(800)555-1234</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                            <p>nora@example.com</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                            <p>Execution time 5 seconds</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Custom Template Design
+                            <span class="label label-danger pull-right">70%</span>
+                        </h4>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Update Resume
+                            <span class="label label-success pull-right">95%</span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Laravel Integration
+                            <span class="label label-warning pull-right">50%</span>
+                        </h4>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">Back End Framework
+                            <span class="label label-primary pull-right">68%</span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+        </div>
+        <!-- /.tab-pane -->
+
+        <!-- Settings tab content -->
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+                <h3 class="control-sidebar-heading">General Settings</h3>
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Report panel usage
+
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+
+                    <p>
+                        Some information about this general settings option
+
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Allow mail redirect
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+                    <p>
+                        Other sets of options are available
+
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Expose author name in posts
+
+                        <input type="checkbox" class="pull-right" checked/>
+                    </label>
+                    <p>
+                        Allow the user to show his name in blog posts
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Show me as online
+
+                        <input type="checkbox" class="pull-right" checked/>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Turn off notifications
+
+                        <input type="checkbox" class="pull-right"/>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Delete chat history
+
+                        <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+            </form>
+        </div>
+        <!-- /.tab-pane -->
+    </div>
+</aside>
+<div class="control-sidebar-bg"></div>
+<div>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</div>
+
+<div class="modal fade" id="change-password-modal" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-primary">
+                        <span class="fa fa-plus-circle"></span> &nbsp;
+                        Change Password</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-primary">Current Password</label><br />
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                    <input id="current" placeholder="Current Password" type="password" class="form-control" data-name="Current"/>
+                                </div>
+                                <label id="error-current" style="display: none" class="text-danger"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-primary">New Password</label><br />
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                    <input id="new" placeholder="New Password" type="password" class="form-control" data-name="Current"/>
+                                </div>
+                                <label id="error-new" style="display: none" class="text-danger"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="change-password" class="btn btn-primary">Change Password
+                        <i class="fa fa-spinner fa-spin hidden"></i>
+                    </button>
+                    <button data-dismiss="modal" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="Scripts/jquery.min.js"></script>
+<script src="Scripts/jquery-3.2.1.min.js"></script>
+<script src="Scripts/jquery-ui.min.js"></script>
+<script src="Scripts/bootstrap-3.3.7.min.js"></script>
+<script src="Scripts/fastclick.min.js"></script>
+<script src="Scripts/adminlte.min.js"></script>
+<script src="Scripts/jquery.sparkline.min.js"></script>
+<script src="Scripts/jquery.slimscroll.min.js"></script>
+<script src="Scripts/Chart.min.js"></script>
+<script src="Scripts/dashboard2.js"></script>
+<script src="Scripts/sweetalert2.min.js"></script>
+<script src="Scripts/validator.js"></script>
+<script src="Scripts/helpers.js"></script>
+<script src="Scripts/demo.js"></script>
+<script src="Scripts/jquery.dataTables.js"></script>
+<script src="Scripts/sum().js"></script>
+<script src="Scripts/select2.min.js"></script>
+<script src="Scripts/bootstrap-colorpicker.min.js"></script>
+<script src="Scripts/moment.min.js"></script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+<script src="Scripts/jquery.richtext.js"></script>
+<script src="Scripts/fullcalendar.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //prefix();
+    });
+
+    $(document).on('click', '#change-password', function () {
+
+        if (isPasswordValid()) {
+            (new http).post("portal.aspx/updatePassword", {
+                current: $('#current').val(),
+                password: $('#new').val()
+            }).then(function (response) {
+
+                if (response.d == 0) {
+                    swal('Oops!', 'Current Password Is Incorrect', 'error');
+                } else {
+                    $('.close').click();
+
+                    swal('Successfully Updated', 'Password Has Been Updated', 'success');
+                }
+            }).run();
+        }
+    })
+
+    function isPasswordValid() {
+        var a = $("#current").validate(['required']).displayErrorOn($("#error-current"));
+        var b = $("#new").validate(['required']).displayErrorOn($("#error-new"));
+
+        return a && b;
+    }
+
+</script>
