@@ -223,7 +223,7 @@ Affiant's Printed Name & Signature
 
             $('#address').html(item.NoOrBldg + ' ' +  item.StreetOrBrgy + ' ' + item.Municipality + ' ' + item.Province);
             
-            vessel_info(id);
+            vessel_info(item.VesselID);
             embark(id);
 
         }).run();

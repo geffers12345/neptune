@@ -487,6 +487,16 @@
                             </div>
                         </div>
 
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-primary">Collective Bargaining Agreement, if any:</label><br />
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                    <input type="text" id="cba" class="form-control" placeholder="CBA"/>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -905,6 +915,16 @@
                             </div>
                         </div>
 
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-primary">Collective Bargaining Agreement, if any:</label><br />
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                    <input type="text" id="cba-view" class="form-control" placeholder="CBA"/>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1312,6 +1332,16 @@
                                     <input type="text" id="email-edit" class="form-control" placeholder="Email Address"/>
                                 </div>
                                 <label id="error-email-edit" style="display: none" class="text-danger"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-primary">Collective Bargaining Agreement, if any:</label><br />
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                    <input type="text" id="cba-edit" class="form-control" placeholder="CBA"/>
+                                </div>
                             </div>
                         </div>
 

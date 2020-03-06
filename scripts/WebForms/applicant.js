@@ -5,6 +5,8 @@ var sender_password = "";
 var api_code = "";
 var currentStatus = 0;
 var currentVessel = 0;
+var currentRank = 0;
+var totalAlottee = 0;
 
 $(document).ready(function () {
     ranks();
@@ -295,6 +297,7 @@ function applicant(id) {
         }
 
         currentVessel = item.VesselID;
+        currentRank = item.RankID;
 
         vessel_info(item.VesselID);
 
@@ -388,8 +391,7 @@ function applicant(id) {
         remarks();
 
         incidents();
-
-        all_timesheets();
+        //all_timesheets();
 
         allotees();
 
@@ -873,6 +875,9 @@ function isChildValid() {
 $(document).on('click', '#save-bfcry', function () {
 
     if (isBeneficiaryValid()) {
+
+        var dependent = $('#dependent').prop('checked') == true ? 1 : 0;
+
         (new http).post("applicant.aspx/insert_beneficiary", {
             crewID: applicantID,
             name: $('#bfcry-name').val(),
@@ -881,7 +886,8 @@ $(document).on('click', '#save-bfcry', function () {
             address: $('#bfcry-address').val(),
             bday: $('#bfcry-bday').val(),
             bplace: $('#bfcry-bplace').val(),
-            gender: $('#btcry-gender').val()
+            gender: $('#btcry-gender').val(),
+            dependent: dependent
         }).then(function (response) {
 
             swal('Successfully Added', 'Information has been added successfully.', 'success');
@@ -2675,6 +2681,7 @@ function hire_vessels(principalID) {
     }).then(function (response) {
         var items = response.d.map(item => {
             $('#vessel, #change-vessel').append("<option value=\"" + item.ID + "\">" + item.Name + "</option>");
+            crewRps(item.ID);
         });
     }).run();
 }
@@ -2690,6 +2697,8 @@ function vessel_info(id) {
         $('#vessel-view').text(item.Name);
         $('#principal-view').text(item.Principal);
 
+        mySalary(currentRank, currentVessel, item.PrincipalID);
+
         setTimeout(function () {
             $('#change-principal').val(item.PrincipalID).change();
 
@@ -2698,6 +2707,7 @@ function vessel_info(id) {
 
                 setTimeout(function () {
                     $('#change-vessel').val(item.ID).change();
+                    crewRps(item.ID);
                 }, 2000);
 
             }, 2000);
@@ -2944,6 +2954,8 @@ function allotees() {
         var items = response.d.map(item => {
             return new Promise(function (resolve, reject) {
 
+                totalAlottee += item.Percentage;
+
                 var html = "<tr>" +
                            "<td>" + item.Allotee + "</td>" +
                            "<td>" + item.Relationship + "</td>" +
@@ -3116,5 +3128,108 @@ function scales(principalID) {
             $('#scales').append(key);
         });
 
+    }).run();
+}
+
+function mySalary(rankID, vesselID, principalID) {
+
+    (new http).post("scales.aspx/getByVessel", {
+        rankID: parseInt(rankID),
+        vesselID: vesselID,
+        scaleID: principalID
+    }).then(function (response) {
+
+        var monthly = 0;
+        var daily = 0;
+
+        var classtotal = "";
+        var strMonthly = "";
+        var fortotalHtml = "";
+        var notfortotalHtml = "";
+
+        var i = 1;
+        var rank = "";
+
+        var items = response.d.map(item => {
+
+            return new Promise(function (resolve, reject) {
+
+                if (item.VesselID == currentVessel) {
+                    if (item.ForTotal === 1) {
+                        monthly += item.Monthly;
+                        daily += item.Daily;
+
+                        strMonthly = "<tr class='total-crew-salary' id='" + rankID + "'>" +
+                            "<td></td>" +
+                            "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>Total</b></td>" +
+                            "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>" + parseFloat(monthly).toFixed(2) + "</b></td>" +
+                            "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>" + parseFloat(daily).toFixed(2) + "</b></td>" +
+                            "<td></td>" +
+                            "<td></td>" +
+                            "<td></td>" +
+                            "</tr>";
+
+                        classtotal = "for-total-" + item.ForTotal + "-" + item.RankID;
+                        rank = item.Rank;
+
+                        fortotalHtml += "<tr class='" + classtotal + "' id='" + rankID + "'>" +
+                            "<td style='text-align: left !important'></td>" +
+                            "<td style='text-align: left !important'>" + i + ") " + item.Income + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Monthly + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Daily + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Percentage + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Days + "</td>" +
+                            "<td style='text-align: left !important'>" + item.Remarks + "</td>" +
+                            "</tr>";
+
+                    } else {
+
+                        notfortotalHtml += "<tr class='" + classtotal + "' id='" + rankID + "'>" +
+                            "<td style='text-align: left !important'></td>" +
+                            "<td style='text-align: left !important'>" + i + ") " + item.Income + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Monthly + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Daily + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Percentage + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Days + "</td>" +
+                            "<td style='text-align: left !important'>" + item.Remarks + "</td>" +
+                            "</tr>";
+                    }
+
+                    i++;
+                }
+
+                resolve();
+            });
+        });
+
+        Promise.all(items).then(function () {
+            $('.loading').remove();
+
+            fortotalHtml += strMonthly;
+
+            var td = '.' + classtotal + ' td';
+
+            $('#salary-tbody').append(fortotalHtml);
+            $('#salary-tbody').append(notfortotalHtml);
+
+            $(td.toString()).first().html('<b>' + rank + '</b>');
+
+            var $tbody = $('#salary-tbody');
+
+            $tbody.find('tr').sort(function (a, b) {
+                var tda = $(a).attr('id'); // target order attribute
+                var tdb = $(b).attr('id'); // target order attribute
+                // if a < b return 1
+                return tda > tdb ? 1
+                    // else if a > b return -1
+                    : tda < tdb ? -1
+                        // else they are equal - return 0
+                        : 0;
+            }).appendTo($tbody);
+
+            $('#_total-pay').text(monthly);
+            $('#_allotment').text(totalAlottee);
+            $('#_pay').text(monthly - totalAlottee);
+        });
     }).run();
 }

@@ -11,6 +11,14 @@
 	td.report { FONT-SIZE: 13px; COLOR: #000000; BORDER-BOTTOM: #000000 1px solid; FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif; BACKGROUND-COLOR: #ffffff;}
 	table.report {BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid; BORDER-COLLAPSE: collapse; border-spacing: 0}
 	td.reportgray {	BORDER-RIGHT: #000000 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #000000 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 11px; PADDING-BOTTOM: 2px; BORDER-LEFT: #000000 1px solid; COLOR: #000000; PADDING-TOP: 2px; BORDER-BOTTOM: #000000 1px solid; FONT-FAMILY: verdana,arial, helvetica, geneva, sans-serif;}
+    body
+    {
+        margin-top: -20px;
+    }
+
+    @page {
+        margin-top: -30px;
+    }
 </style>
 </head>	
 		
@@ -28,17 +36,15 @@
 </td></tr>
 	
 <tr><td height='100%' align="center" valign="top">
-<table cellpadding='0' cellspacing='0' width="100%" border="0">
+<table cellpadding='0' cellspacing='0' width="100%" border="0" style="margin-top: -15px;">
 <tr><td><br><br><b>KNOW ALL MEN BY THESE PRESENTS:<br><br></td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This Contract, entered into voluntarily by and between:<br><br></td></tr>
 
 <tr><td>
 
-<table width="100%" cellpadding="0" cellspacing="0">
+<table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 5px;">
 <tr><td width="120">Name of Seafarer:</td><td class="report" id="fullname"></td></tr>
 </table>
-
-
 
 
 <table width="100%" cellpadding="0" cellspacing="0"  border="0">
@@ -81,16 +87,9 @@
 </td></tr>
 </table>
 </td></tr>
-<!--
-<tr><td>
-<table width=100%>
-<tr><td align=center>and</td></tr>
-</table>
-</td></tr>
--->
 
 <tr><td valign="top">
-<table width=100% cellpadding=0 cellspacing=0>
+<table style="margin-top: -15px;" width=100% cellpadding=0 cellspacing=0>
 <tr><td></td><td align=center>and</td></tr>
 <tr height="10"><td colspan="2"></td></tr>
 <tr><td width=200>Name of Agent:</td><td class=report align=left>&nbsp;&nbsp;<b>Conautic Maritime Inc.</td></tr>
@@ -174,14 +173,14 @@
 	 	 
 				<tr><td>1.7</td>
 							<td>Point of Hire:</td>
-					<td class="report">&nbsp;</td>
+					<td class="report" id="point"></td>
 		 
 				</tr>
 	 	 
 		<tr>
 			<td>1.8</td>
 			<td>Collective Bargaining Agreement, if any::</td>
-			<td class="report">&nbsp;</td>
+			<td class="report" id="principal-cba"></td>
 		</tr>
 	 	 
  </table></td></tr> 
@@ -199,11 +198,11 @@
 </td></tr>
 <tr><td><br><br></td></tr>
 <tr><td>
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: -30px; margin-bottom: 30px;">
 <tr><td width="50%" class="report" align="center" valign="bottom" id="full"></td>
     <td width=5%>&nbsp;</td>
 		<td class="report" align="center"><b></b><br>
-<b id="sign-name"></b></td></tr>
+<b id="sign-name"></b><br /><span id="sign-title"></span></td></tr>
 <tr><td width=50% align=center>Seafarer</td><td width=5%>&nbsp; </td><td align=center>For the Employer</td></tr>
 <tr><td colspan=3><br><br>Verified and approved by the POEA<br><br><br></td></tr>
 <tr><td width=50% class=report>&nbsp;</td><td width=5%>&nbsp;</td><td class=report align=center>&nbsp;</td></tr>
@@ -240,13 +239,13 @@
     });
 
     function sign(id) {
-        (new http).post("signatories.aspx/find", {
+        (new http).post("accounts.aspx/find", {
             id: id
         }).then(function (response) {
             var item = response.d[0];
 
-            $('#sign-name').text(item.Signatory);
-            $('#sign-title').text(item.Title);
+            $('#sign-name').text(item.Firstname + ' ' + item.Lastname);
+            $('#sign-title').text(item.Position);
 
         }).run();
     }
@@ -295,6 +294,7 @@
 
             crewEmbark(id, item.VesselID);
 
+            license(id);
         }).run();
     }
 
@@ -317,7 +317,6 @@
 
             $('#age').text(items.Age);
             $('#src').text(items.SRC);
-            $('#license').text(items.Eregistration);
             $('#seamans').text(items.Seaman);
         }).run();
     }
@@ -392,6 +391,8 @@
             scaleID: 0
         }).then(function (response) {
 
+            console.log(response);
+
             var items = response.d.map(item => {
 
                 return new Promise(function (resolve, reject) {
@@ -408,7 +409,7 @@
                         $('#overtime').text(parseFloat(item.Monthly));
                     }
 
-                    if (item.Income.includes('Vacation') || item.Income.includes('vacation') || item.Income.includes('leave')) {
+                    if (item.Income.includes('Vacation') || item.Income.includes('vacation') || item.Income.includes('Leave')) {
                         $('#vacation').text(parseFloat(item.Monthly));
                     }
 
@@ -430,65 +431,7 @@
         }).then(function (response) {
 
             $('#duration').text(response.d[0].Duration + ' mos.');
-        }).run();
-    }
-
-    function all_timesheets(applicantID) {
-
-        (new http).post("timesheets.aspx/crewPayroll", {
-            id: applicantID
-        }).then(function (response) {
-
-            console.log(response.d);
-
-            var items = response.d.map(item => {
-                return new Promise(function (resolve, reject) {
-
-                    (new http).post("timesheets.aspx/other_salaries", {
-                        id: item.CrewEmbarkID
-                    }).then(function (response) {
-
-                        var data = response.d[0];
-
-                        var total = 0;
-
-                        if (response.d.length == 0) {
-                            grand = item.Total;
-
-                            total = (parseFloat(item.BasicSalaryActual) / 30) + (parseFloat(item.OvertimeActual) / 30).toFixed(2);
-
-                            $('#basic').text(parseFloat(item.BasicSalaryActual));
-                            $('#basicperday').text('(' + (parseFloat(item.BasicSalaryActual) / 30).toFixed(2) + ' US$ / day)');
-                            $('#duration').text(item.Duration);
-                            $('#overtime').text(parseFloat(item.OvertimeActual) + '/ 85 hrs. (N/A $/hr. if excess overime)');
-                            $('#overtimeperday').text('(' + (parseFloat(item.OvertimeActual) / 30).toFixed(2) + ' US$ / day)');
-
-                            $('#total').text(parseFloat(total).toFixed(2));
-                            $('#totalperday').text('(' + (parseFloat(total) / 30).toFixed(2) + ' US$ / day)');
-
-                            resolve();
-                        } else {
-                            grand = item.Total + ((data.Rejoining + data.LeavePay + data.PensionPay + data.ChristmasPay + data.Others) - data.Deduction);
-
-                            total = (parseFloat(item.BasicSalaryActual) / 30) + (parseFloat(item.OvertimeActual) / 30).toFixed(2);
-
-                            $('#basic').text(parseFloat(item.BasicSalaryActual));
-                            $('#basicperday').text('(' + (parseFloat(item.BasicSalaryActual) / 30).toFixed(2) + ' US$ / day)');
-                            $('#duration').text(item.Duration);
-                            $('#overtime').text(parseFloat(item.OvertimeActual) + '/ 85 hrs. (N/A $/hr. if excess overime)');
-                            $('#overtimeperday').text('(' + (parseFloat(item.OvertimeActual) / 30).toFixed(2) + ' US$ / day)');
-
-                            $('#total').text(parseFloat(total).toFixed(2));
-                            $('#totalperday').text('(' + (parseFloat(total) / 30).toFixed(2) + ' US$ / day)');
-                        }
-
-                    }).run();
-                });
-            });
-
-            Promise.all(items).then(function () {
-
-            });
+            $('#point').text(response.d[0].PointofHire);
         }).run();
     }
 
@@ -528,6 +471,7 @@
             var item = response.d[0];
         
             $('#principal-address').text(item.Address);
+            $('#principal-cba').text(item.CBA);
         }).run();
     }
 
@@ -554,15 +498,37 @@
 
     function find_flags(id) {
 
-    (new http).post("_vessels.aspx/find_flags", {
-        id: id
-    }).then(function (response) {
+        (new http).post("_vessels.aspx/find_flags", {
+            id: id
+        }).then(function (response) {
 
-        var items = response.d.map(item => {
-            $('#flag-item').text(item.Flag);
-        });
+            var items = response.d.map(item => {
+                $('#flag-item').text(item.Flag);
+            });
 
-    }).run();
-}
+        }).run();
+    }
+
+    function license(id) {
+
+        (new http).post("applicant.aspx/licenses", {
+            id: id
+        }).then(function (response) {
+
+            var items = response.d.map(item => {
+                return new Promise(function (resolve, reject) {
+
+                    if (item.License.includes('Philippine') || item.License.includes('Philippine')) {
+                        $('#license').text(item.Number);
+                    }
+                
+                    resolve();
+                });
+            });
+
+            Promise.all(items).then(function () {
+            });
+        }).run();
+    }
 </script>
 </html>

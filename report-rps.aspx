@@ -168,11 +168,11 @@
                 <tr height="30">
                     <td valign=top class="font11"><b>&nbsp;</b></td>
                     <td colspan="5" align="center" valign=bottom class="font11">
-                        <b></b>
+                        <b id="sign-name"></b>
                     </td>
                     <td colspan="6" valign=top class="font11"><b>&nbsp;</b></td>
                     <td colspan="3" align="center" valign=bottom class="font11">
-                        <b></b>
+                        <b id="requested-name"></b>
                     </td>
                     <td colspan="2" valign=top class="font11"><b>&nbsp;</b></td>
                 </tr>
@@ -280,11 +280,35 @@
         crewRps(parseInt(url.searchParams.get("vesselId")));
         vessel_info(parseInt(url.searchParams.get("vesselId")));
 
-        $('#asignatory').text(url.searchParams.get("submitted"));
+        sign(url.searchParams.get("submitted"));
+        sign2(url.searchParams.get("request"));
     });
 
+    function sign(id) {
+        (new http).post("accounts.aspx/find", {
+            id: id
+        }).then(function (response) {
+            var item = response.d[0];
+
+            $('#sign-name').text(item.Firstname + ' ' + item.Lastname);
+            $('#asignatory').text(item.Position);
+
+        }).run();
+    }
+
+    function sign2(id) {
+        (new http).post("accounts.aspx/find", {
+            id: id
+        }).then(function (response) {
+            var item = response.d[0];
+
+            $('#requested-name').text(item.Firstname + ' ' + item.Lastname);
+
+        }).run();
+    }
+
     function crewRps(vesselId) {
-        $('#rps-tbody').empty().append("<tr class=\"loading\"><td colspan=\"20\">Please select a Vessel</td></tr>");
+        $('#rps-tbody').empty().append("<tr><td colspan=\"20\">Please select a Vessel</td></tr>");
             
         (new http).post("crews.aspx/crewRps", {
             vesselID: vesselId
@@ -294,6 +318,8 @@
 
                 var html = "";
                 //getting numbers
+
+                var distinct = [];
 
                 var today = getManilaTime().split(',')[0];
                 var d = today.split('/');
@@ -312,21 +338,23 @@
 
                         return new Promise(function (resolve, reject) {
 
-                            if (arr.includes(item.ID.toString())) {
-                                html += '<tr bgcolor=ffffff class="border-tr" height="60">' +
-                                            '<td colspan="4" class=reportrps11>' +
-                                                '&nbsp;' + item.Lastname + ', ' + item.Firstname + '</td>' +
-                                            '<td colspan="3" class=reportrps11 align=center>E-Reg#' + n.Eregistration + '</td>' +
-                                            '<td colspan="2" class=reportrps11 align=center>' + n.Seaman + '</td>' +
-                                            '<td class=reportrps10 align=center>' + item.Sex + '</td>' +
-                                            '<td colspan="2" class=reportrps11 align="center">' + item.Rank + '</td>' +
-                                            '<td colspan="2"class=reportrps11 align=center></td>' +
-                                            '<td colspan="2" class=reportrps11 align="center" style="width: 0.72in;"></span>' +
-                                            '</td>' +
-                                            '<td class=reportrps11>&nbsp;</td>' +
-                                        '</tr>';
+                            if (!distinct.includes(item.ID)) {
+                                distinct.push(item.ID);
 
-                                    $('#rps-tbody').append(html);
+                                if (arr.includes(item.ID.toString())) {
+                                    html += '<tr bgcolor=ffffff class="border-tr" height="60">' +
+                                                '<td colspan="4" class=reportrps11>' +
+                                                    '&nbsp;' + item.Lastname + ', ' + item.Firstname + '</td>' +
+                                                '<td colspan="3" class=reportrps11 align=center>E-Reg#' + n.Eregistration + '</td>' +
+                                                '<td colspan="2" class=reportrps11 align=center>' + n.Seaman + '</td>' +
+                                                '<td class=reportrps10 align=center>' + item.Sex + '</td>' +
+                                                '<td colspan="2" class="reportrps11" align="center">' + item.Rank + '</td>' +
+                                                '<td colspan="2" class="reportrps11" align="center">' + item.DateCreated + '</td>' +
+                                                '<td colspan="2" class="reportrps11" align="center" style="width: 0.72in;">' + item.DateUpdated + '</span>' +
+                                                '</td>' +
+                                                '<td class=reportrps11>&nbsp;</td>' +
+                                            '</tr>';
+                                }
                             }
 
                             resolve();
@@ -334,7 +362,8 @@
                     });
 
                     Promise.all(items).then(function () {
-                        $('.loading').remove();
+                        $('#rps-tbody').empty();
+                        $('#rps-tbody').append(html);
                     });
 
                 }).run();

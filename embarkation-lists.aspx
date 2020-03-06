@@ -174,6 +174,13 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
+                            <label class="text-primary">Point of Hire:</label><br />
+                            <input type="text" id="point" class="form-control" placeholder="Point of Hire"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
                             <label class="text-primary">Remarks:</label><br />
                             <textarea id="remarks" class="form-control"></textarea>
                         </div>
@@ -303,6 +310,13 @@
                             <label class="text-primary">Contract Duration:</label><br />
                             <input type="number" id="duration-edit" class="form-control" data-name="Duration"/>
                             <label id="error-duration-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Point of Hire:</label><br />
+                            <input type="text" id="point-edit" class="form-control" placeholder="Point of Hire"/>
                         </div>
                     </div>
 

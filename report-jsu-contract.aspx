@@ -357,7 +357,7 @@
 
             numbers();
             vessel_info(item.VesselID);
-            all_timesheets();
+            rankSalary(item.RankID);
 
         }).run();
     }
@@ -400,67 +400,6 @@
         }).run();
     }
 
-    function all_timesheets() {
-
-        (new http).post("timesheets.aspx/crewPayroll", {
-            id: applicantID
-        }).then(function (response) {
-
-            console.log(response.d);
-
-            $('#duration').text(response.d[0].Duration + ' mons');
-
-            var items = response.d.map(item => {
-                return new Promise(function (resolve, reject) {
-
-                    (new http).post("timesheets.aspx/other_salaries", {
-                        id: item.CrewEmbarkID
-                    }).then(function (response) {
-
-                        var data = response.d[0];
-
-                        var total = 0;
-
-                        if (response.d.length == 0) {
-                            grand = item.Total;
-
-                            total = (parseFloat(item.BasicSalaryActual) / 30) + (parseFloat(item.OvertimeActual) / 30).toFixed(2);
-
-                            $('#basic').text(parseFloat(item.BasicSalaryActual));
-                            $('#basicperday').text('(' + (parseFloat(item.BasicSalaryActual) / 30).toFixed(2) + ' US$ / day)');
-                            $('#duration').text(item.Duration);
-                            $('#overtime').text(parseFloat(item.OvertimeActual));
-                            $('#overtimeperday').text('(' + (parseFloat(item.OvertimeActual) / 30).toFixed(2) + ' US$ / day)');
-
-                            $('#total').text(parseFloat(total).toFixed(2));
-                            $('#totalperday').text('(' + (parseFloat(total) / 30).toFixed(2) + ' US$ / day)');
-
-                            resolve();
-                        } else {
-                            grand = item.Total + ((data.Rejoining + data.LeavePay + data.PensionPay + data.ChristmasPay + data.Others) - data.Deduction);
-
-                            total = (parseFloat(item.BasicSalaryActual) / 30) + (parseFloat(item.OvertimeActual) / 30).toFixed(2);
-
-                            $('#basic').text(parseFloat(item.BasicSalaryActual));
-                            $('#basicperday').text('(' + (parseFloat(item.BasicSalaryActual) / 30).toFixed(2) + ' US$ / day)');
-                            $('#duration').text(item.Duration);
-                            $('#overtime').text(parseFloat(item.OvertimeActual));
-                            $('#overtimeperday').text('(' + (parseFloat(item.OvertimeActual) / 30).toFixed(2) + ' US$ / day)');
-
-                            $('#total').text(parseFloat(total).toFixed(2));
-                            $('#totalperday').text('(' + (parseFloat(total) / 30).toFixed(2) + ' US$ / day)');
-                        }
-
-                    }).run();
-                });
-            });
-
-            Promise.all(items).then(function () {
-
-            });
-        }).run();
-    }
-
     function getManilaTime() {
         var options = {
             timeZone: 'Asia/Manila',
@@ -483,6 +422,58 @@
         d.pop();
 
         return d.join(' ');
+    }
+
+    function rankSalary(rankID) {
+
+        (new http).post("scales.aspx/getByVessel", {
+            rankID: parseInt(rankID),
+            vesselID: 0,
+            scaleID: 0
+        }).then(function (response) {
+
+            console.log(response.d);
+
+            var items = response.d.map(item => {
+
+                return new Promise(function (resolve, reject) {
+
+                    if (item.Income.includes('Basic')) {
+                        $('#basic').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Salary')) {
+                        $('#basic').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Overtime') || item.Income.includes('ot') || item.Income.includes('OT')) {
+                        $('#overtime').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Vacation') || item.Income.includes('vacation')) {
+                        $('#vacation').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Pension') || item.Income.includes('pension')) {
+                        $('#pension').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Bonus') || item.Income.includes('bonus')) {
+                        $('#bonus').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Leave') || item.Income.includes('leave')) {
+                        $('#monthly').text(parseFloat(item.Monthly));
+                    }
+
+                    resolve();
+                });
+            });
+
+            Promise.all(items).then(function () {
+                $('.loading').remove();
+            });
+        }).run();
     }
 </script>
 </html>

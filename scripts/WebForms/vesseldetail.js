@@ -7,10 +7,13 @@ var rank_item_id = 0;
 var principalID = 0;
 var vesselId = 0;
 var rankIDs = [];
+var globalID = 0;
 
 $(document).ready(function () {
     var url = window.location.href;
     id = url.split('=')[1];
+
+    globalID = id;
 
     $('#ContentPlaceHolder1_ID').val(id);
 
@@ -297,6 +300,8 @@ function find_specs(id) {
     (new http).post("_vessels.aspx/find_specs", {
         id: id
     }).then(function (response) {
+
+        $('#content1 .form-control').prop('disabled', true);
 
         var item = response.d[0];
 
@@ -984,7 +989,8 @@ function scales(principalID) {
 
         if (response.d.length === 0) {
             $('#rank-tbody').empty();
-            $('#rank-tbody').append("<tr class='loading'><td colspan='8'><span class='text-danger'>No Data Found!</span></td></tr>");
+            $('#rank-tbody').append("<tr class='loading'>" +
+                "<td colspan='8'><span class='text-danger'>No Data Found!</span></td></tr>");
 
             return;
         }
@@ -1014,7 +1020,8 @@ function getRankIDs() {
 
         if (response.d.length === 0) {
             $('#rank-tbody').empty();
-            $('#rank-tbody').append("<tr class='loading'><td colspan='8'><span class='text-danger'>No Data Found!</span></td></tr>");
+            $('#rank-tbody').append("<tr class='loading'>" +
+                "<td colspan='8'><span class='text-danger'>No Data Found!</span></td></tr>");
 
             return;
         }
@@ -1040,7 +1047,7 @@ function getRankIDs() {
 
 function rankSalary(rankID) {
 
-    (new http).post("scales.aspx/getByVessel", {
+    (new http).post("scales.aspx/getSS", {
         rankID: parseInt(rankID),
         vesselID: vesselId,
         scaleID: parseInt($('#scales').val())
@@ -1064,61 +1071,70 @@ function rankSalary(rankID) {
 
             return new Promise(function (resolve, reject) {
 
-                if (item.ForTotal === 1) {
-                    monthly += item.Monthly;
-                    daily += item.Daily;
+                if (item.VesselID == globalID) {
+                    if (item.ForTotal === 1) {
+                        monthly += item.Monthly;
+                        daily += item.Daily;
 
-                    strMonthly = "<tr class='total-crew-salary'>" +
-                        "<td></td>" +
-                        "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>Total</b></td>" +
-                        "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>" + parseFloat(monthly) + "</b></td>" +
-                        "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>" + parseFloat(daily) + "</b></td>" +
-                        "<td></td>" +
-                        "<td></td>" +
-                        "<td></td>" +
-                        "<td></td>" +
-                        "</tr>";
+                        strMonthly = "<tr class='total-crew-salary' id='" + rankID + "'>" +
+                            "<td></td>" +
+                            "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>Total</b></td>" +
+                            "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>" + parseFloat(monthly).toFixed(2) + "</b></td>" +
+                            "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>" + parseFloat(daily).toFixed(2) + "</b></td>" +
+                            "<td></td>" +
+                            "<td></td>" +
+                            "<td></td>" +
+                            "<td></td>" +
+                            "</tr>";
 
-                    classtotal = "for-total-" + item.ForTotal + "-" + item.RankID;
-                    rank = item.Rank;
+                        classtotal = "for-total-" + item.ForTotal + "-" + item.RankID;
+                        rank = item.Rank;
 
-                    fortotalHtml += "<tr class='" + classtotal + "'>" +
-                        "<td style='text-align: left !important'></td>" +
-                        "<td style='text-align: left !important'>" + i + ") " + item.Income + "</td>" +
-                        "<td style='text-align: right !important'>" + item.Monthly + "</td>" +
-                        "<td style='text-align: right !important'>" + item.Daily + "</td>" +
-                        "<td style='text-align: right !important'>" + item.Percentage + "</td>" +
-                        "<td style='text-align: right !important'>" + item.Days + "</td>" +
-                        "<td style='text-align: left !important'>" + item.Remarks + "</td>" +
-                        "<td>";
+                        fortotalHtml += "<tr class='" + classtotal + "' id='" + rankID + "'>" +
+                            "<td style='text-align: left !important'></td>" +
+                            "<td style='text-align: left !important'>" + i + ") " + item.Income + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Monthly + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Daily + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Percentage + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Days + "</td>" +
+                            "<td style='text-align: left !important'>" + item.Remarks + "</td>" +
+                            "<td>";
 
-                    fortotalHtml += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit edit-salary\" data-toggle='modal' data-target='#editModal'>" +
-                        "<span class=\"tooltiptext\">Click to modify details</span>" +
-                        "</i>";
+                        fortotalHtml += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit edit-salary\" data-toggle='modal' data-target='#editModal'>" +
+                            "<span class=\"tooltiptext\">Click to modify details</span>" +
+                            "</i>" +
+                            "<i data-id=\"" + item.ID + "\" class=\"fa fa-trash trash\">" +
+                            "<span class=\"tooltiptext\">Click to delete item</span>" +
+                            "</i>";
 
-                    fortotalHtml += "</td>" +
-                        "</tr>";
+                        fortotalHtml += "</td>" +
+                            "</tr>";
 
-                } else {
-                    notfortotalHtml += "<tr>" +
-                        "<td style='text-align: left !important'></td>" +
-                        "<td style='text-align: left !important'>" + i + ") " + item.Income + "</td>" +
-                        "<td style='text-align: right !important'>" + item.Monthly + "</td>" +
-                        "<td style='text-align: right !important'>" + item.Daily + "</td>" +
-                        "<td style='text-align: right !important'>" + item.Percentage + "</td>" +
-                        "<td style='text-align: right !important'>" + item.Days + "</td>" +
-                        "<td style='text-align: left !important'>" + item.Remarks + "</td>" +
-                        "<td>";
+                    } else {
 
-                    notfortotalHtml += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit edit-salary\" data-toggle='modal' data-target='#editModal'>" +
-                        "<span class=\"tooltiptext\">Click to modify details</span>" +
-                        "</i>";
+                        notfortotalHtml += "<tr class='" + classtotal + "' id='" + rankID + "'>" +
+                            "<td style='text-align: left !important'></td>" +
+                            "<td style='text-align: left !important'>" + i + ") " + item.Income + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Monthly + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Daily + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Percentage + "</td>" +
+                            "<td style='text-align: right !important'>" + item.Days + "</td>" +
+                            "<td style='text-align: left !important'>" + item.Remarks + "</td>" +
+                            "<td>";
 
-                    notfortotalHtml += "</td>" +
-                        "</tr>";
+                        notfortotalHtml += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit edit-salary\" data-toggle='modal' data-target='#editModal'>" +
+                            "<span class=\"tooltiptext\">Click to modify details</span>" +
+                            "</i>" +
+                            "<i data-id=\"" + item.ID + "\" class=\"fa fa-trash trash\">" +
+                            "<span class=\"tooltiptext\">Click to delete item</span>" +
+                            "</i>";
+
+                        notfortotalHtml += "</td>" +
+                            "</tr>";
+                    }
+
+                    i++;
                 }
-
-                i++;
 
                 resolve();
             });
@@ -1127,7 +1143,7 @@ function rankSalary(rankID) {
         Promise.all(items).then(function () {
             $('.loading').remove();
 
-            fortotalHtml += strMonthly;
+             fortotalHtml += strMonthly;
 
             var td = '.' + classtotal + ' td';
 
@@ -1135,6 +1151,19 @@ function rankSalary(rankID) {
             $('#rank-tbody').append(notfortotalHtml);
 
             $(td.toString()).first().html('<b>' + rank + '</b>');
+
+            var $tbody = $('#table-salary #rank-tbody');
+
+            $tbody.find('tr').sort(function (a, b) {
+                var tda = $(a).attr('id'); // target order attribute
+                var tdb = $(b).attr('id'); // target order attribute
+                // if a < b return 1
+                return tda > tdb ? 1
+                    // else if a > b return -1
+                    : tda < tdb ? -1
+                        // else they are equal - return 0
+                        : 0;
+            }).appendTo($tbody);
         });
     }).run();
 }
@@ -1220,6 +1249,33 @@ function isSalaryValid() {
 
     return a && b && c && d && e && f;
 }
+
+$(document).on('click', '.trash', function () {
+    id = $(this).data('id');
+
+    var _self = $(this);
+
+    swal({
+        title: 'Are you sure you want to delete this item?',
+        text: "You won't be able to revert this action!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'green',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete!'
+    }).then(function (isConfirm) {
+        if (isConfirm.value == true) {
+            (new http).post("scales.aspx/delete", {
+                id: id,
+                name: name
+            }).then(function (response) {
+                swal('Successfully Deleted', 'Item Has Been Deleted!', 'success');
+
+                getRankIDs();
+            }).run();
+        }
+    });
+});
 
 $(document).on('click', '#saveChanges', function () {
     if (isInputEditValid()) {

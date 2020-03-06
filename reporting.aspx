@@ -98,17 +98,6 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
                                 <select id="guarantee-signatory" class="form-control">
-                                    <option value="Director"> Director &nbsp;  </option>
-                                    <option value="VP-Operations"> VP-Operations &nbsp;  </option>
-                                    <option value="Liaison Officer"> Liaison Officer &nbsp;  </option>
-                                    <option value="Accountant"> Accountant &nbsp;  </option>
-                                    <option value="Accounting Assistant"> Accounting Assistant &nbsp;  </option>
-                                    <option value="Documentation Officer I"> Documentation Officer I &nbsp;  </option>
-                                    <option value="President"> President &nbsp;  </option>
-                                    <option value="Crewing Manager 2"> Crewing Manager 2 &nbsp;  </option>
-                                    <option value="Crew Coordinator"> Crew Coordinator &nbsp;  </option>
-                                    <option value="Secretary"> Secretary &nbsp;  </option>
-                                    <option value="Assistant Operations Manager"> Assistant Operations Manager &nbsp;</option>
                                 </select>
                             </div>
                         </div>
@@ -328,7 +317,6 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
                                 <select id="jsu-signatory" class="form-control">
-                                    <option value="Director"> Director &nbsp;  </option>
                                 </select>
                             </div>
                         </div>
@@ -419,17 +407,6 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
                                 <select id="engine-signatory" class="form-control">
-                                    <option value="Director"> Director &nbsp;  </option>
-                                    <option value="VP-Operations"> VP-Operations &nbsp;  </option>
-                                    <option value="Liaison Officer"> Liaison Officer &nbsp;  </option>
-                                    <option value="Accountant"> Accountant &nbsp;  </option>
-                                    <option value="Accounting Assistant"> Accounting Assistant &nbsp;  </option>
-                                    <option value="Documentation Officer I"> Documentation Officer I &nbsp;  </option>
-                                    <option value="President"> President &nbsp;  </option>
-                                    <option value="Crewing Manager 2"> Crewing Manager 2 &nbsp;  </option>
-                                    <option value="Crew Coordinator"> Crew Coordinator &nbsp;  </option>
-                                    <option value="Secretary"> Secretary &nbsp;  </option>
-                                    <option value="Assistant Operations Manager"> Assistant Operations Manager &nbsp;</option>
                                 </select>
                             </div>
                         </div>
@@ -568,6 +545,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
                                 <select id="change-principal" class="form-control">
+                                    <option value="">SELECT PRINCIPAL</option>
                                 </select>
                             </div>
                         </div>
@@ -637,17 +615,6 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
                                 <select id="rps-signatory" class="form-control">
-                                    <option value="Director"> Director &nbsp;  </option>
-                                    <option value="VP-Operations"> VP-Operations &nbsp;  </option>
-                                    <option value="Liaison Officer"> Liaison Officer &nbsp;  </option>
-                                    <option value="Accountant"> Accountant &nbsp;  </option>
-                                    <option value="Accounting Assistant"> Accounting Assistant &nbsp;  </option>
-                                    <option value="Documentation Officer I"> Documentation Officer I &nbsp;  </option>
-                                    <option value="President"> President &nbsp;  </option>
-                                    <option value="Crewing Manager 2"> Crewing Manager 2 &nbsp;  </option>
-                                    <option value="Crew Coordinator"> Crew Coordinator &nbsp;  </option>
-                                    <option value="Secretary"> Secretary &nbsp;  </option>
-                                    <option value="Assistant Operations Manager"> Assistant Operations Manager &nbsp;</option>
                                 </select>
                             </div>
                         </div>
@@ -659,17 +626,6 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
                                 <select id="rps-request" class="form-control">
-                                    <option value="Director"> Director &nbsp;  </option>
-                                    <option value="VP-Operations"> VP-Operations &nbsp;  </option>
-                                    <option value="Liaison Officer"> Liaison Officer &nbsp;  </option>
-                                    <option value="Accountant"> Accountant &nbsp;  </option>
-                                    <option value="Accounting Assistant"> Accounting Assistant &nbsp;  </option>
-                                    <option value="Documentation Officer I"> Documentation Officer I &nbsp;  </option>
-                                    <option value="President"> President &nbsp;  </option>
-                                    <option value="Crewing Manager 2"> Crewing Manager 2 &nbsp;  </option>
-                                    <option value="Crew Coordinator"> Crew Coordinator &nbsp;  </option>
-                                    <option value="Secretary"> Secretary &nbsp;  </option>
-                                    <option value="Assistant Operations Manager"> Assistant Operations Manager &nbsp;</option>
                                 </select>
                             </div>
                         </div>
@@ -705,12 +661,12 @@
     });
 
     function signatories() {
-        $('#jsu-signatory, #coe-signatory').empty();
+        $('#jsu-signatory, #coe-signatory #guarantee-signatory, #rps-signatory, #rps-request, #engine-signatory').empty();
 
-        (new http).post("signatories.aspx/get", {
+        (new http).post("accounts.aspx/get", {
         }).then(function (response) {
             var items = response.d.map(item => {
-                $('#jsu-signatory, #coe-signatory').append("<option value=\"" + item.ID + "\">" + item.Title + "</option>");
+                $('#jsu-signatory, #coe-signatory, #guarantee-signatory, #rps-signatory, #rps-request, #engine-signatory').append("<option value=\"" + item.ID + "\">" + item.Position + "</option>");
             });
         }).run();
     }
@@ -814,10 +770,13 @@
             vesselID: vesselId
         }).then(function (response) {
 
+            var distinct = [];
+
             response.d.map(item => {
 
                 var html = "";
                 //getting numbers
+                
 
                 var today = getManilaTime().split(',')[0];
                 var d = today.split('/');
@@ -836,18 +795,22 @@
 
                         return new Promise(function (resolve, reject) {
 
-                        html += "<tr>" +
-                            "<td><input type='checkbox' value='" + item.ID + "'/></td>" +
-                            "<td>" + item.Lastname + ', ' + item.Firstname + "</td>";
+                            if (!distinct.includes(item.ID)) {
+                                distinct.push(item.ID);
 
-                        html += "<td>" + n.Eregistration + "</td>" +
-                                "<td>" + n.Seaman + "</td>" +
-                                "<td>" + n.SRC + "</td>" +
-                                "<td>" + item.Sex + "</td>" +
-                                "<td>" + item.Rank + "</td>" +
-                                "<td></td><td></td></tr > ";
+                                console.log(distinct);
 
-                            $('#rps-tbody').append(html);
+                                html += "<tr>" +
+                                    "<td><input type='checkbox' value='" + item.ID + "'/></td>" +
+                                    "<td>" + item.Lastname + ', ' + item.Firstname + "</td>";
+
+                                html += "<td>" + n.Eregistration + "</td>" +
+                                        "<td>" + n.Seaman + "</td>" +
+                                        "<td>" + n.SRC + "</td>" +
+                                        "<td>" + item.Sex + "</td>" +
+                                        "<td>" + item.Rank + "</td>" +
+                                        "<td>" + item.DateCreated + "</td><td>" + item.DateUpdated + "</td></tr > ";
+                            }
 
                             resolve();
                         });
@@ -855,6 +818,7 @@
 
                     Promise.all(items).then(function () {
                         $('.loading').remove();
+                        $('#rps-tbody').append(html);
                     });
 
                 }).run();

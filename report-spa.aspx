@@ -10,7 +10,6 @@
 .body,td{
 FONT-FAMILY: arial, verdana, helvetica, geneva, sans-serif; 
 font-size: 12px;
-
 }
 </style>
 </head>
@@ -29,7 +28,7 @@ font-size: 12px;
 <tr><td height="10" colspan="2"></td></tr>
 <tr><td colspan="2" style="text-indent:90px">-and-</td></tr>
 <tr><td height="10" colspan="2"></td></tr>
-<tr><td colspan="2" style="text-indent:90px"><b></b> and/or any of its duly authorized officers and personnel, with office at a ,</td></tr>
+<tr><td colspan="2" style="text-indent:90px"><b id="principal-name"></b> and/or any of its duly authorized officers and personnel, with office at a <span id="principal-address"></span>,</td></tr>
 <tr><td height="10" colspan="2"></td></tr>
 <tr><td colspan="2" align="left">
 to be my true and lawful attorneys-in-fact, for me and in my name, place and stead, to do and perform all or any of the following acts and things, namely:
@@ -41,7 +40,7 @@ to be my true and lawful attorneys-in-fact, for me and in my name, place and ste
 <tr><td colspan="2" align="left">
 <p style="text-indent:90px">
 <b>"To act on my behalf, execute, file and deliver, the appropriate claim before any office or body, government or private, any unpaid remuneration or 
-compensation owing to me as a consequence of my employment onboard the vessel , and for whatever moneys or benefit due to me under my POEA-approved employment contract, over
+compensation owing to me as a consequence of my employment onboard the vessel <b id="vessel-name"></b>, and for whatever moneys or benefit due to me under my POEA-approved employment contract, over
  which Conautic Maritime Inc. and/or  has become obliged to pay and honor being my employer.
 <br /><br />
 </b>
@@ -80,7 +79,7 @@ And in general, to do and perform all and every act and thing which may be requi
 <tr><td colspan="2" align="left">_______________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) S.S.</td></tr>
 <tr><td height="10" colspan="2"></td></tr>
 <tr><td colspan="2" align="left" style="text-indent:90px">
-<b>BEFORE ME, NOTARY PUBLIC</b> at the place above mentioned, on this day 24 of January, 2020, personally appeared Juan D. GUADAYO, with Passport No. P2338211A, issued at NCR Central, Philippines,
+<b>BEFORE ME, NOTARY PUBLIC</b> at the place above mentioned, on this day <span id="date-today"></span>, personally appeared <span id="full"></span>, with Passport No. <span id="passport"></span>, issued at NCR Central, Philippines,
  known to me and me known to be the same person who executed the foregoing instrument and acknowledged to me that the same is his free and voluntary act and deed.
 </td>
 </tr>
@@ -115,7 +114,24 @@ And in general, to do and perform all and every act and thing which may be requi
         applicantID = url.searchParams.get("_hsdlwhx");
 
         applicant(applicantID);
+
+        var today = getDate();
+
+        $('#date-today').text(today);
     });
+
+    function getDate() {
+        var today = new Date();  
+        var offset = -(today.getTimezoneOffset() / 60); 
+
+        var dateToday = new Date(new Date().getTime() + offset * 3600 * 1000).toUTCString().replace(/ GMT$/, "");
+
+        var d = dateToday.split(' ');
+
+        d.pop();
+
+        return d.join(' ');
+    }
 
     function applicant(id) {
         (new http).post("applicants.aspx/applicant", {
@@ -124,12 +140,72 @@ And in general, to do and perform all and every act and thing which may be requi
 
             var item = response.d[0];
 
-            $('#fullname, .fullname').text(item.Lastname + ', ' + item.Firstname);
+            $('#fullname, .fullname, #full').text(item.Lastname + ', ' + item.Firstname);
             $('#address').html(item.NoOrBldg + ' ' +  item.StreetOrBrgy + ' ' + item.Municipality + ' ' + item.Province);
             $('#birthdate').text(item.Birthdate);
             $('#civil-status').text(item.CivilStatus);
 
+            vessel_info(item.VesselID);
+            numbers(id);
         }).run();
+    }
+
+    function vessel_info(id) {
+
+        (new http).post("_vessels.aspx/find", {
+            id: id
+        }).then(function (response) {
+
+            var item = response.d[0];
+
+            $('#vessel-name').text(item.Name);
+
+            principal_info(item.PrincipalID);
+
+        }).run();
+    }
+
+    function principal_info(id) {
+        (new http).post("principals.aspx/find", {
+        id: id
+        }).then(function (response) {
+            var item = response.d[0];
+            $('#principal-name').text(item.Principal);
+            $('#principal-address').text(item.Address);
+            $('#principal-cba').text(item.CBA);
+        }).run();
+    }
+
+    function numbers(id) {
+
+        var today = getManilaTime().split(',')[0];
+        var d = today.split('/');
+
+        var d0 = d[0].length > 1 ? d[0] : '0' + d[0];
+        var d1 = d[1].length > 1 ? d[1] : '0' + d[1];
+
+        var formattedDate = d[2] + '-' + d0 + '-' + d1;
+
+        (new http).post("applicant.aspx/numbers", {
+            id: id,
+            date: formattedDate
+        }).then(function (response) {
+
+            var items = response.d[0];
+
+            $('#passport').text(items.Passport);
+        }).run();
+    }
+
+    function getManilaTime() {
+        var options = {
+            timeZone: 'Asia/Manila',
+            year: 'numeric', month: 'numeric', day: 'numeric',
+            hour: 'numeric', minute: 'numeric', second: 'numeric',
+        },
+
+        formatter = new Intl.DateTimeFormat([], options);
+        return formatter.format(new Date())
     }
 </script>
 </html>

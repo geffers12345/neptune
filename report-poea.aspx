@@ -268,7 +268,7 @@
 		<td width="10%" align="right"><font face='arial' style="font-size:10px"><b>Passport No.</td>
 		<td width="16%"  class=report><font face='arial' id="passport"></td>
 		<td width="20%" align="right"><font face='arial' style="font-size:10px"><b>Highest Educational Attainment</td>
-        <td class=report><font face='arial'></td>
+        <td class=report><font face='arial'>&nbsp; <span id="highest"></span></td>
 	</tr>
 </table>
 
@@ -291,11 +291,9 @@
 				<td width="25%" class="smallv" align="center"><font face='arial' style="font-size:10px"><b>Relationship to Worker</td>
 				<td width="40%" class="smallv" align="center"><font face='arial' style="font-size:10px"><b>Address</td>		    
 		</tr>
-		<tr>
-		    <td class="report" align="center"><font face='arial' id="allotee-beneficiary"></td>
-				<td class="report" align="center"><font face='arial' id="allotee-beneficiary-relationship"></td>
-				<td class="report" align="center"><font face='arial' id="allotee-address"></td>
-		</tr>		
+		<tbody id="beneficiaries-tbody">
+            
+		</tbody>	
 		<tr>
 		    <td class="report" align="center"><font face='arial'>&nbsp;  </td>
 				<td class="report" align="center"><font face='arial'>&nbsp;</td>
@@ -318,45 +316,24 @@
 		</tr>
 </table>
 
-<%--<table width=100% cellpadding=1 cellspacing=0  border=0>
+<table width=100% cellpadding=1 cellspacing=0  border=0>
     <tr><td><font face='arial' style="font-size:10px"><b>Legal Dependents (Mga tatanggap ng benepisyo mula sa Philhealth)</td></tr>
 </table>
 
 
 <table width=100% cellpadding=1 cellspacing=0  border=0>
     <tr>
-		    <td width="35%" class="smallv" align="center"><u><font face='arial' style="font-size:10px"><b>Name of Spouse/Children/Parent</td>
-				<td width="10%" class="smallv" align="center"><u><font face='arial' style="font-size:10px"><b>Sex</td>
-				<td width="25%" class="smallv" align="center"><u><font face='arial' style="font-size:10px"><b>Relationship of Dependent to Worker</td>
-				<td width="30%" class="smallv" align="center"><u><font face='arial' style="font-size:10px"><b>Date of Birth</td>		    
-		</tr>
-				<tr>
-		    <td class="report" align="center"><font face='arial'>&nbsp;Lilibeth R. Abinales</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;F</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;Wife</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;10/25/1969</td>
-		</tr>		
-				<tr>
-		    <td class="report" align="center"><font face='arial'>&nbsp;Joseph  R. Abinales</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;M</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;Son</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;12/09/1990</td>
-		</tr>		
-				<tr>
-		    <td class="report" align="center"><font face='arial'>&nbsp;Jianne Leryz R. Abinales</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;F</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;Daughter</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;12/17/2001</td>
-		</tr>		
-				<tr>
-		    <td class="report" align="center"><font face='arial'>&nbsp;  </td>
-				<td class="report" align="center"><font face='arial'>&nbsp;</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;</td>
-				<td class="report" align="center"><font face='arial'>&nbsp;</td>
-		</tr>		
-		</table>
+		<td width="35%" class="smallv" align="center"><u><font face='arial' style="font-size:10px"><b>Name of Spouse/Children/Parent</td>
+			<td width="10%" class="smallv" align="center"><u><font face='arial' style="font-size:10px"><b>Sex</td>
+			<td width="25%" class="smallv" align="center"><u><font face='arial' style="font-size:10px"><b>Relationship of Dependent to Worker</td>
+			<td width="30%" class="smallv" align="center"><u><font face='arial' style="font-size:10px"><b>Date of Birth</td>		    
+	</tr>
 
-</td></tr>--%>
+    <tbody id="dependents"></tbody>
+					
+</table>
+
+</td></tr>
 
 <tr height="20"><td></td></tr>
 
@@ -375,30 +352,30 @@
 
 <table width=100% cellpadding=1 cellspacing=0  border=0>
     <tr>
-		    <td class="smallv" width="35%"><font face='arial' style="font-size:10px"><b>Name of Principal / Company / Employer</td>
-				<td class="report" width="49%"><font face='arial'>&nbsp;</td>
+		    <td class="smallv" width="35%"><b>Name of Principal / Company / Employer</b></td>
+				<td class="report" width="49%"><span face='arial' id="principal-name"></span></td>
 				<td width="1%">&nbsp;</td>
-				<td width="15%" class="report"><font face='arial'>&nbsp;</td>
+				<td width="15%" class="report"></td>
 		</tr>		
 </table>
 
 <table width=100% cellpadding=1 cellspacing=0  border=0>
     <tr>
-		    <td class="smallv" width="10%"><font face='arial' style="font-size:10px"><b>Address</td>
-				<td class="report" width="35%"><font face='arial'>&nbsp;</td>
-				<td class="smallv" width="15%" align="right"><font face='arial' style="font-size:10px"><b>Email Address</td>
-				<td class="report" width="24%"><font face='arial'>&nbsp;</td>
+		    <td class="smallv" width="10%"><b>Address</b></td>
+				<td class="report" width="35%"><span face='arial' id="principal-address"></span>&nbsp; </td>
+				<td class="smallv" width="15%" align="right"><b>Email Address</b></td>
+				<td class="report" width="24%"><span face='arial' id="principal-email"></span>&nbsp; </td>
 				<td width="1%">&nbsp;</td>
-				<td width="15%" class="report"><font face='arial'>&nbsp;</td>
+				<td width="15%" class="report"></td>
 		</tr>		
 </table>
 
 <table width=100% cellpadding=1 cellspacing=0  border=0>
     <tr>
-		    <td class="smallv" width="15%"><font face='arial' style="font-size:10px"><b>Name of Vessel</td>
-				<td class="report" width="35%"><font face='arial'>&nbsp;</td>
-				<td class="smallv" width="10%" align="right"><font face='arial' style="font-size:10px"><b>Tel No.</td>
-				<td class="report" width="24%"><font face='arial'>&nbsp;</td>
+		    <td class="smallv" width="15%"><font face='arial' style="font-size:10px"><b>Name of Vessel</b></td>
+				<td class="report" width="35%"><font face='arial'>&nbsp; <span id="vessel-name"></span></td>
+				<td class="smallv" width="10%" align="right"><font face='arial' style="font-size:10px"><b>Tel No.</b></td>
+				<td class="report" width="24%"><font face='arial'>&nbsp; <span id="vessel-contact"></span></td>
 				<td width="1%">&nbsp;</td>
 				<td width="15%" class="report"><font face='arial'>&nbsp;</td>
 		</tr>		
@@ -407,10 +384,10 @@
 
 <table width=100% cellpadding=1 cellspacing=0  border=0>
     <tr>
-		    <td class="smallv" width="24%"><font face='arial'><b>Position of OFW/Seafarer</td>
-				<td class="report" width="28%"><font face='arial'>&nbsp;</td>
-				<td class="smallv" width="16%" align="right"><font face='arial'><b>Contract Duration</td>
-				<td class="report" width="16%"><font face='arial'>&nbsp;&nbsp;</td>
+		    <td class="smallv" width="24%"><font face='arial'><b>Position of OFW/Seafarer</b></td>
+				<td class="report" width="28%"><font face='arial'>&nbsp; <span id="position"></span></td>
+				<td class="smallv" width="16%" align="right"><font face='arial'><b>Contract Duration</b></td>
+				<td class="report" width="16%"><font face='arial'>&nbsp;&nbsp; <span id="duration"></span></td>
 				<td width="1%"><font face='arial'>&nbsp;</td>
 				<td width="15%" class="report"><font face='arial'>&nbsp;</td>
 		</tr>		
@@ -418,9 +395,9 @@
 
 <table width=100% cellpadding=1 cellspacing=0  border=0>
     <tr>
-		    <td class="smallv" width="20%"><font face='arial'><b>Monthly Salary</td>
+		    <td class="smallv" width="20%"><font face='arial'><b>Monthly Salary</b></td>
 				<td class="report" width="30%"><font face='arial' id="basic"></td>
-				<td class="smallv" width="18%" align="right"><font face='arial'><b>Currency</td>
+				<td class="smallv" width="18%" align="right"><font face='arial'><b>Currency</b></td>
 				<td class="report" width="16%"><font face='arial'>&nbsp;USD</td>
 				<td width="1%"><font face='arial'>&nbsp;</td>
 				<td width="15%" class="report"><font face='arial'>&nbsp;</td>
@@ -529,8 +506,6 @@
 
             var item = response.d[0];
 
-            console.log(item);
-
             $('#fullname, #full').text(item.Lastname + ', ' + item.Firstname + ' ' + item.Middlename);
             
             $('#lastname').text(item.Lastname);
@@ -554,11 +529,14 @@
 
             numbers();
 
-            all_timesheets(applicantID);
+            rankSalary(item.RankID);
+            education(id);
             benefit(id);
             family(id);
             allotees(id);
-
+            beneficiary(id);
+            crewEmbark(id, item.VesselID);
+            vessel_info(item.VesselID);
         }).run();
     }
 
@@ -618,76 +596,68 @@
             id: applicantID
         }).then(function (response) {
 
+            var alls = [];
+
             var items = response.d.map(item => {
                 return new Promise(function (resolve, reject) {
 
-                    $('#allotee, #allotee-beneficiary').text(item.Allotee);
-                    $('#allotee-beneficiary-relationship').text(item.Relationship);
-                    $('#allotee-branch').text(item.Branch);
-                    $('#allotee-accountNo').text(item.AccountNo);
+                    alls.push(item.Allotee);
 
                     resolve();
                 });
             });
 
             Promise.all(items).then(function () {
+                $('#allotee, #allotee-beneficiary').text(alls.join(', '));
             });
         }).run();
     }
-    
-    function all_timesheets(applicantID) {
 
-        (new http).post("timesheets.aspx/crewPayroll", {
-            id: applicantID
+    function education(id) {
+
+        (new http).post("applicant.aspx/education", {
+            id: id
+        }).then(function (response) {
+
+            $('#highest').text(response.d[0].Course);
+
+        }).run();
+    }
+
+    function rankSalary(rankID) {
+
+        (new http).post("scales.aspx/getByVessel", {
+            rankID: parseInt(rankID),
+            vesselID: 0,
+            scaleID: 0
         }).then(function (response) {
 
             var items = response.d.map(item => {
+
                 return new Promise(function (resolve, reject) {
 
-                    (new http).post("timesheets.aspx/other_salaries", {
-                        id: item.CrewEmbarkID
-                    }).then(function (response) {
+                    if (item.Income.includes('Basic')) {
+                        $('#basic').text(parseFloat(item.Monthly));
+                    }
 
-                        var data = response.d[0];
+                    if (item.Income.includes('Salary')) {
+                        $('#basic').text(parseFloat(item.Monthly));
+                    }
 
-                        var total = 0;
+                    if (item.Income.includes('Overtime') || item.Income.includes('ot') || item.Income.includes('OT')) {
+                        $('#overtime').text(parseFloat(item.Monthly));
+                    }
 
-                        if (response.d.length == 0) {
-                            grand = item.Total;
+                    if (item.Income.includes('Vacation') || item.Income.includes('vacation') || item.Income.includes('leave')) {
+                        $('#vacation').text(parseFloat(item.Monthly));
+                    }
 
-                            total = (parseFloat(item.BasicSalaryActual) / 30) + (parseFloat(item.OvertimeActual) / 30).toFixed(2);
-
-                            $('#basic').text(parseFloat(item.BasicSalaryActual));
-                            $('#basicperday').text('(' + (parseFloat(item.BasicSalaryActual) / 30).toFixed(2) + ' US$ / day)');
-                            $('#duration').text(item.Duration);
-                            $('#overtime').text(parseFloat(item.OvertimeActual) + '/ 85 hrs. (N/A $/hr. if excess overime)');
-                            $('#overtimeperday').text('(' + (parseFloat(item.OvertimeActual) / 30).toFixed(2) + ' US$ / day)');
-
-                            $('#total').text(parseFloat(total).toFixed(2));
-                            $('#totalperday').text('(' + (parseFloat(total) / 30).toFixed(2) + ' US$ / day)');
-
-                            resolve();
-                        } else {
-                            grand = item.Total + ((data.Rejoining + data.LeavePay + data.PensionPay + data.ChristmasPay + data.Others) - data.Deduction);
-
-                            total = (parseFloat(item.BasicSalaryActual) / 30) + (parseFloat(item.OvertimeActual) / 30).toFixed(2);
-
-                            $('#basic').text(parseFloat(item.BasicSalaryActual));
-                            $('#basicperday').text('(' + (parseFloat(item.BasicSalaryActual) / 30).toFixed(2) + ' US$ / day)');
-                            $('#duration').text(item.Duration);
-                            $('#overtime').text(parseFloat(item.OvertimeActual) + '/ 85 hrs. (N/A $/hr. if excess overime)');
-                            $('#overtimeperday').text('(' + (parseFloat(item.OvertimeActual) / 30).toFixed(2) + ' US$ / day)');
-
-                            $('#total').text(parseFloat(total).toFixed(2));
-                            $('#totalperday').text('(' + (parseFloat(total) / 30).toFixed(2) + ' US$ / day)');
-                        }
-
-                    }).run();
+                    resolve();
                 });
             });
 
             Promise.all(items).then(function () {
-
+                $('.loading').remove();
             });
         }).run();
     }
@@ -701,6 +671,81 @@
 
         formatter = new Intl.DateTimeFormat([], options);
         return formatter.format(new Date())
+    }
+
+    function beneficiary(id) {
+        $('#beneficiaries-tbody').empty();
+
+        (new http).post("applicant.aspx/beneficiary", {
+            id: id
+        }).then(function (response) {
+
+            var items = response.d.map(item => {
+                return new Promise(function (resolve, reject) {
+
+                    var html = '<tr>' +
+		                            '<td class="report" align="center"><font face="arial">' + item.Name + '</td>' +
+				                        '<td class="report" align="center"><font face="arial">' + item.Relationship + '</td>' +
+				                        '<td class="report" align="center"><font face="arial">' + item.Address + '</td>' +
+                        '</tr>';
+
+                    if (item.DateUpdated == "1") {
+                        $('#dependents').append('<tr>' +
+		                                '<td class="report" align="center"><font face="arial">&nbsp;' + item.Name + '</td>' +
+				                            '<td class="report" align="center"><font face="arial">&nbsp;' + item.Sex + '</td>' +
+				                            '<td class="report" align="center"><font face="arial">&nbsp;' + item.Relationship + '</td>' +
+				                            '<td class="report" align="center"><font face="arial">&nbsp;' + item.Birthday + '</td>' +
+		                            '</tr>');
+                    }
+
+                    $('#beneficiaries-tbody').append(html);
+
+                    resolve();
+                });
+            });
+
+            Promise.all(items).then(function () {
+            });
+        }).run();
+    }
+
+    function crewEmbark(crewID, vesselID) {
+
+        (new http).post("embarkations.aspx/crewEmbark", {
+            crewID: crewID,
+            vesselID: vesselID
+        }).then(function (response) {
+
+            $('#duration').text(response.d[0].Duration + ' mos.');
+        }).run();
+    }
+
+    function vessel_info(id) {
+
+        (new http).post("_vessels.aspx/find", {
+            id: id
+        }).then(function (response) {
+
+            var item = response.d[0];
+
+            $('#vessel-name').text(item.Name);
+            $('#principal-name').text(item.Principal);
+            $('#vessel-contact').text(item.ContactPersonNumber);
+
+            principal_info(item.PrincipalID);
+
+        }).run();
+    }
+
+    function principal_info(id) {
+        (new http).post("principals.aspx/find", {
+        id: id
+        }).then(function (response) {
+            var item = response.d[0];
+        
+            $('#principal-address').text(item.Address);
+            $('#principal-email').text(item.Email);
+        }).run();
     }
 </script>
 </html>

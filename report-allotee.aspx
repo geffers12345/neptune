@@ -45,11 +45,11 @@
 		    
 				<tr><td valign="top" colspan=1 align=center><a href='#'><font color="black" size="3"><u>ALLOTMENT SLIP</u></FONT></a><br> <!-- FINAL COPY--> 
 				
-				<p align="center">
+				<p align="left" style="text-align: left">
 				<font size="2">
 				I hereby authorized my allotee/s to collect the Peso Equivalent of my Monthly allotment on account of my salary as 
-				_<u> - </u>_
-				 less any cash advance, union dues, SSS, Further, This authority is personal an non-transferable and shall be cancelled or changed upon my advise and/or upon termination of my service.</font> <br />
+				_<strong><u><span id="rank"></span> - <span id="vessel"></span></u></strong>_
+				 less any cash advance, union dues, SSS, Further, This authority is personal a non-transferable and shall be cancelled or changed upon my advise and/or upon termination of my service.</font> <br />
 				</p>
 				</td></tr>
  				
@@ -219,6 +219,9 @@
             $('#birthdate').text(item.Birthdate);
             $('#civil-status').text(item.CivilStatus);
 
+            $('#rank').text(item.Rank);
+            $('#vessel').text(item.Vessel);
+
             benefit(id);
             allotees(id);
 
@@ -242,7 +245,7 @@
     }
 
     function allotees(id) {
-        $('#allotee-tbody').empty().append("<tr class=\"loading\"><td colspan=\"8\"><img src=\"content/img/overlay-loader.gif\" /></td></tr>");
+        $('#allotee-tbody').empty();
 
         (new http).post("applicant.aspx/allotees", {
             id: id
@@ -262,15 +265,15 @@
 				                '<tr><td><b>RELATIONSHIP</td><td><span class="reportbottom">' +
 				                  '' + item.Relationship + '				</span></td>' +
 				                '<td><b>ACCOUNT CURRENCY</td><td><span class="reportbottom">' +
-				                  '				</span></td>' +
+				                  'USD</span></td>' +
 				                '</tr>' +
 				                '<tr><td><b>DOLLAR ALLOTMENT</td><td><span class="reportbottom">' +
-				                  '' + item.Percentage + '%				</span></td>' +
+				                  '' + item.Percentage + '				</span></td>' +
 				                '<td><b>BRANCH</td><td><span class="reportbottom">' +
 				                  '' + item.Branch + '				</span></td>' +
 				                '</tr>' +
 				                '<tr><td ><b>ADDRESS</td><td><span class="reportbottom">' +
-				  	                '</span></td>' +
+				  	                '' + item.AccountName + '				</span></td>' +
 				                '<td><b>ACCOUNT #</td><td><span class="reportbottom">' +
 				                  '' + item.AccountNo + '				</span></td> ' +
 				                '</tr>' +
@@ -284,8 +287,7 @@
             });
 
             Promise.all(items).then(function () {
-                $('.loading').remove();
-                $('#allotee-table').DataTable();
+                
             });
         }).run();
     }

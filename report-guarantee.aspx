@@ -111,7 +111,7 @@
 <table cellpadding='0' cellspacing='0' width="100%" border="0">
 <tr><td><br><br>To whom it may concern:<br><br></td></tr>
 <tr><td>This is to certify that the Filipino seaman mentioned below is travelling on <b id="date-travelling"></b> to
-join the vessel <b></b> in the port.<br><br><br></td></tr>
+join the vessel <b id="vessel-name"></b> in the port of <b id="port"></b> on <b id="arrival"></b>.<br><br><br></td></tr>
 
 <tr><td>
 <table width=100% cellpadding=0 cellspacing=0>
@@ -163,7 +163,7 @@ passenger is refused entry at the (air)port of destination.<br /><br /><br /></t
 
 <tr><td>
 <table width=100% cellpadding=0 cellspacing=0  border=0>
-<tr><td><b></b><br /><br /><span id="signatory"></span></td></tr>
+<tr><td><b id="user"></b><br /><br /><span id="user-position"></span></td></tr>
 </table>
 </td></tr>
 
@@ -174,6 +174,8 @@ passenger is refused entry at the (air)port of destination.<br /><br /><br /></t
 <script src="Scripts/sweetalert2.min.js"></script>
 <script src="Scripts/validator.js"></script>
 <script src="scripts/WebForms/maintenance.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script>
     var applicantID = 0;
 
@@ -181,13 +183,14 @@ passenger is refused entry at the (air)port of destination.<br /><br /><br /></t
         var url = new URL(window.location.href);
         applicantID = url.searchParams.get("_hsdlwhx");
 
-        $('#date-generated').text(url.searchParams.get("generate"));
-        $('#date-travelling').text(url.searchParams.get("travel"));
-        $('#signatory').text(url.searchParams.get("signatory"));
+        $('#date-generated').text(moment(url.searchParams.get("generate")).format("MMMM DD YYYY"));
+        $('#date-travelling').text(moment(url.searchParams.get("travel")).format("MMMM DD YYYY"));
 
         agent(parseInt(url.searchParams.get("agent")));
 
         applicant(applicantID);
+
+        sign(url.searchParams.get("signatory"));
     });
 
     function applicant(id) {
@@ -199,6 +202,34 @@ passenger is refused entry at the (air)port of destination.<br /><br /><br /></t
 
             $('#fullname').text(item.Lastname + ', ' + item.Firstname + ' ' + item.Middlename);
             $('#position').html(item.Rank);
+
+            vessel_info(item.VesselID);
+
+            crewEmbark(id, item.VesselID);
+        }).run();
+    }
+
+    function crewEmbark(crewID, vesselID) {
+
+        (new http).post("embarkations.aspx/crewEmbark", {
+            crewID: crewID,
+            vesselID: vesselID
+        }).then(function (response) {
+
+            $('#port').text(response.d[0].EmbarkationPort);
+            $('#arrival').text(moment(response.d[0].EmbarkationDate).format("MMMM DD YYYY"));
+        }).run();
+    }
+
+    function vessel_info(id) {
+
+        (new http).post("_vessels.aspx/find", {
+            id: id
+        }).then(function (response) {
+
+            var item = response.d[0];
+
+            $('#vessel-name').text(item.Name);
 
         }).run();
     }
@@ -227,6 +258,17 @@ passenger is refused entry at the (air)port of destination.<br /><br /><br /></t
         d.pop();
 
         return d.join(' ');
+    }
+
+    function sign(id) {
+        (new http).post("accounts.aspx/find", {
+            id: id
+        }).then(function (response) {
+            var item = response.d[0];
+
+            $('#user').text(item.Firstname + ' ' + item.Lastname);
+            $('#user-position').text(item.Position);
+        }).run();
     }
 
     function getManilaTime() {

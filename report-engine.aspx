@@ -201,7 +201,7 @@ Mr. <span id="lastname"></span>  </b></u> for whatever purpose it may serve him 
 
             $('#address').html(item.NoOrBldg + ' ' +  item.StreetOrBrgy + ' ' + item.Municipality + ' ' + item.Province);
             
-            vessel_info(id);
+            vessel_info(item.VesselID);
             embark(id);
 
         }).run();

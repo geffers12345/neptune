@@ -158,7 +158,7 @@
 	        <tr><td width="42%" colspan="4">&nbsp;</td>
 	        <td width="58%" colspan="4" align="left">&nbsp;</td></tr>
 
-	        <%--<tr>
+	        <tr>
                 <td width="38%" colspan="3" class="contentHead"><b><i>Official Documents</i></b></td>
 	            <td width="4%">&nbsp;</td>
                 <td width="58%" align="left" colspan="4" valign="top">&nbsp;</td>
@@ -169,35 +169,9 @@
 	        <td width="16%">&nbsp;</td>
 	        </tr>
 
-	        <tr><td width="14%" class="contentLabel">Passport</td><td width="24%" colspan="2" align="left" class="contentData"><b><i>P1973793B</i></b></td>
-	        <td width="4%">&nbsp;</td><td align="left" width="13%" class="contentData"><b><i> 17-Jun-19</i></b></td><td width="17%" class="contentData"><b><i> 16-Jun-29</i></b></td><td width="12%">&nbsp;</td>
-	        <td width="16%" class="contentData">&nbsp;</td></tr>
-
-	        <tr><td width="14%" class="contentLabel">FSMB</td><td width="24%" colspan="2" align="left" class="contentData"><b><i>C1373339</i></b></td>
-	        <td width="4%">&nbsp;</td><td align="left" width="13%" class="contentData"><b><i> 08-May-19</i></b></td><td width="17%" class="contentData"><b><i> 08-May-29</i></b></td><td width="12%">&nbsp;</td>
-	        <td width="16%" class="contentData">&nbsp;</td></tr>
-
-	        <tr><td width="14%" class="contentLabel">Visa</td><td width="24%" colspan="2" align="left" class="contentData"><b><i>016080290</i></b></td>
-	        <td width="4%">&nbsp;</td><td align="left" width="13%" class="contentData"><b><i> 29-Oct-19</i></b></td><td width="17%" class="contentData"><b><i> 29-Oct-24</i></b></td><td width="12%">&nbsp;</td>
-	        <td width="16%" class="contentData">&nbsp;</td></tr>
-
-	        <tr><td width="14%" class="contentLabel">OEC</td><td width="24%" colspan="2" align="left" class="contentData"><b><i>4022266</i></b></td>
-	        <td width="4%">&nbsp;</td><td align="left" width="13%" class="contentData"><b><i> 25-Oct-19</i></b></td><td width="17%" align="left" class="contentData"><b><i> 25-Dec-19</i></b></td><td width="12%" align="left">&nbsp;</td>
-	        <td width="16%" align="left">&nbsp;</td>
-	        </tr>
-	
-	        <tr><td width="14%" class="contentLabel">PDOS</td><td width="24%" colspan="2" align="left" class="contentData"><b><i>CMI16-010</i></b></td>
-	        <td width="4%">&nbsp;</td><td align="left" width="13%" class="contentData"><b><i> 07-Jan-16</i></b></td><td width="17%" align="left" class="contentData"><b><i></i></b></td><td width="12%" align="left">&nbsp;</td>
-	        <td width="16%" align="left">&nbsp;</td>
-	        </tr>
-
-	        <tr><td width="14%" class="contentLabel">Medical</td><td width="24%" colspan="2" align="left" class="contentData"><b><i>Dutch Form</i></b></td>
-	        <td width="4%">&nbsp;</td><td align="left" width="13%" class="contentData"><b><i> 17-Oct-19</i></b></td><td width="17%" align="left" class="contentData"><b><i> 16-Oct-21</i></b></td><td width="12%" align="left">&nbsp;</td>
-	        <td width="16%" align="left">&nbsp;</td>
-	        </tr>
-
-	        <tr><td width="42%" colspan="4">&nbsp;</td>
-	        <td width="58%" colspan="4" align="left">&nbsp;</td></tr>--%>
+	        <tbody id="official-docx" style="margin-bottom: 5%;">
+                
+	        </tbody>
 	
 	        <tr><td width="38%" colspan="3" class="contentHead"><b><i>Flag State Documents</i></b></td>
 	        <td width="4%">&nbsp;</td><td width="58%" align="left" colspan="4" valign="top">&nbsp;</td>
@@ -255,7 +229,7 @@
 
 	        <tr>
                 <td width="14%" class="contentLabel">Owner's Bonus</td>
-                <td width="12%" align="right" class="contentData"><b><i>-</i></b></td>
+                <td width="12%" align="right" class="contentData"><b><i id="owner-bonus"></i></b></td>
 	            <td width="4%">&nbsp;</td>
                 <td align="left" width="13%" class="contentLabel">Bank Account No.</td>
                 <td width="45%" colspan="3" align="left" class="contentData"><b><i id="allotee-accountNo"></i></b></td>
@@ -384,12 +358,63 @@
             numbers();
 
             training_courses(id);
-            vessel_info(id);
+            vessel_info(item.VesselID);
+
+            travel(applicantID);
+
             embark(id);
             flag(applicantID);
             all_timesheets(applicantID);
             allotees(applicantID);
 
+            rankSalary(item.RankID);
+
+        }).run();
+    }
+
+    function rankSalary(rankID) {
+
+        (new http).post("scales.aspx/getByVessel", {
+            rankID: parseInt(rankID),
+            vesselID: 0,
+            scaleID: 0
+        }).then(function (response) {
+
+            var items = response.d.map(item => {
+
+                return new Promise(function (resolve, reject) {
+
+                    if (item.Income.includes('Basic')) {
+                        $('#basic').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Salary')) {
+                        $('#basic').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Overtime') || item.Income.includes('ot') || item.Income.includes('OT')) {
+                        $('#overtime').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Vacation') || item.Income.includes('vacation') || item.Income.includes('leave')) {
+                        $('#vacation').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Bonus') || item.Income.includes('bonus') || item.Income.includes('Owner')) {
+                        $('#owner-bonus').text(parseFloat(item.Monthly));
+                    }
+
+                    resolve();
+                });
+            });
+
+            Promise.all(items).then(function () {
+
+                var total = parseFloat($('#basic').text()) + parseFloat($('#overtime').text()) +
+                    parseFloat($('#owner-bonus').text());
+
+                $('#total').text(total);
+            });
         }).run();
     }
 
@@ -423,6 +448,8 @@
         }).then(function (response) {
 
             var item = response.d[0];
+
+            console.log(item);
 
             $('#vessel-view').text(item.Name);
             $('#vesselView').text(item.Name);
@@ -547,8 +574,6 @@
             id: applicantID
         }).then(function (response) {
 
-            console.log(response.d);
-
             var items = response.d.map(item => {
                 return new Promise(function (resolve, reject) {
 
@@ -618,6 +643,34 @@
     $("a.word-export").click(function(event) {
         $("#export-content").wordExport("Info Master");
     });
+
+    function travel(applicantID) {
+        $('#official-docx').text('');
+
+        (new http).post("applicant.aspx/travels", {
+            id: applicantID
+        }).then(function (response) {
+
+            var items = response.d.map(item => {
+                return new Promise(function (resolve, reject) {
+
+                    var html = '<tr><td width="14%" class="contentLabel">' + item.Document + '</td>' +
+                        '<td width="24%" colspan="2" align="left" class="contentData"><b><i>' + item.DocumentNo + '</i></b></td>' +
+                        '<td width="4%">&nbsp;</td>' +
+                        '<td align="left" width="13%" class="contentData"><b><i>' + item.IssueDate + '</i></b></td>' +
+                        '<td width="17%" class="contentData"> <b><i>' + item.ExpiryDate + '</i></b></td>' +
+                        '<td width="12%">&nbsp;</td>' +
+	                    '<td width="16%" class="contentData">&nbsp;</td></tr>';
+
+                    $('#official-docx').append(html);
+                    resolve();
+                });
+            });
+
+            Promise.all(items).then(function () {
+            });
+        }).run();
+    }
 
 </script>
 </html>

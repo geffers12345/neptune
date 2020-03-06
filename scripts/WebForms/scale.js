@@ -86,6 +86,7 @@ function getRankIDs() {
 
         Promise.all(items).then(function () {
             $.each(rankIDs, function (id, key) {
+                console.log(key);
                 find(key);
             });
         });
@@ -95,7 +96,8 @@ function getRankIDs() {
 function find(rankID) {
 
     (new http).post("scales.aspx/get", {
-        rankID: parseInt(rankID)
+        rankID: parseInt(rankID),
+        scaleID: parseInt($('#scales').val())
     }).then(function (response) {
 
         var monthly = 0;
@@ -116,11 +118,11 @@ function find(rankID) {
                     monthly += item.Monthly;
                     daily += item.Daily;
 
-                    strMonthly = "<tr class='total-crew-salary'>" +
+                    strMonthly = "<tr class='total-crew-salary' id='" + rankID + "'>" +
                                     "<td></td>" +
                                     "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>Total</b></td>" +
-                                    "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>" + parseFloat(monthly) + "</b></td>" +
-                                    "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>" + parseFloat(daily) + "</b></td>" +
+                                    "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>" + parseFloat(monthly).toFixed(2) + "</b></td>" +
+                                    "<td style='text-align: right !important; background-color: #bdbdbd !important'><b>" + parseFloat(daily).toFixed(2) + "</b></td>" +
                                     "<td></td>" +
                                     "<td></td>" +
                                     "<td></td>" +
@@ -130,7 +132,7 @@ function find(rankID) {
                     classtotal = "for-total-" + item.ForTotal + "-" + item.RankID;
                     rank = item.Rank;
 
-                    fortotalHtml += "<tr class='" + classtotal + "'>" +
+                    fortotalHtml += "<tr class='" + classtotal + "' id='" + rankID + "'>" +
                         "<td style='text-align: left !important'></td>" +
                         "<td style='text-align: left !important'>" + i + ") " + item.Income + "</td>" +
                         "<td style='text-align: right !important'>" + item.Monthly + "</td>" +
@@ -141,14 +143,17 @@ function find(rankID) {
                         "<td>";
 
                     fortotalHtml += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit edit\" data-toggle='modal' data-target='#editModal'>" +
-                        "<span class=\"tooltiptext\">Click to modify details</span>" +
+                            "<span class=\"tooltiptext\">Click to modify details</span>" +
+                        "</i>" + 
+                        "<i data-id=\"" + item.ID + "\" class=\"fa fa-trash trash\">" +
+                            "<span class=\"tooltiptext\">Click to delete item</span>" +
                         "</i>";
 
                     fortotalHtml += "</td>" +
                         "</tr>";
 
                 } else {
-                    notfortotalHtml += "<tr>" +
+                    notfortotalHtml += "<tr id='" + rankID + "'>" +
                         "<td style='text-align: left !important'></td>" +
                         "<td style='text-align: left !important'>" + i + ") " + item.Income + "</td>" +
                         "<td style='text-align: right !important'>" + item.Monthly + "</td>" +
@@ -159,7 +164,10 @@ function find(rankID) {
                         "<td>";
 
                     notfortotalHtml += "<i data-id=\"" + item.ID + "\" class=\"fa fa-edit edit\" data-toggle='modal' data-target='#editModal'>" +
-                        "<span class=\"tooltiptext\">Click to modify details</span>" +
+                            "<span class=\"tooltiptext\">Click to modify details</span>" +
+                        "</i>" +
+                        "<i data-id=\"" + item.ID + "\" class=\"fa fa-trash trash\">" +
+                            "<span class=\"tooltiptext\">Click to delete item</span>" +
                         "</i>";
 
                     notfortotalHtml += "</td>" +
@@ -183,6 +191,19 @@ function find(rankID) {
             $('#tbody').append(notfortotalHtml);
 
             $(td.toString()).first().html('<b>' + rank + '</b>');
+
+            var $tbody = $('#table-salary tbody');
+
+            $tbody.find('tr').sort(function (a, b) {
+                var tda = $(a).attr('id'); // target order attribute
+                var tdb = $(b).attr('id'); // target order attribute
+                // if a < b return 1
+                return tda > tdb ? 1
+                    // else if a > b return -1
+                    : tda < tdb ? -1
+                        // else they are equal - return 0
+                        : 0;
+            }).appendTo($tbody);
         });
     }).run();
 }
@@ -313,6 +334,33 @@ $(document).on('click', '.edit', function () {
     }).run();
 });
 
+$(document).on('click', '.trash', function () {
+    id = $(this).data('id');
+
+    var _self = $(this);
+
+    swal({
+        title: 'Are you sure you want to delete this item?',
+        text: "You won't be able to revert this action!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'green',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete!'
+    }).then(function (isConfirm) {
+        if (isConfirm.value == true) {
+            (new http).post("scales.aspx/delete", {
+                id: id,
+                name: name
+            }).then(function (response) {
+                swal('Successfully Deleted', 'Item Has Been Deleted!', 'success');
+
+                getRankIDs();
+            }).run();
+        }
+    });
+});
+
 $(document).on('click', '#saveChanges', function () {
     if (isInputEditValid()) {
         $('.fa-spin').removeClass('hidden');
@@ -335,7 +383,9 @@ $(document).on('click', '#saveChanges', function () {
 
             swal('Successfully Updated!', 'Item has been successfully updated.', 'success');
 
-            getRankIDs();
+            setTimeout(function () {
+                window.location.reload();
+            }, 3000);
 
             $('.fa-spin').addClass('hidden');
             $('.close').click();

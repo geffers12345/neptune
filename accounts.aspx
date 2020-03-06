@@ -45,8 +45,8 @@
                                                 <td>Email</td>
                                                 <td>Contact</td>
                                                 <td>Role</td>
+                                                <td>Position</td>
                                                 <td>Date Created</td>
-                                                <td>Date Modified</td>
                                                 <td>Action</td>
                                             </tr>
                                         </thead>
@@ -171,6 +171,17 @@
                             </div>
                         </div>
 
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-primary">Position:</label><br />
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                    <input id="position" placeholder="Position" type="text" class="form-control" data-name="Position"/>
+                                </div>
+                                <label id="error-position" style="display: none" class="text-danger"></label>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -259,6 +270,16 @@
                                         <option value="1">Super Admin</option>
                                         <option value="2">Admin</option>
                                     </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-primary">Position:</label><br />
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                    <input id="position-view" placeholder="Position" type="text" class="form-control"/>
                                 </div>
                             </div>
                         </div>
@@ -365,6 +386,17 @@
                                     <label id="image-edit" class="form-control"></label>
                                     <asp:FileUpload runat="server" id="modifyImage" class="hidden" data-name="Image" />
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-primary">Position:</label><br />
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                    <input id="position-edit" placeholder="Position" type="text" class="form-control" data-name="Position"/>
+                                </div>
+                                <label id="error-position-edit" style="display: none" class="text-danger"></label>
                             </div>
                         </div>
 

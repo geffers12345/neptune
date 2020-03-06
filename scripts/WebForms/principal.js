@@ -117,7 +117,8 @@ $(document).on('click', '#save', function (e) {
                 fax: $('#fax').val(),
                 email: $('#email').val(),
                 contactperson: $('#contact-person').val(),
-                contactnumber: $('#contact-person-number').val()
+                contactnumber: $('#contact-person-number').val(),
+                cba: $('#cba').val()
             }).then(function (response) {
 
                 var trigger = 0;
@@ -169,6 +170,7 @@ $(document).on('click', '.view', function () {
 
         $('#contact-person-view').val(item.ContactPerson);
         $('#contact-person-number-view').val(item.ContactPersonNumber);
+        $('#cba-view').val(item.CBA);
 
         $('#viewModal .form-control').prop('disabled', true);
     }).run();
@@ -196,6 +198,7 @@ $(document).on('click', '.edit', function () {
 
         $('#contact-person-edit').val(item.ContactPerson);
         $('#contact-person-number-edit').val(item.ContactPersonNumber);
+        $('#cba-edit').val(item.CBA);
 
         find_ranks(item.ID);
 
@@ -219,7 +222,8 @@ $(document).on('click', '#saveChanges', function () {
             fax: $('#fax-edit').val(),
             email: $('#email-edit').val(),
             contactperson: $('#contact-person-edit').val(),
-            contactnumber: $('#contact-person-number-edit').val()
+            contactnumber: $('#contact-person-number-edit').val(),
+            cba: $('#cba-edit').val()
         }).then(function (response) {
 
             swal('Successfully Updated!', 'Item has been successfully updated.', 'success');

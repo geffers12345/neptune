@@ -1481,7 +1481,7 @@
                                                                 <td>Relationship</td>
                                                                 <td>Bank Name</td>
                                                                 <td>Account No.</td>
-                                                                <td>Account Name</td>
+                                                                <td>Address</td>
                                                                 <td>Bank Branch</td>
                                                                 <td>Allotment</td>
                                                             </tr>
@@ -1499,20 +1499,16 @@
 
                                             <div class="col-md-12">
                                                 <div class="table-responsive">
-                                                    <table id="salary-table">
+                                                    <table id="salary-salary">
                                                         <thead>
                                                             <tr>
-                                                                <td>ID</td>
-                                                                <td>Principal</td>
-                                                                <td>Vessel</td>
-                                                                <td>Rank</td>
-                                                                <td>Crew</td>
-                                                                <td>Duration</td>
-                                                                <%--<td>Basic Daily Salary</td>--%>
-                                                                <%--<td>Fixed Daily OT</td>--%>
-                                                                <%--<td>Total</td>--%>
-                                                                <td>Salary</td>
-                                                                <%--<td>Grand Total</td>--%>
+                                                                <td>Rank/Position</td>
+                                                                <td>Income Description</td>
+                                                                <td>Monthly (USD)</td>
+                                                                <td>Daily (USD)</td>
+                                                                <td>Percentage</td>
+                                                                <td>Days</td>
+                                                                <td>Remarks</td>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="salary-tbody">
@@ -1520,6 +1516,25 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="text-align: left !important;">Total Pay</td>
+                                                            <td id="_total-pay" style="text-align: right !important;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left !important;">Allotment</td>
+                                                            <td id="_allotment" style="text-align: right !important;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left !important;">Pay On Board</td>
+                                                            <td id="_pay" style="text-align: right !important;"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
 
                                             <%--end salary--%>
@@ -1779,6 +1794,13 @@
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="checkbox" id="dependent"/>
+                            <label for="dependent">Check if Legal Dependent (Mga tatanggap ng benepisyo mula sa Philhealth)</label>
                         </div>
                     </div>
 
@@ -3315,7 +3337,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="text-primary">Allotee Name:</label><br />
+                            <label class="text-primary">Account Name:</label><br />
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
                                 <input id="allotee" type="text" class="form-control" placeholder="Allotee Name" data-name="Allotee Name"/>
@@ -3359,11 +3381,8 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="text-primary">Account Name:</label><br />
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
-                                <input id="allotee-account-name" type="text" class="form-control" placeholder="Account Name" data-name="Account Name"/>
-                            </div>
+                            <label class="text-primary">Address:</label><br />
+                            <textarea id="allotee-account-name" class="form-control" placeholder="Address" data-name="Address"></textarea>
                             <label id="error-account-name" style="display: none" class="text-danger"></label>
                         </div>
                     </div>

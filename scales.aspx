@@ -25,7 +25,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-12">
-                                            <h3 id="principal-name">Some Principal</h3>
+                                            <h3 id="principal-name"></h3>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Salary Scale</label>
@@ -426,6 +426,17 @@
 
         scales(principalID);
         ranks(principalID);
+
+        principalName(principalID);
     });
+
+    function principalName(id) {
+        (new http).post("principals.aspx/find", {
+            id: id
+        }).then(function (response) {
+            var item = response.d[0];
+            $('#principal-name').text(item.Principal);
+        }).run();
+    }
 </script>
 </asp:Content>

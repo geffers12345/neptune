@@ -6,7 +6,7 @@
 <head>
     <title>Seafarer Employment Contract</title>
 	<style type="text/css" media="print">
-		  @page { size: landscape; }
+		  @page { size: portrait; }
 	</style>
     <link href="content/css/menu_report.css" rel="stylesheet" />
 </head>	
@@ -79,7 +79,7 @@
 		                <tr>
 		                   <td class="reportse" colspan="4" width="50%">Position: <b id="position"></b></td>
 		                   <td class="reportse_noright" colspan="1">Medical certificates issued on:</td>
-		                   <td class="reportse_noleft" colspan="3"></td>
+		                   <td class="reportse_noleft" colspan="3" id="medical-date"></td>
 		                </tr>
 		                <tr>
 		                   <td class="reportse_nobottom" colspan="8">Certificates(s) of competence</td>
@@ -99,16 +99,35 @@
                         </tbody>       
 				        <tr>
 		                   <td class="reportse_norightbottomborder" colspan="1" valign="top" rowspan="2">Sign on Date:</td>
-		                   <td class="reportse_noleftbottomborder" colspan="3" valign="top" rowspan="2"></td>
+		                   <td class="reportse_noleftbottomborder" colspan="3" valign="top" rowspan="2" id="embark-date"></td>
 		                   <td class="reportse_norightbottomborder" colspan="1" valign="top">International Seaman's book no:</td>
 		                   <td class="reportse_noleftbottomborder" colspan="3" valign="top"></td>
 		                </tr>
-		
+		                
+                        <tr>
+		                   <td class="reportse_notopright" colspan="1">Issue:</td>
+		                   <td class="reportse_bottomonly" colspan="1" id="int-issue"></td>
+		                   <td class="reportse_bottomonly" colspan="1">Exp:</td>
+		                   <td class="reportse_notopleft" colspan="1" id="int-exp"></td>
+		                </tr>
+
 		                <tr>
-			               <td class="reportse_norightbottomborder" colspan="1" valign="top">Passport no:</td>
-		                   <td class="reportse_noleftbottomborder" colspan="1" valign="top" id="passportsnumber"></td>
+			                <td class="reportse_norightbottomborder" colspan="1" valign="top">Passport no:</td>
+		                   <td class="reportse_noleftbottomborder" colspan="3" valign="top" id="passport"></td>
 		                   <td class="reportse_norightbottomborder" colspan="1">Philippine Seaman's book no:</td>
-		                   <td class="reportse_noleftbottomborder" colspan="1" id="seamansnumber"> </td>
+		                   <td class="reportse_noleftbottomborder" colspan="3" id="seaman"></td>
+		                </tr>
+
+                        <tr>
+			                <td class="reportse_notopright" colspan="1">Issue:</td>
+		                   <td class="reportse_bottomonly" colspan="1" id="passport-issue"></td>
+		                   <td class="reportse_bottomonly" colspan="1">Exp:</td>
+		                   <td class="reportse_notopleft" colspan="1" id="passport-exp"></td>
+		   
+		                   <td class="reportse_notopright" colspan="1">Issue:</td>
+		                   <td class="reportse_bottomonly" colspan="1" id="seaman-issue"></td>
+		                   <td class="reportse_bottomonly" colspan="1">Exp:</td>
+		                   <td class="reportse_notopleft" colspan="1" id="seaman-exp"></td>
 		                </tr>
 		
 	                </table>	
@@ -163,7 +182,11 @@
                 <table cellpadding='0' cellspacing='0' width=100% class="report">
                 <tr>
                    <td class="reportse" width="50%">Name : <b id="vessel-view"></b></td>
-                   <td class="reportse">Code: <b id="code-view"></b></td>
+                   <td class="reportse">IMO no: <b id="imo"></b></td>
+                </tr>
+                <tr>
+                   <td class="reportse">Flag: <span id="flag-item"></span></td>
+                   <td class="reportse">&nbsp; </td>
                 </tr>
                 </table>
                 </td></tr>
@@ -177,19 +200,19 @@
                 <tr><td height='100%' align=center valign=top colspan="2">
                 <table cellpadding='0' cellspacing='0' width="100%" class="report">
                 <tr>
-                   <td class="reportse" valign="top">Duration of Contract: <br><br><b id="contract"></b></td>
-                   <td class="reportse" valign="top">Hours of work:<br><br></td>
-                   <td class="reportse" valign="top"></td>
+                   <td class="reportse" valign="top">Duration of Contract: <br><br><b id="duration"></b></td>
+                   <td class="reportse" valign="top">Hours of work:<br><br>44 hrs/wk</td>
+                   <td class="reportse" valign="top">Pension Fund: <span id="pension"></span></td>
                 </tr>
                 <tr>
                    <td class="reportse" valign="top">Basic monthly Salary: <br><br><b id="basic"></b></td>
-                   <td class="reportse" valign="top">Vacation Leave with Pay: <br><br></td>
-                   <td class="reportse" valign="top">Collective Bargaining Agreement:<br><br></td>
+                   <td class="reportse" valign="top">Vacation Leave with Pay: <br><br> <span id="vacation"></span></td>
+                   <td class="reportse" valign="top">Collective Bargaining Agreement:<br><br> <span id="cba"></span></td>
                 </tr>
                 <tr>
                    <td class="reportse">Guaranteed overtime: <br><br><b id="overtime"></b></td>
-                   <td class="reportse">Point of Hire: <br><br>Manila, Philippines</td>
-                   <td class="reportse">Owner's Bonus: <br><br></td>
+                   <td class="reportse">Point of Hire: <br><br> <span id="point"></span></td>
+                   <td class="reportse">Owner's Bonus: <br><br> <span id="bonus"></span></td>
                 </tr>
                 <tr>
                    <td class="reportse_small" colspan="3">The current CBA-PSU 2020 Dutch Flag shall be considered to be incorporated into and forming part of this contract. The seafarer authorizes the employer to take care of all necessary actions to meet the standards set by Dutch Law. Furthermore it is expressly understood that the seafarer will observe and abide to the instructions and regulations provided by or on behalf of the employer including ISM instructions and regulations being applicable on board which amongst others contain strict provisions as to use of drugs , alcohol and/or medication.
@@ -226,6 +249,8 @@
         </table>
     </body>
 <script src="Scripts/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="Scripts/helpers.js"></script>
 <script src="Scripts/sweetalert2.min.js"></script>
 <script src="Scripts/validator.js"></script>
@@ -265,9 +290,15 @@
             training_courses(id);
             numbers();
 
-            all_timesheets();
+            crew_medicals(id);
+
+            crewEmbark(id, item.VesselID)
+            
             vessel_info(item.VesselID);
 
+            travel(id);
+
+            rankSalary(item.RankID);
         }).run();
     }
 
@@ -283,13 +314,52 @@
             $('#principal-view').text(item.Principal);
             $('#code-view').text(item.Code);
 
+            principal_info(item.PrincipalID);
+            find_specs(id);
+        }).run();
+    }
+
+    function principal_info(id) {
+        (new http).post("principals.aspx/find", {
+        id: id
+        }).then(function (response) {
+            var item = response.d[0];
+        
+            $('#principal-address').text(item.Address);
+            $('#cba').text(item.CBA);
+        }).run();
+    }
+
+    function find_specs(id) {
+
+        (new http).post("_vessels.aspx/find_specs", {
+            id: id
+        }).then(function (response) {
+
+            var item = response.d[0];
+            
+            $('#imo').text(item.IMONumber);
+
+            find_flags(id);
+
+        }).run();
+    }
+
+    function find_flags(id) {
+
+        (new http).post("_vessels.aspx/find_flags", {
+            id: id
+        }).then(function (response) {
+
+            var items = response.d.map(item => {
+                $('#flag-item').text(item.Flag);
+            });
+
         }).run();
     }
 
     function training_courses(applicantID) {
         $('#cert-tbody').empty();
-
-        $('#cert-tbody').append("<tr class=\"loading\"><td colspan=\"8\"><img src=\"content/img/overlay-loader.gif\" /></td></tr>");
 
         (new http).post("applicant.aspx/trainings", {
             id: applicantID
@@ -329,6 +399,18 @@
         d.pop();
 
         return d.join(' ');
+    }
+
+    function crewEmbark(crewID, vesselID) {
+
+        (new http).post("embarkations.aspx/crewEmbark", {
+            crewID: crewID,
+            vesselID: vesselID
+        }).then(function (response) {
+            $('#duration').text(response.d[0].Duration + ' mos.');
+            $('#embark-date').text(moment(response.d[0].EmbarkationDate).format("MMMM DD YYYY"));
+            $('#point').text(response.d[0].PointofHire);
+        }).run();
     }
 
     function embark(id) {
@@ -382,49 +464,6 @@
         }).run();
     }
 
-    function all_timesheets() {
-
-        (new http).post("timesheets.aspx/crewPayroll", {
-            id: applicantID
-        }).then(function (response) {
-
-            var items = response.d.map(item => {
-                return new Promise(function (resolve, reject) {
-
-                    (new http).post("timesheets.aspx/other_salaries", {
-                        id: item.CrewEmbarkID
-                    }).then(function (response) {
-
-                        var data = response.d[0];
-
-                        if (response.d.length == 0) {
-                            grand = item.Total;
-
-                            $('#basic').text(item.BasicSalaryActual);
-                            $('#contract').text(item.Duration + ' months');
-                            $('#overtime').text('' + item.OvertimeActual + ' (N/A$/hr if excess overtime)');
-
-                            resolve();
-                        } else {
-                            grand = item.Total + ((data.Rejoining + data.LeavePay + data.PensionPay + data.ChristmasPay + data.Others) - data.Deduction);
-
-                            $('#basic').text(item.BasicSalaryActual);
-                            $('#contract').text(item.Duration + ' months');
-                            $('#overtime').text('' + item.OvertimeActual + ' (N/A$/hr if excess overtime)');
-
-                            resolve();
-                        }
-
-                    }).run();
-                });
-            });
-
-            Promise.all(items).then(function () {
-
-            });
-        }).run();
-    }
-
     function getManilaTime() {
         var options = {
             timeZone: 'Asia/Manila',
@@ -434,6 +473,107 @@
 
         formatter = new Intl.DateTimeFormat([], options);
         return formatter.format(new Date())
+    }
+
+    function crew_medicals(id) {
+
+        (new http).post("applicant.aspx/medicals", {
+            id: id
+        }).then(function (response) {
+
+            var items = response.d.map(item => {
+                return new Promise(function (resolve, reject) {
+
+                    $('#medical-date').text(moment(item.IssueDate).format("MMMM DD YYYY"));
+
+                    resolve();
+                });
+            });
+
+            Promise.all(items).then(function () {
+            });
+        }).run();
+    }
+
+    function travel(id) {
+
+        (new http).post("applicant.aspx/travels", {
+            id: id
+        }).then(function (response) {
+
+            var items = response.d.map(item => {
+                return new Promise(function (resolve, reject) {
+
+                    if (item.Document.includes('International') || item.Document.includes('international')) {
+                        $('#int-issue').text(moment(item.IssueDate).format("MMMM DD YYYY"));
+                        $('#int-exp').text(moment(item.ExpiryDate).format("MMMM DD YYYY"));
+                    }
+
+                    if (item.Document.includes('Passport') || item.Document.includes('passport')) {
+                        $('#passport-issue').text(moment(item.IssueDate).format("MMMM DD YYYY"));
+                        $('#passport-exp').text(moment(item.ExpiryDate).format("MMMM DD YYYY"));
+                        $('#passport').text(item.DocumentNo);
+                    }
+
+                    if (item.Document.includes('Seaman') || item.Document.includes('seaman')) {
+                        $('#seaman-issue').text(moment(item.IssueDate).format("MMMM DD YYYY"));
+                        $('#seaman-exp').text(moment(item.ExpiryDate).format("MMMM DD YYYY"));
+                        $('#seaman').text(item.DocumentNo);
+                    }
+
+                    resolve();
+                });
+            });
+
+            Promise.all(items).then(function () {
+            });
+        }).run();
+    }
+
+    function rankSalary(rankID) {
+
+        (new http).post("scales.aspx/getByVessel", {
+            rankID: parseInt(rankID),
+            vesselID: 0,
+            scaleID: 0
+        }).then(function (response) {
+
+            var items = response.d.map(item => {
+
+                return new Promise(function (resolve, reject) {
+
+                    if (item.Income.includes('Basic')) {
+                        $('#basic').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Salary')) {
+                        $('#basic').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Overtime') || item.Income.includes('ot') || item.Income.includes('OT')) {
+                        $('#overtime').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Vacation') || item.Income.includes('vacation')) {
+                        $('#vacation').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Pension') || item.Income.includes('pension')) {
+                        $('#pension').text(parseFloat(item.Monthly));
+                    }
+
+                    if (item.Income.includes('Bonus') || item.Income.includes('bonus')) {
+                        $('#bonus').text(parseFloat(item.Monthly));
+                    }
+
+                    resolve();
+                });
+            });
+
+            Promise.all(items).then(function () {
+                $('.loading').remove();
+            });
+        }).run();
     }
 </script>
 </html>

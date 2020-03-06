@@ -184,7 +184,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/signatories"><i class="fa fa-circle-o"></i>Signatory</a></li>
+                    <%--<li><a href="/signatories"><i class="fa fa-circle-o"></i>Signatory</a></li>--%>
                     <li><a href="/announcements"><i class="fa fa-circle-o"></i>Announcements</a></li>
                     <li><a href="/agents"><i class="fa fa-circle-o"></i>Agents</a></li>
                     <li><a href="/banks"><i class="fa fa-circle-o"></i>Banks</a></li>

@@ -33,8 +33,8 @@ function get() {
                            "<td>" + item.Email + "</td>" +
                            "<td>" + item.Contact + "</td>" +
                            "<td>" + item.Role + "</td>" +
+                           "<td>" + item.Position + "</td>" +
                            "<td>" + item.DateCreated + "</td>" +
-                           "<td>" + item.DateUpdated + "</td>" +
                            "<td>" +
                                "<i data-id=\"" + item.ID + "\" class=\"fa fa-search view\" data-toggle='modal' data-target='#viewModal'> " +
                                    "<span class=\"tooltiptext\">Click to view details</span>" +
@@ -80,7 +80,8 @@ $(document).on('click', '#save', function (e) {
             contact: $('#contact').val(),
             gender: $('#gender').val(),
             role: $('#role').val(),
-            image: image
+            image: image,
+            position: $('#position').val()
         }).then(function (response) {
 
             if ($('#ContentPlaceHolder1_image').val() != "") {
@@ -111,6 +112,7 @@ $(document).on('click', '.view', function () {
         $('#contact-view').val(item.Contact);
         $('#gender-view').val(item.Gender).change();
         $('#role-view').val(item.RoleID).change();
+        $('#position-view').val(item.Position);
 
         $('#viewModal .form-control').prop('disabled', true);
     }).run();
@@ -131,6 +133,7 @@ $(document).on('click', '.edit', function () {
         $('#gender-edit').val(item.Gender).change();
         $('#role-edit').val(item.RoleID).change();
         $('#image-edit').text(item.ImagePath);
+        $('#position-edit').val(item.Position);
 
     }).run();
 });
@@ -157,7 +160,8 @@ $(document).on('click', '#saveChanges', function (e) {
             contact: $('#contact-edit').val(),
             gender: $('#gender-edit').val(),
             role: $('#role-edit').val(),
-            image: $('#image-edit').text()
+            image: $('#image-edit').text(),
+            position: $('#position-edit').val()
         }).then(function (response) {
 
             if ($('#ContentPlaceHolder1_modifyImage').val() != "") {
@@ -207,8 +211,9 @@ function isInputValid() {
     var e = $("#contact").validate(['required']).displayErrorOn($("#error-contact"));
     var f = $("#gender").validate(['required']).displayErrorOn($("#error-gender"));
     var g = $("#role").validate(['required']).displayErrorOn($("#error-role"));
+    var h = $("#position").validate(['required']).displayErrorOn($("#error-position"));
 
-    return a && b && c && d && e && f && g;
+    return a && b && c && d && e && f && g && h;
 }
 
 function isInputEditValid() {
@@ -218,6 +223,7 @@ function isInputEditValid() {
     var e = $("#contact-edit").validate(['required']).displayErrorOn($("#error-contact-edit"));
     var f = $("#gender-edit").validate(['required']).displayErrorOn($("#error-gender-edit"));
     var g = $("#role-edit").validate(['required']).displayErrorOn($("#error-role-edit"));
+    var h = $("#position-edit").validate(['required']).displayErrorOn($("#error-position-edit"));
 
-    return a && b && c && e && f && g;
+    return a && b && c && e && f && g && h;
 }

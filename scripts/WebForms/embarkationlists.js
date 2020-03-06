@@ -265,7 +265,8 @@ $(document).on('click', '#save-embark', function (e) {
             disembarkationPort: $('#disembarkation-port').val(),
             disembarkationDate: $('#disembarkation-date').val(),
             remarks: $('#remarks').val(),
-            duration: $('#duration').val()
+            duration: $('#duration').val(),
+            point: $('#point').val()
         }).then(function (data) {
 
             swal('Successfully Saved!', 'Item Has Been Saved!', 'success');
@@ -457,6 +458,7 @@ function find(embarkID) {
         $('#disembarkation-date-edit').val(item.DisembarkationDate);
         $('#remarks-edit').val(item.Remarks);
         $('#duration-edit').val(item.Duration);
+        $('#point-edit').val(item.PointofHire);
 
         applicantID = item.CrewID;
 
@@ -482,7 +484,8 @@ $(document).on('click', '#save-embark-changes', function (e) {
             disembarkationPort: $('#disembarkation-port-edit').val(),
             disembarkationDate: $('#disembarkation-date-edit').val(),
             remarks: $('#remarks-edit').val(),
-            duration: $('#duration-edit').val()
+            duration: $('#duration-edit').val(),
+            point: $('#point-edit').val()
         }).then(function (data) {
 
             swal('Successfully Updated!', 'Item Has Been Updated!', 'success');
