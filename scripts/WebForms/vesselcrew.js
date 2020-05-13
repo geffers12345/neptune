@@ -5,10 +5,40 @@ var index = 1;
 var total = 0;
 var new_embarkID = 0;
 var vesselID = 0;
+var depart = "";
+var disembark = "";
+var html = "";
 
 $(document).ready(function () {
     embark_principals();
 });
+
+function crewEmbark(crewID, vesselID, lastname, firstname, rank, vessel,
+    passport, seaman, eregistration) {
+
+    (new http).post("embarkations.aspx/crewEmbark", {
+        crewID: crewID,
+        vesselID: vesselID
+    }).then(function (response) {
+
+        depart = response.d[0].DepartureDate;
+        disembark = response.d[0].DisembarkationDate;
+
+        html += '<tr>' +
+            '<td class=report>' + lastname + '</td>' +
+            '<td class=report>' + firstname + '</td>' +
+            '<td class=report><font face=arial style="font-size:smaller">' + rank + '</td>' +
+            '<td class=report>' + vessel + '</td>' +
+            '<td class=report><font face=arial style="font-size:smaller">' + passport + '</td>' +
+            '<td class=report><font face=arial style="font-size:smaller">' + seaman + '</td>' +
+            '<td class=report><font face=arial style="font-size:smaller">E-Reg#' + eregistration + '</td>' +
+            '<td class=report><font face=arial style="font-size:smaller">' + depart + '</td>' +
+            '<td class=report><font face=arial style="font-size:smaller">' + disembark + '</td>' +
+            '</tr>';
+
+        $('#tbody').append(html);
+    }).run();
+}
 
 function statuses(value) {
     var status = "";
@@ -137,17 +167,6 @@ function get(principal, vessel, rank, stats) {
 
                         status = statuses(item.StatusID);
 
-                        var isActive = item.DateDeleted == "" ? "Activated" : "Not Activated";
-
-                        var active = "<i data-id=\"" + item.ID + "\" data-name=\"" + item.Firstname + "\" class=\"fa fa-remove remove\">" +
-                            "<span class=\"tooltiptext\">Click to deactivate</span>" +
-                            "</i>";
-                        var inactive = "<i data-id=\"" + item.ID + "\" data-name=\"" + item.Firstname + "\" class=\"fa fa-check-circle activate\">" +
-                            "<span class=\"tooltiptext\">Click to activate</span>" +
-                            "</i>";
-
-                        var statusAction = isActive == "Not Activated" ? inactive : active;
-
                         html += "<tr>" +
                             "<td><a href='/applicant?_hsdlwhx=" + item.ID + "'>" + item.Lastname + ', ' + item.Firstname + "</a></td>" +
                             "<td class='noExl'><img src='content/img/crews/" + item.ImagePath + "' class='img-responsive img-circle img-thumbnail'/></td>" +
@@ -223,9 +242,6 @@ function report(principal, vessel, rank, stats) {
 
         response.d.map(item => {
 
-            var html = "";
-            //getting numbers
-
             var today = getManilaTime().split(',')[0];
             var d = today.split('/');
 
@@ -243,21 +259,8 @@ function report(principal, vessel, rank, stats) {
 
                     return new Promise(function (resolve, reject) {
 
-                        status = statuses(item.StatusID);
-
-                        html += '<tr>' +
-                                    '<td class=report>' + item.Lastname + '</td>' +
-                                    '<td class=report>' + item.Firstname + '</td>' +
-                                    '<td class=report><font face=arial style="font-size:smaller">' + item.Rank + '</td>' +
-                                    '<td class=report>' + item.Vessel + '</td>' +
-                                    '<td class=report><font face=arial style="font-size:smaller">' + n.Passport + '</td>' +
-                                    '<td class=report><font face=arial style="font-size:smaller">' + n.Seaman + '</td>' +
-                                    '<td class=report><font face=arial style="font-size:smaller">E-Reg#' + n.Eregistration + '</td>' +
-                                    '<td class=report><font face=arial style="font-size:smaller"></td>' +
-                                    '<td class=report><font face=arial style="font-size:smaller"></td>' +
-			                    '</tr>';
-
-                        $('#tbody').append(html);
+                        crewEmbark(item.ID, item.VesselID, item.Lastname, item.Firstname, item.Rank, item.Vessel,
+                        n.Passport, n.Seaman, n.Eregistration);
 
                         resolve();
                     });
@@ -265,15 +268,9 @@ function report(principal, vessel, rank, stats) {
 
                 Promise.all(items).then(function () {
                     $('.loading').remove();
-                    table = $('#table').DataTable();
 
                     var d = new Date();
                     var date = d.toString().split(" ").slice(0, 4).join(" ");
-
-                    $("#table").table2excel({
-                        filename: "Crews (" + date + ").xls",
-                        exclude: ".noExl"
-                    });
                 });
 
             }).run();

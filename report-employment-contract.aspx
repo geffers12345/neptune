@@ -215,7 +215,7 @@
                    <td class="reportse">Owner's Bonus: <br><br> <span id="bonus"></span></td>
                 </tr>
                 <tr>
-                   <td class="reportse_small" colspan="3">The current CBA-PSU 2020 Dutch Flag shall be considered to be incorporated into and forming part of this contract. The seafarer authorizes the employer to take care of all necessary actions to meet the standards set by Dutch Law. Furthermore it is expressly understood that the seafarer will observe and abide to the instructions and regulations provided by or on behalf of the employer including ISM instructions and regulations being applicable on board which amongst others contain strict provisions as to use of drugs , alcohol and/or medication.
+                   <td class="reportse_small" colspan="3" style="font-size: 12px !important;">The current CBA-PSU 2020 Dutch Flag shall be considered to be incorporated into and forming part of this contract. The seafarer authorizes the employer to take care of all necessary actions to meet the standards set by Dutch Law. Furthermore it is expressly understood that the seafarer will observe and abide to the instructions and regulations provided by or on behalf of the employer including ISM instructions and regulations being applicable on board which amongst others contain strict provisions as to use of drugs , alcohol and/or medication.
                    Employee confirms that he or she has been given opportunity to examine and seek advice before signing this agreement. Employee confirms that he or she has not paid employer for finding employment on a ship. Social security benefits is written down in Art 21 and repatriation in Art 8 of the CBA.</td>
                 </tr>
                 </table>

@@ -25,52 +25,62 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="text-primary">Select Principal:</label><br />
-                                        <select id="principal" class="form-control" data-name="Principal">
-                                            <option value="">--SELECT PRINCIPAL--</option>
+                                        <label class="text-primary">Select Vessel:</label><br />
+                                        <select id="vessel" class="form-control">
+                                            <option value="">--ALL VESSELS--</option>
                                         </select>
-                                        <label id="error-principal" class="text-danger" style="display: none"></label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="text-primary">Select Vessel:</label><br />
-                                        <select id="vessel" class="form-control" data-name="Vessel">
-
+                                        <label class="text-primary">Select Rank:</label><br />
+                                        <select id="rank" class="form-control">
+                                            <option value="">--ALL RANKS--</option>
                                         </select>
-                                        <label id="error-vessel" class="text-danger" style="display: none"></label>
                                     </div>
                                 </div>
 
-                                <div class="col-md-12">
-                                    <button id="view-report" class="btn btn-primary btn-add">
-                                        View Report
-                                        <span class="tooltiptext">Click to view</span>
-                                    </button>
+                                <div class="col-md-4">
+                                    <label class="text-primary">Status</label>
+                                    <select id="status" class="form-control">
+                                        <option value="">--ALL--</option>
+                                        <option value="On-Going">On-Going</option>
+                                        <option value="Stop Treatment">Stop Treatment</option>
+                                        <option value="Disability Grading">Disability Grading</option>
+                                        <option value="Fit to Work">Fit to Work</option>
+                                    </select>
                                 </div>
+
                             </div>
                             <div class="box-footer">
                                 <div class="table-responsive">
                                     <table id="table">
                                         <thead>
                                             <tr>
-                                                <td>Principal</td>
                                                 <td>Vessel</td>
-                                                <td>Crew</td>
-                                                <td>Incident</td>
-                                                <td>Reported By</td>
-                                                <td>Date Created</td>
+                                                <td>Rank</td>
+                                                <td>Illness Date</td>
+                                                <td>Repatriation Date</td>
+                                                <td>Illness/Injury</td>
+                                                <td>Type</td>
+                                                <td>Disability</td>
+                                                <td>Clinic</td>
+                                                <td>Status</td>
+                                                <td>Date Pronounced</td>
+                                                <td>Date Settled</td>
+                                                <td>Remarks</td>
                                             </tr>
                                         </thead>
                                         <tbody id="tbody">
 
                                         </tbody>
-                                    </table><br />
-                                    <button class="btn btn-primary btn-add" id="generateExcel">
-                                        Export (.xls)
-                                    </button>
+                                    </table>
                                 </div>
+                                <br />
+                                <button class="btn btn-primary btn-add" id="generateExcel">
+                                    Export (.xls)
+                                </button>
                             </div>
                         </div>
                     </div>

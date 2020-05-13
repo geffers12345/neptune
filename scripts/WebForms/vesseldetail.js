@@ -977,7 +977,7 @@ $(document).on('click', '.delete-doc', function () {
 
             }).run();
         }
-    })
+    });
 });
 
 function scales(principalID) {

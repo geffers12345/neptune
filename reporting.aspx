@@ -434,6 +434,51 @@
     </div>
 </div>
 
+<div class="modal fade" id="service-modal" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-primary">
+                    <span class="fa fa-plus-circle"></span> &nbsp;
+                    Certification(Service)</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Kindly choose the signatory:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <select id="service-signatory" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Number of Work Experience:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="service-number" type="number" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="view-service" class="btn btn-primary">OK
+                    <i class="fa fa-spinner fa-spin hidden"></i>
+                </button>
+                <button data-dismiss="modal" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="disembarkation-modal" role="dialog">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -661,12 +706,12 @@
     });
 
     function signatories() {
-        $('#jsu-signatory, #coe-signatory #guarantee-signatory, #rps-signatory, #rps-request, #engine-signatory').empty();
+        $('#jsu-signatory, #coe-signatory #guarantee-signatory, #rps-signatory, #rps-request, #engine-signatory, #service-signatory').empty();
 
         (new http).post("accounts.aspx/get", {
         }).then(function (response) {
             var items = response.d.map(item => {
-                $('#jsu-signatory, #coe-signatory, #guarantee-signatory, #rps-signatory, #rps-request, #engine-signatory').append("<option value=\"" + item.ID + "\">" + item.Position + "</option>");
+                $('#jsu-signatory, #coe-signatory, #guarantee-signatory, #rps-signatory, #rps-request, #engine-signatory, #service-signatory').append("<option value=\"" + item.ID + "\">" + item.Position + "</option>");
             });
         }).run();
     }
@@ -741,6 +786,17 @@
 
         var url = '/report-engine?_hsdlwhx=' + applicantID + '&asignatory=' + $('#engine-signatory').val() +
             '&works=' + $('#work-number').val();
+
+        var iframe = '<iframe id="printf" name="printf" src="' + url + '" width="100%" height="800px" frameborder="0"></iframe>';
+
+        $('#iframe').empty().html(iframe);
+    });
+
+     $('#view-service').click(function () {
+        $('.close').click();
+
+        var url = '/report-service?_hsdlwhx=' + applicantID + '&asignatory=' + $('#service-signatory').val() +
+            '&works=' + $('#service-number').val();
 
         var iframe = '<iframe id="printf" name="printf" src="' + url + '" width="100%" height="800px" frameborder="0"></iframe>';
 

@@ -154,9 +154,12 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/crew-timesheets"><i class="fa fa-circle-o"></i>Crew Timesheet</a></li>
+                    <%--<li><a href="/crew-timesheets"><i class="fa fa-circle-o"></i>Crew Payslip</a></li>--%>
                     <%--<li><a href="#"><i class="fa fa-circle-o"></i>Training Request</a></li>--%>
                     <%--<li><a href="#"><i class="fa fa-circle-o"></i>Payroll</a></li>--%>
+                    <li><a href="/payslips"><i class="fa fa-circle-o"></i>Crew Payslip</a></li>
+                    <li><a href="/payroll"><i class="fa fa-circle-o"></i>Payroll</a></li>
+                    <li><a href="/payrollsummary"><i class="fa fa-circle-o"></i>Payroll Summary</a></li>
                 </ul>
             </li>
 
@@ -247,10 +250,11 @@
                         </a>
                     </li>
 
-                    <li><a href="/disembarkation-admin"><i class="fa fa-circle-o"></i>Disembarkation - Administration</a></li>
-                    <li><a href="/disembarkation-admin"><i class="fa fa-circle-o"></i>Disembarkation - POEA</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Embarkation POEA</a></li>
                     <li><a href="/disembarkation-admin"><i class="fa fa-circle-o"></i>Embarkation - Administration</a></li>
+                    <li><a href="/disembarkation-admin"><i class="fa fa-circle-o"></i>Disembarkation - Administration</a></li>
+                    <li><a href="/disembarkation-admin"><i class="fa fa-circle-o"></i>Embarkation POEA</a></li>
+                    <li><a href="/disembarkation-admin"><i class="fa fa-circle-o"></i>Disembarkation - POEA</a></li>
+                    
                 </ul>
             </li>
 
@@ -547,17 +551,6 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
                                     <select id="rps-signatory" class="form-control">
-                                        <option value="Director"> Director &nbsp;  </option>
-                                        <option value="VP-Operations"> VP-Operations &nbsp;  </option>
-                                        <option value="Liaison Officer"> Liaison Officer &nbsp;  </option>
-                                        <option value="Accountant"> Accountant &nbsp;  </option>
-                                        <option value="Accounting Assistant"> Accounting Assistant &nbsp;  </option>
-                                        <option value="Documentation Officer I"> Documentation Officer I &nbsp;  </option>
-                                        <option value="President"> President &nbsp;  </option>
-                                        <option value="Crewing Manager 2"> Crewing Manager 2 &nbsp;  </option>
-                                        <option value="Crew Coordinator"> Crew Coordinator &nbsp;  </option>
-                                        <option value="Secretary"> Secretary &nbsp;  </option>
-                                        <option value="Assistant Operations Manager"> Assistant Operations Manager &nbsp;</option>
                                     </select>
                                 </div>
                             </div>
@@ -569,17 +562,6 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
                                     <select id="rps-request" class="form-control">
-                                        <option value="Director"> Director &nbsp;  </option>
-                                        <option value="VP-Operations"> VP-Operations &nbsp;  </option>
-                                        <option value="Liaison Officer"> Liaison Officer &nbsp;  </option>
-                                        <option value="Accountant"> Accountant &nbsp;  </option>
-                                        <option value="Accounting Assistant"> Accounting Assistant &nbsp;  </option>
-                                        <option value="Documentation Officer I"> Documentation Officer I &nbsp;  </option>
-                                        <option value="President"> President &nbsp;  </option>
-                                        <option value="Crewing Manager 2"> Crewing Manager 2 &nbsp;  </option>
-                                        <option value="Crew Coordinator"> Crew Coordinator &nbsp;  </option>
-                                        <option value="Secretary"> Secretary &nbsp;  </option>
-                                        <option value="Assistant Operations Manager"> Assistant Operations Manager &nbsp;</option>
                                     </select>
                                 </div>
                             </div>
@@ -689,7 +671,19 @@
 <script>
     $(document).ready(function () {
         principalsx();
+        signatoriesx();
     });
+
+    function signatoriesx() {
+        $('#rps-signatory, #rps-request').empty();
+
+        (new http).post("accounts.aspx/get", {
+        }).then(function (response) {
+            var items = response.d.map(item => {
+                $('#rps-signatory, #rps-request').append("<option value=\"" + item.ID + "\">" + item.Position + "</option>");
+            });
+        }).run();
+    }
 
     function principalsx() {
         (new http).post("principals.aspx/get", {
@@ -714,6 +708,73 @@
         }).then(function (response) {
             var items = response.d.map(item => {
                 $('#change-vessel-x').append("<option value=\"" + item.ID + "\">" + item.Name + "</option>");
+            });
+        }).run();
+    }
+
+    $('#change-vessel-x').click(function () {
+        crewRps($(this).val());
+    });
+
+    function crewRps(vesselId) {
+        $('#rps-tbody').empty().append("<tr class=\"loading\"><td colspan=\"20\">Please select a Vessel</td></tr>");
+            
+        (new http).post("crews.aspx/crewRps", {
+            vesselID: vesselId
+        }).then(function (response) {
+
+            var distinct = [];
+
+            response.d.map(item => {
+
+                var html = "";
+                //getting numbers
+                
+
+                var today = getManilaTime().split(',')[0];
+                var d = today.split('/');
+
+                var d0 = d[0].length > 1 ? d[0] : '0' + d[0];
+                var d1 = d[1].length > 1 ? d[1] : '0' + d[1];
+
+                var formattedDate = d[2] + '-' + d0 + '-' + d1;
+
+                (new http).post("applicant.aspx/numbers", {
+                    id: item.ID,
+                    date: formattedDate
+                }).then(function (response) {
+
+                    var items = response.d.map(n => {
+
+                        return new Promise(function (resolve, reject) {
+
+                            if (!distinct.includes(item.ID)) {
+                                distinct.push(item.ID);
+
+                                console.log(distinct);
+
+                                html += "<tr>" +
+                                    "<td><input type='checkbox' value='" + item.ID + "'/></td>" +
+                                    "<td>" + item.Lastname + ', ' + item.Firstname + "</td>";
+
+                                html += "<td>" + n.Eregistration + "</td>" +
+                                        "<td>" + n.Seaman + "</td>" +
+                                        "<td>" + n.SRC + "</td>" +
+                                        "<td>" + item.Sex + "</td>" +
+                                        "<td>" + item.Rank + "</td>" +
+                                        "<td>" + item.DateCreated + "</td><td>" + item.DateUpdated + "</td></tr > ";
+                            }
+
+                            resolve();
+                        });
+                    });
+
+                    Promise.all(items).then(function () {
+                        $('.loading').remove();
+                        $('#rps-tbody').append(html);
+                    });
+
+                }).run();
             });
         }).run();
     }

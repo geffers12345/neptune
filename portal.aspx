@@ -36,11 +36,15 @@
                                             <img src="#" class="img-thumbnail animated bounceIn" id="imageHere" alt=""/>
                                             <br />
                                             <br />
-                                            <%--<table>
+                                            <a role="button" class="form-control" 
+                                                data-toggle="modal" data-target="#change-picture-modal" style="width: 70%">Change Picture</a>
+                                            <br />
+
+                                            <table>
                                                 <tr>
                                                     <td><a href="#" target="_blank" id="travelling">Travel Documents</a></td>
                                                 </tr>
-                                            </table>--%>
+                                            </table>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -56,10 +60,6 @@
                                                     <td>
                                                         <h5 id="group-view" class="text-success"></h5>
                                                     </td>
-                                                    <%--<td>
-                                                        <button class="btn btn-success"
-                                                            data-toggle="modal" data-target="#change-principal-modal">Change</button>
-                                                    </td>--%>
                                                 </tr>
                                                 <tr class="crew-only">
                                                     <td>
@@ -68,10 +68,6 @@
                                                     <td>
                                                         <h5 id="principal-view" class="text-success"></h5>
                                                     </td>
-                                                    <%--<td>
-                                                        <button class="btn btn-success"
-                                                            data-toggle="modal" data-target="#change-principal-modal">Change</button>
-                                                    </td>--%>
                                                 </tr>
                                                 <tr class="crew-only">
                                                     <td>
@@ -80,10 +76,6 @@
                                                     <td>
                                                         <h5 id="vessel-view" class="text-success"></h5>
                                                     </td>
-                                                    <%--<td>
-                                                        <button class="btn btn-success"
-                                                            data-toggle="modal" data-target="#change-principal-modal">Change</button>
-                                                    </td>--%>
                                                 </tr>
                                                 <tr>
                                                     <td>
@@ -100,9 +92,6 @@
                                                     <td>
                                                         <h5 id="email-view"></h5>
                                                     </td>
-                                                    <%--<td>
-                                                        <button class="btn btn-success" data-toggle="modal" data-target="#send-email-modal">Send Email</button>
-                                                    </td>--%>
                                                 </tr>
                                                 <tr>
                                                     <td>
@@ -111,9 +100,6 @@
                                                     <td>
                                                         <h5 id="contact-view"></h5>
                                                     </td>
-                                                    <%--<td>
-                                                        <button class="btn btn-warning" data-toggle="modal" data-target="#send-text-modal">Send Message</button>
-                                                    </td>--%>
                                                 </tr>
                                                 <tr>
                                                     <td>
@@ -132,27 +118,6 @@
                                                     </td>
                                                 </tr>
                                             </table>
-
-                                            <%--<div class="col-md-10 animated bounceIn">
-                                                <button class="btn btn-success accept-reject" id="accept-reject"
-                                                     data-toggle="modal" data-target="#add-approve-modal">Accept and Move to Crew</button>
-                                                <button class="btn btn-danger accept-reject" data-toggle="modal" 
-                                                    data-target="#change-status-modal" id="reject-crew">Change Status</button>
-                                                <button class="btn btn-default" data-toggle="modal" data-target="#add-send-modal">Send to Principal</button>
-                                                <button class="btn btn-danger crew-only" id="resigned">Resigned
-                                                    <span class="tooltiptext" style="font-size: 15px !important;">Click to change crew <br />status to "resigned"</span>
-                                                </button>
-                                                <button class="btn btn-success crew-only" data-toggle="modal" data-target="#ontraining-modal">On Training
-                                                    <span class="tooltiptext" style="font-size: 15px !important;">Click to change crew <br />status to "on training"</span>
-                                                </button>
-                                                <button class="btn btn-success crew-only" id="sickleave">On Sick Leave
-                                                    <span class="tooltiptext" style="font-size: 15px !important;">Click to change crew <br />status to "on sick leave"</span>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-10 applicant-actions animated bounceIn">
-                                                <a href="/applicants?_knmsdlpsjsw=1" class="btn btn-primary">Back to List</a>
-                                                <a href="#" id="dis-embark" class="btn btn-warning crew-only">Embarkations and Disembarkations</a>
-                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -185,12 +150,6 @@
 
                                         <input id="tab8" type="radio" name="tabs" class="crew-only"/>
                                         <label for="tab8" class="tabs animated bounceIn crew-only">Salary</label>
-
-                                        <%--<input id="tab9" type="radio" name="tabs" class="crew-only"/>
-                                        <label for="tab9" class="tabs animated bounceIn crew-only">Evaluations</label>
-
-                                        <input id="tab10" type="radio" name="tabs"/>
-                                        <label for="tab10" class="tabs animated bounceIn">Office Remarks and Crew Incident</label>--%>
 
                                         <section id="content">
                                             <div class="col-md-12 section-header">
@@ -1104,7 +1063,7 @@
                                         <section id="content3">
                                             <%--licenses--%>
 
-                                            <div class="col-md-12">
+                                            <div class="col-md-12 hidden">
                                                 <div class="panel panel-danger"> 
                                                     <div class="panel-heading" style="font-size: x-large;"> 
                                                         <i class="fa fa-bookmark-o"></i> Required Documents
@@ -1338,7 +1297,7 @@
                                                             <tr>
                                                                 <td>Vaccine</td>
                                                                 <td>Immunization Date</td>
-                                                                <td>Expiry Date</td>
+                                                                <%--<td>Expiry Date</td>--%>
                                                                 <td>File</td>
                                                                 <td>Action</td>
                                                             </tr>
@@ -1460,7 +1419,12 @@
                                             </div>
 
                                             <div class="col-md-12">
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#add-allotee-modal">Add New Allotee</button>
+                                                <button class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#add-allotee-modal">Add New Allotee</button>
+                                                <div class="pull-right">
+                                                    <strong>[<a href="#" target="_blank" 
+                                                        id="allotee-report">Allotee Report</a>]</strong>
+                                                </div>
                                             </div>
 
                                             <div class="col-md-12">
@@ -1472,8 +1436,10 @@
                                                                 <td>Relationship</td>
                                                                 <td>Bank Name</td>
                                                                 <td>Account No.</td>
-                                                                <td>Account Name</td>
+                                                                <td>Address</td>
                                                                 <td>Bank Branch</td>
+                                                                <td>Allotment</td>
+                                                                <td>Action</td>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="allotee-tbody">
@@ -1488,21 +1454,24 @@
                                             </div>
 
                                             <div class="col-md-12">
+                                                <div class="pull-right">
+                                                    <strong>[<a href="#" target="_blank" 
+                                                        id="all-salaries">View All Salaries</a>]</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
                                                 <div class="table-responsive">
                                                     <table id="salary-table">
                                                         <thead>
                                                             <tr>
-                                                                <td>ID</td>
-                                                                <td>Principal</td>
-                                                                <td>Vessel</td>
-                                                                <td>Rank</td>
-                                                                <td>Crew</td>
-                                                                <td>Duration</td>
-                                                                <%--<td>Basic Daily Salary</td>--%>
-                                                                <%--<td>Fixed Daily OT</td>--%>
-                                                                <%--<td>Total</td>--%>
-                                                                <td>Salary</td>
-                                                                <%--<td>Grand Total</td>--%>
+                                                                <td>Rank/Position</td>
+                                                                <td>Income Description</td>
+                                                                <td>Monthly (USD)</td>
+                                                                <td>Daily (USD)</td>
+                                                                <td>Percentage</td>
+                                                                <td>Days</td>
+                                                                <td>Remarks</td>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="salary-tbody">
@@ -1510,6 +1479,25 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="text-align: left !important;">Total Pay</td>
+                                                            <td id="_total-pay" style="text-align: right !important;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left !important;">Allotment</td>
+                                                            <td id="_allotment" style="text-align: right !important;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="text-align: left !important;">Pay On Board</td>
+                                                            <td id="_pay" style="text-align: right !important;"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
 
                                             <%--end salary--%>
@@ -1650,6 +1638,13 @@
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="checkbox" id="dependent"/>
+                            <label for="dependent">Check if Legal Dependent (Mga tatanggap ng benepisyo mula sa Philhealth)</label>
                         </div>
                     </div>
 
@@ -2726,7 +2721,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label class="text-primary">Immunization Date:</label><br />
                                 <input type="date" id="vaccine-issue" class="form-control" data-name="Issue Date"/>
@@ -2734,7 +2729,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 hidden">
                             <div class="form-group">
                                 <label class="text-primary">Expiry Date:</label><br />
                                 <input type="date" id="vaccine-expiry" class="form-control" data-name="Expiry Date"/>
@@ -2859,7 +2854,129 @@
         </div>
     </div>
     <%--end evaluation modal--%>
+
+    <div class="modal fade" id="change-picture-modal" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-primary">
+                        <span class="fa fa-plus-circle"></span> &nbsp;
+                        Update Picture</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="text-primary">Image:</label><br />
+                                <asp:FileUpload runat="server" ID="crewPicture" class="form-control" data-name="File"/>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button runat="server" ID="saveCrewImage" CssClass="btn btn-primary" Text="Save Changes" OnClick="saveCrewImage_Click"/>
+                    <button data-dismiss="modal" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
+
+<%--senders modal--%>
+
+<div class="modal fade" id="send-email-modal" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-primary">
+                    <span class="fa fa-plus-circle"></span> &nbsp;
+                    Send Email</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">To:</label><br />
+                            <input type="text" class="form-control" id="receiver" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Sender:</label><br />
+                            <input type="text" class="form-control" id="sender" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Subject:</label><br />
+                            <input type="text" class="form-control" placeholder="Subject" id="subject"/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Message:</label><br />
+                            <textarea class="form-control" id="email-content" placeholder="Type your message here.." rows="10"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="send-email" class="btn btn-primary">Send Email
+                    <i class="fa fa-spinner fa-spin hidden"></i>
+                </button>
+                <button data-dismiss="modal" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="send-text-modal" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-primary">
+                    <span class="fa fa-plus-circle"></span> &nbsp;
+                    Send Text Message</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">To:</label><br />
+                            <input type="text" class="form-control" id="receiver-number" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Message:</label><br />
+                            <textarea class="form-control" id="text-content" placeholder="Type your message here.." rows="10"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="send-text" class="btn btn-primary">Send Message
+                    <i class="fa fa-spinner fa-spin hidden"></i>
+                </button>
+                <button data-dismiss="modal" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--end senders modal--%>
 
 <%--work modal--%>
 <div class="modal fade" id="add-exp-modal" role="dialog">
@@ -3064,7 +3181,7 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="text-primary">Allotee Name:</label><br />
+                            <label class="text-primary">Account Name:</label><br />
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
                                 <input id="allotee" type="text" class="form-control" placeholder="Allotee Name" data-name="Allotee Name"/>
@@ -3108,11 +3225,8 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="text-primary">Account Name:</label><br />
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
-                                <input id="allotee-account-name" type="text" class="form-control" placeholder="Account Name" data-name="Account Name"/>
-                            </div>
+                            <label class="text-primary">Address:</label><br />
+                            <textarea id="allotee-account-name" class="form-control" placeholder="Address" data-name="Address"></textarea>
                             <label id="error-account-name" style="display: none" class="text-danger"></label>
                         </div>
                     </div>
@@ -3128,6 +3242,17 @@
                         </div>
                     </div>
 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Allotment Amount:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-percentage" type="number" class="form-control" data-name="Percentage"/>
+                            </div>
+                            <label id="error-percentage" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -3139,13 +3264,112 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="update-allotee-modal" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-primary">
+                    <span class="fa fa-plus-circle"></span> &nbsp;
+                    Update Allotee</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Account Name:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-edit" type="text" class="form-control" placeholder="Allotee Name" data-name="Allotee Name"/>
+                            </div>
+                            <label id="error-allotee-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Relationship:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-relationship-edit" type="text" class="form-control" placeholder="Relationship" data-name="Relationship"/>
+                            </div>
+                            <label id="error-relationship-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Bank Name:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-bank-edit" type="text" class="form-control" placeholder="Bank Name" data-name="Bank Name"/>
+                            </div>
+                            <label id="error-bank-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Account Number:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-account-edit" type="text" class="form-control" placeholder="Account No." data-name="Account No."/>
+                            </div>
+                            <label id="error-account-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Address:</label><br />
+                            <textarea id="allotee-account-name-edit" class="form-control" placeholder="Address" data-name="Address"></textarea>
+                            <label id="error-account-name-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Bank Branch:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-branch-edit" type="text" class="form-control" placeholder="Bank Branch"/>
+                            </div>
+                            <label id="error-branch-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Allotment Amount:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-percentage-edit" type="number" class="form-control" data-name="Percentage"/>
+                            </div>
+                            <label id="error-percentage-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-changes-allotee" class="btn btn-primary">Save Changes
+                    <i class="fa fa-spinner fa-spin hidden"></i>
+                </button>
+                <button data-dismiss="modal" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <select class="form-control" id="scales" style="display: none; opacity: 0;" disabled></select>
 <script src="Scripts/jquery-3.2.1.min.js"></script>
 <script src="Scripts/helpers.js"></script>
 <script src="Scripts/sweetalert2.min.js"></script>
 <script src="Scripts/validator.js"></script>
 <script src="scripts/WebForms/maintenance.js"></script>
-<script src="scripts/WebForms/portal.js"></script>
+<script src="scripts/WebForms/applicant.js"></script>
 <script>
     var applicantID = 0;
 
@@ -3156,6 +3380,8 @@
         applicant(applicantID);
 
         $('#travelling').attr('href', '/reporting?_hsdlwhx=' + applicantID);
+        $('#allotee-report').attr('href', '/report-allotee?_hsdlwhx=' + applicantID);
+        $('#all-salaries').attr('href', '/all-salaries?_hsdlwhx=' + applicantID);
     });
 </script>
 </asp:Content>

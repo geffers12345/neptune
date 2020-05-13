@@ -17,7 +17,7 @@
     }
 
     @page {
-        margin-top: -30px;
+        margin-top: 0px;
     }
 </style>
 </head>	
@@ -93,7 +93,7 @@
 <tr><td></td><td align=center>and</td></tr>
 <tr height="10"><td colspan="2"></td></tr>
 <tr><td width=200>Name of Agent:</td><td class=report align=left>&nbsp;&nbsp;<b>Conautic Maritime Inc.</td></tr>
-<tr><td width=200>Address of Agent:</td><td class=report align=left>&nbsp;&nbsp;Suite 312/313 Penthouse, Ermita Center Bldg.
+<tr><td width=200>Address of Agent:</td><td style="font-size: 11px !important" class=report align=left>&nbsp;&nbsp;Suite 312/313 Penthouse, Ermita Center Bldg.
 #1350 Roxas Blvd., Ermita Manila, Philippines</td></tr>
 <tr><td width=200>Name of Principal / Shipowner:</td><td class=report align=left>&nbsp;&nbsp; <span id="principal-name"></span></td></tr>
 <!--<tr><td>&nbsp;</td><td align=center>(Principal/Country)</td></tr>-->
@@ -109,7 +109,7 @@
 <tr><td width=140>Name of Vessel:</td><td class=report>&nbsp; <span id="vessel-name"></span></td></tr>
 </table>
 <table width=100% cellpadding=0 cellspacing=0 border=0>
-<tr><td width=140>IMO Number:</td><td class=report width=30%>&nbsp; <span id="imo"></span></td>
+<tr><td width="10%">IMO Number:</td><td class=report width=30%>&nbsp; <span id="imo"></span></td>
 
 <td width=30% align=right>Gross Registered Tonnage (GRT):</td><td class=report>&nbsp; <span id="grt"></span></td>
 
@@ -486,7 +486,7 @@
 
             var item = response.d[0];
             
-            $('#built').text(item.YearBuilt);
+            $('#built').text(item.YearBuilt.split('-')[0]);
             $('#imo').text(item.IMONumber);
             $('#grt').text(item.GRT);
             $('#classification').text(item.NRT.split('|')[1]);

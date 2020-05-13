@@ -56,17 +56,6 @@
                                     <div class="col-md-12">
                                         <label><b>Signatory:</b></label>
                                         <select id="signatory" class="form-control">
-                                            <option value="Director"> Director &nbsp;  </option>
-                                            <option value="VP-Operations"> VP-Operations &nbsp;  </option>
-                                            <option value="Liaison Officer"> Liaison Officer &nbsp;  </option>
-                                            <option value="Accountant"> Accountant &nbsp;  </option>
-                                            <option value="Accounting Assistant"> Accounting Assistant &nbsp;  </option>
-                                            <option value="Documentation Officer I"> Documentation Officer I &nbsp;  </option>
-                                            <option value="President"> President &nbsp;  </option>
-                                            <option value="Crewing Manager 2"> Crewing Manager 2 &nbsp;  </option>
-                                            <option value="Crew Coordinator"> Crew Coordinator &nbsp;  </option>
-                                            <option value="Secretary"> Secretary &nbsp;  </option>
-                                            <option value="Assistant Operations Manager"> Assistant Operations Manager &nbsp;</option>
                                         </select>
                                     </div>
                                    
@@ -95,7 +84,19 @@
     $(document).ready(function () {
         principals();
         years();
+        signatories();
     });
+
+    function signatories() {
+        $('#signatory').empty();
+
+        (new http).post("accounts.aspx/get", {
+        }).then(function (response) {
+            var items = response.d.map(item => {
+                $('#signatory').append("<option value=\"" + item.ID + "\">" + item.Position + "</option>");
+            });
+        }).run();
+    }
 
     function principals() {
         (new http).post("principals.aspx/get", {

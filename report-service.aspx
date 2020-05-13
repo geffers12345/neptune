@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="report-engine.aspx.cs" Inherits="Seabase.report_engine" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="report-service.aspx.cs" Inherits="Seabase.report_service" %>
 
 <!DOCTYPE html>
 

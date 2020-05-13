@@ -22,9 +22,7 @@
 		        <td><i>Name</i></td>
 		        <td><i>Position</i></td>
 		        <td><i>Vessel</i></td>
-		
 		        <td><i>Allotm</i></td>
-		        <td><i>P.O.B</i></td>
 		        <td><i>Depature Vessel</i></td>
 		        <td><i>Arr MNL</i></td>
 		        <td width="20%"><i>Remarks</i></td>
@@ -104,7 +102,6 @@
                                         '<td align="left" valign="top">' + item.Rank + '</td>' +
                                         '<td align="left" valign="top">' + item.Vessel + '</td>' +
                                         '<td align="left" valign="top">$' + item.Monthly + '</td>' +
-                                        '<td align="left" valign="top"></td>' +
                                         '<td align="left" valign="top">' + item.DepartureDate + '</td>' +
                                         '<td align="left" valign="top"> ' + item.ArrivalVesselDate + '</td>' +
                                         '<td align="left" valign="top" style="white-space:normal !important;">' + item.Remarks + '</td>' +

@@ -41,7 +41,7 @@ to be my true and lawful attorneys-in-fact, for me and in my name, place and ste
 <p style="text-indent:90px">
 <b>"To act on my behalf, execute, file and deliver, the appropriate claim before any office or body, government or private, any unpaid remuneration or 
 compensation owing to me as a consequence of my employment onboard the vessel <b id="vessel-name"></b>, and for whatever moneys or benefit due to me under my POEA-approved employment contract, over
- which Conautic Maritime Inc. and/or  has become obliged to pay and honor being my employer.
+ which Conautic Maritime Inc. and/or <b id="principal"></b> has become obliged to pay and honor being my employer.
 <br /><br />
 </b>
  </p> 
@@ -140,7 +140,7 @@ And in general, to do and perform all and every act and thing which may be requi
 
             var item = response.d[0];
 
-            $('#fullname, .fullname, #full').text(item.Lastname + ', ' + item.Firstname);
+            $('#fullname, .fullname, #full').text(item.Lastname.toUpperCase() + ', ' + item.Firstname.toUpperCase());
             $('#address').html(item.NoOrBldg + ' ' +  item.StreetOrBrgy + ' ' + item.Municipality + ' ' + item.Province);
             $('#birthdate').text(item.Birthdate);
             $('#civil-status').text(item.CivilStatus);
@@ -158,7 +158,7 @@ And in general, to do and perform all and every act and thing which may be requi
 
             var item = response.d[0];
 
-            $('#vessel-name').text(item.Name);
+            $('#vessel-name').text(item.Name.toUpperCase());
 
             principal_info(item.PrincipalID);
 
@@ -170,7 +170,7 @@ And in general, to do and perform all and every act and thing which may be requi
         id: id
         }).then(function (response) {
             var item = response.d[0];
-            $('#principal-name').text(item.Principal);
+            $('#principal-name, #principal').text(item.Principal.toUpperCase());
             $('#principal-address').text(item.Address);
             $('#principal-cba').text(item.CBA);
         }).run();

@@ -23,24 +23,24 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="box-footer">
-                                <div class="col-md-6">
-                                    <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <label><b>Principal:</b></label>
                                         <select id="principal" class="form-control">
                                             <option value="">--SELECT PRINCIPALS--</option>
 	                                    </select>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <label><b>Vessel:</b></label>
                                         <select id="vessel" class="form-control">
 	                                    </select>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <label><b>By Rank:</b></label>
                                         <select id="rank" class="form-control">
 	                                    </select>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <label><b>Status:</b></label>
                                         <select id="status" class="form-control">
                                             <option value="2">On Board</option>
@@ -53,7 +53,7 @@
                                    
                                     <div class="col-md-12">
 
-                                        <br /><br />
+                                        <br />
 
                                         <a role="button" class="btn btn-primary btn-add" id="create-report">
                                             Create Report

@@ -1484,6 +1484,7 @@
                                                                 <td>Address</td>
                                                                 <td>Bank Branch</td>
                                                                 <td>Allotment</td>
+                                                                <td>Action</td>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="allotee-tbody">
@@ -1498,8 +1499,15 @@
                                             </div>
 
                                             <div class="col-md-12">
+                                                <div class="pull-right">
+                                                    <strong>[<a href="#" target="_blank" 
+                                                        id="all-salaries">View All Salaries</a>]</strong>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
                                                 <div class="table-responsive">
-                                                    <table id="salary-salary">
+                                                    <table id="salary-table">
                                                         <thead>
                                                             <tr>
                                                                 <td>Rank/Position</td>
@@ -1622,9 +1630,82 @@
                                                 <h3 class="animated slideInRight">Crew Incident</h3>
                                             </div>
 
+                                            <div class="col-md-6">
+                                                <label>Vessel</label>
+                                                <select id="incident-vessel" class="form-control" data-name="Vessel">
+                                                    <option value="">--SELECT VESSEL--</option>
+                                                </select>
+                                                <label id="error-incident-vessel" class="text-danger" style="display:none"></label>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Rank</label>
+                                                <select id="incident-rank" class="form-control" data-name="Rank">
+                                                    <option value="">--SELECT RANK--</option>
+                                                </select>
+                                                <label id="error-incident-rank" class="text-danger" style="display:none"></label>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Date of Illness/Injury</label>
+                                                <input type="date" id="illness-date" class="form-control" data-name="Illness Date"/>
+                                                <label id="error-illness-date" class="text-danger" style="display:none"></label>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Date of Repatriation</label>
+                                                <input type="date" id="repatriation-date" class="form-control" data-name="Repatriation Date" />
+                                                <label id="error-repatriation-date" class="text-danger" style="display:none"></label>
+                                            </div>
+
                                             <div class="col-md-12">
-                                                <label>Name</label>
-                                                <input type="text" id="incident-name" placeholder="Name" class="form-control" disabled />
+                                                <label>Description of Illness/Injury</label>
+                                                <input type="text" id="incident-description" placeholder="Description"
+                                                    class="form-control" data-name="Description"/>
+                                                <label id="error-incident-description" class="text-danger" style="display:none"></label>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Type of Illness/Injury</label>
+                                                <select id="incident-illnes-type" class="form-control">
+                                                    <option value="1">Work</option>
+                                                    <option value="0">Non-Work</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Disability</label>
+                                                <select id="incident-disability" class="form-control">
+                                                    <option value="0">No</option>
+                                                    <option value="1">Yes</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Clinic</label>
+                                                <select id="incident-clinic" class="form-control"></select>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Status</label>
+                                                <select id="incident-status" class="form-control">
+                                                    <option value="On-Going">On-Going</option>
+                                                    <option value="Stop Treatment">Stop Treatment</option>
+                                                    <option value="Disability Grading">Disability Grading</option>
+                                                    <option value="Fit to Work">Fit to Work</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Date Pronounced</label>
+                                                <input type="date" id="pronounced-date" class="form-control" data-name="Pronounced Date" />
+                                                <label id="error-pronounced-date" class="text-danger" style="display:none"></label>
+                                            </div>
+
+                                             <div class="col-md-6">
+                                                <label>Date Settled</label>
+                                                <input type="date" id="settled-date" class="form-control" data-name="Settled Date" />
+                                                <label id="error-settled-date" class="text-danger" style="display:none"></label>
                                             </div>
 
                                             <div class="col-md-12">
@@ -1643,9 +1724,17 @@
                                                     <table id="incident-table" style="width: 100%;">
                                                         <thead>
                                                             <tr>
-                                                                <td>Date</td>
-                                                                <td>Time</td>
-                                                                <td>Seen By</td>
+                                                                <td>Vessel</td>
+                                                                <td>Rank</td>
+                                                                <td>Illness Date</td>
+                                                                <td>Repatriation Date</td>
+                                                                <td>Illness/Injury</td>
+                                                                <td>Type</td>
+                                                                <td>Disability</td>
+                                                                <td>Clinic</td>
+                                                                <td>Status</td>
+                                                                <td>Date Pronounced</td>
+                                                                <td>Date Settled</td>
                                                                 <td>Remarks</td>
                                                             </tr>
                                                         </thead>
@@ -3420,6 +3509,105 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="update-allotee-modal" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-primary">
+                    <span class="fa fa-plus-circle"></span> &nbsp;
+                    Update Allotee</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Account Name:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-edit" type="text" class="form-control" placeholder="Allotee Name" data-name="Allotee Name"/>
+                            </div>
+                            <label id="error-allotee-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Relationship:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-relationship-edit" type="text" class="form-control" placeholder="Relationship" data-name="Relationship"/>
+                            </div>
+                            <label id="error-relationship-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Bank Name:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-bank-edit" type="text" class="form-control" placeholder="Bank Name" data-name="Bank Name"/>
+                            </div>
+                            <label id="error-bank-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Account Number:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-account-edit" type="text" class="form-control" placeholder="Account No." data-name="Account No."/>
+                            </div>
+                            <label id="error-account-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Address:</label><br />
+                            <textarea id="allotee-account-name-edit" class="form-control" placeholder="Address" data-name="Address"></textarea>
+                            <label id="error-account-name-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Bank Branch:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-branch-edit" type="text" class="form-control" placeholder="Bank Branch"/>
+                            </div>
+                            <label id="error-branch-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="text-primary">Allotment Amount:</label><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info text-primary"></i></span>
+                                <input id="allotee-percentage-edit" type="number" class="form-control" data-name="Percentage"/>
+                            </div>
+                            <label id="error-percentage-edit" style="display: none" class="text-danger"></label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-changes-allotee" class="btn btn-primary">Save Changes
+                    <i class="fa fa-spinner fa-spin hidden"></i>
+                </button>
+                <button data-dismiss="modal" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <select class="form-control" id="scales" style="display: none; opacity: 0;" disabled></select>
 <script src="Scripts/jquery-3.2.1.min.js"></script>
 <script src="Scripts/helpers.js"></script>
@@ -3436,8 +3624,11 @@
 
         applicant(applicantID);
 
+        $('#dis-embark').attr('href', '/embarkations?_mbrckns=' + applicantID);
+
         $('#travelling').attr('href', '/reporting?_hsdlwhx=' + applicantID);
         $('#allotee-report').attr('href', '/report-allotee?_hsdlwhx=' + applicantID);
+        $('#all-salaries').attr('href', '/all-salaries?_hsdlwhx=' + applicantID);
     });
 </script>
 </asp:Content>

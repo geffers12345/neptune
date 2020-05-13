@@ -16,6 +16,7 @@ $(document).ready(function () {
     find_required_travel_documents();
     find_required_training_documents();
     find_required_vaccines();
+    incident_vessels();
 
     $("#password").val('CREW' + Math.floor(Math.random() * 123456789));
 });
@@ -48,6 +49,7 @@ function ranks() {
             $('#flag-rank').append("<option value=\"" + item.ID + "\">" + item.Name + "</option>");
             $('#work-rank').append("<option value=\"" + item.ID + "\">" + item.Name + "</option>");
             $('#eval-rank').append("<option value=\"" + item.ID + "\">" + item.Name + "</option>");
+            $('#incident-rank').append("<option value=\"" + item.ID + "\">" + item.Name + "</option>");
         });
     }).run();
 }
@@ -2593,43 +2595,83 @@ function remarks() {
     }).run();
 }
 
+function incident_vessels() {
+    (new http).post("_vessels.aspx/get", {
+    }).then(function (response) {
+        var items = response.d.map(item => {
+            $('#incident-vessel').append("<option value=\"" + item.ID + "\">" + item.Name + "</option>");
+        });
+    }).run();
+}
+
 $(document).on('click', '#save-incident', function (e) {
     e.preventDefault();
 
-    $('.fa-spin').removeClass('hidden');
+    if (isIncidentValid()) {
+        $('.fa-spin').removeClass('hidden');
 
-    (new http).post("applicant.aspx/insert_incident", {
-        crewID: applicantID,
-        remarks: $('#incident-remarks').val(),
-        date: getManilaTime().split(', ')[0],
-        time: getManilaTime().split(', ')[1]
-    }).then(function (response) {
+        (new http).post("applicant.aspx/insert_incident_upgrade", {
+            crewID: applicantID,
+            vesselID: $('#incident-vessel').val(),
+            rankID: $('#incident-rank').val(),
+            illnessDate: $('#illness-date').val(),
+            repatriationDate: $('#repatriation-date').val(),
+            injury: $('#incident-description').val(),
+            type: $('#incident-illnes-type').val(),
+            clinic: $('#incident-clinic').val(),
+            status: $('#incident-status').val(),
+            pronounced: $('#pronounced-date').val(),
+            settled: $('#settled-date').val(),
+            remarks: $('#incident-remarks').val(),
+            disability: $('#incident-disability').val()
+        }).then(function (response) {
 
-        swal('Successfully Added', 'Information has been added successfully.', 'success');
+            swal('Successfully Added', 'Information has been added successfully.', 'success');
 
-        $('.fa-spin').addClass('hidden');
+            $('.fa-spin').addClass('hidden');
 
-        incidents();
+            incidents();
 
-    }).run();
+        }).run();
+    }
 });
 
+function isIncidentValid() {
+    var a = $("#incident-vessel").validate(['required']).displayErrorOn($("#error-incident-vessel"));
+    var b = $("#incident-rank").validate(['required']).displayErrorOn($("#error-incident-rank"));
+    var c = $("#illness-date").validate(['required']).displayErrorOn($("#error-illness-date"));
+    var d = $("#repatriation-date").validate(['required']).displayErrorOn($("#error-repatriation-date"));
+    var e = $("#incident-description").validate(['required']).displayErrorOn($("#error-incident-description"));
+    var f = $("#incident-rank").validate(['required']).displayErrorOn($("#error-incident-rank"));
+
+    return b && c && d && a && e && f;
+}
+
 function incidents() {
-    $('#incident-tbody').text('');
+    $('#incident-tbody').empty().append("<tr class=\"loading\"><td colspan=\"8\"><img src=\"content/img/overlay-loader.gif\" /></td></tr>");
 
-    $('#incident-tbody').append("<tr class=\"loading\"><td colspan=\"8\"><img src=\"content/img/overlay-loader.gif\" /></td></tr>");
-
-    (new http).post("applicant.aspx/incidents", {
+    (new http).post("applicant.aspx/crew_incidents", {
         id: applicantID
     }).then(function (response) {
 
         var items = response.d.map(item => {
             return new Promise(function (resolve, reject) {
 
+                var type = item.InjuryType == 1 ? "Work" : "Non-work";
+                var disability = item.Disability == 1 ? "Yes" : "No";
+
                 var html = "<tr>" +
-                           "<td>" + item.Date + "</td>" +
-                           "<td>" + item.Time + "</td>" +
-                           "<td>" + item.Name + "</td>" +
+                           "<td>" + item.Vessel + "</td>" +
+                           "<td>" + item.Rank + "</td>" +
+                           "<td>" + item.IllnessDate + "</td>" +
+                           "<td>" + item.RepatriationDate + "</td>" +
+                           "<td>" + item.Injury + "</td>" +
+                           "<td>" + type + "</td>" +
+                           "<td>" + disability + "</td>" +
+                           "<td>" + item.Clinic + "</td>" +
+                           "<td>" + item.Status + "</td>" +
+                           "<td>" + item.PronouncedDate + "</td>" +
+                           "<td>" + item.SettledDate + "</td>" +
                            "<td>" + item.Remarks + "</td></tr>";
 
                 $('#incident-tbody').append(html);
@@ -2903,6 +2945,7 @@ $(document).on('click', '.view-others', function () {
         other_salaries(vesselId, rankId);
     }, 1000);
 });
+
 function isAlloteeValid() {
     var a = $("#allotee").validate(['required']).displayErrorOn($("#error-allotee"));
     var b = $("#allotee-relationship").validate(['required']).displayErrorOn($("#error-relationship"));
@@ -2910,6 +2953,17 @@ function isAlloteeValid() {
     var d = $("#allotee-account").validate(['required']).displayErrorOn($("#error-account"));
     var e = $("#allotee-account-name").validate(['required']).displayErrorOn($("#error-account-name"));
     var f = $("#allotee-percentage").validate(['required']).displayErrorOn($("#error-percentage"));
+
+    return b && c && d && a && e && f;
+}
+
+function isUpdateAlloteeValid() {
+    var a = $("#allotee-edit").validate(['required']).displayErrorOn($("#error-allotee-edit"));
+    var b = $("#allotee-relationship-edit").validate(['required']).displayErrorOn($("#error-relationship-edit"));
+    var c = $("#allotee-bank-edit").validate(['required']).displayErrorOn($("#error-bank-edit"));
+    var d = $("#allotee-account-edit").validate(['required']).displayErrorOn($("#error-account-edit"));
+    var e = $("#allotee-account-name-edit").validate(['required']).displayErrorOn($("#error-account-name-edit"));
+    var f = $("#allotee-percentage-edit").validate(['required']).displayErrorOn($("#error-percentage-edit"));
 
     return b && c && d && a && e && f;
 }
@@ -2942,6 +2996,34 @@ $(document).on('click', '#save-allotee', function (e) {
     }
 });
 
+$(document).on('click', '#save-changes-allotee', function (e) {
+    e.preventDefault();
+
+    if (isUpdateAlloteeValid()) {
+        $('.fa-spin').removeClass('hidden');
+
+        (new http).post("applicant.aspx/update_allotee", {
+            id: allotteID,
+            allotee: $('#allotee-edit').val(),
+            relationship: $('#allotee-relationship-edit').val(),
+            bank: $('#allotee-bank-edit').val(),
+            account: $('#allotee-account-edit').val(),
+            accountName: $('#allotee-account-name-edit').val(),
+            branch: $('#allotee-branch-edit').val(),
+            percentage: $('#allotee-percentage-edit').val()
+        }).then(function (response) {
+
+            swal('Successfully Updated', 'Information has been updated successfully.', 'success');
+
+            $('.fa-spin').addClass('hidden');
+            $('#update-allotee-modal .close').click();
+
+            allotees();
+
+        }).run();
+    }
+});
+
 function allotees() {
     $('#allotee-tbody').text('');
 
@@ -2963,7 +3045,14 @@ function allotees() {
                            "<td>" + item.AccountNo + "</td>" +
                            "<td>" + item.AccountName + "</td>" +
                            "<td>" + item.Branch + "</td>" +
-                           "<td>" + item.Percentage + "</td></tr>";
+                           "<td>" + item.Percentage + "</td>" +
+                           "<td><i data-id=\"" + item.ID + "\" data-name=\"" + item.Allotee + "\" class=\"fa fa-trash remove-allotee\">" +
+                           "<span class=\"tooltiptext\">Click to delete</span>" +
+                           "</i>" +
+                           "<i data-id=\"" + item.ID + "\" data-name=\"" + item.Allotee + "\" class=\"fa fa-edit edit-allotee\" data-toggle='modal' data-target='#update-allotee-modal'>" +
+                           "<span class=\"tooltiptext\">Click to modify</span>" +
+                           "</i>" +
+                           "</td></tr>";
 
                 $('#allotee-tbody').append(html);
 
@@ -2980,6 +3069,56 @@ function allotees() {
         });
     }).run();
 }
+
+var allotteID = 0;
+
+$(document).on('click', '.edit-allotee', function () {
+
+    allotteID = $(this).data('id');
+
+    (new http).post("applicant.aspx/find_allotee", {
+        id: allotteID
+    }).then(function (response) {
+
+        var item = response.d[0];
+
+        $('#allotee-edit').val(item.Allotee);
+        $('#allotee-relationship-edit').val(item.Relationship);
+        $('#allotee-bank-edit').val(item.Bank);
+        $('#allotee-account-edit').val(item.AccountNo);
+        $('#allotee-account-name-edit').val(item.AccountName);
+        $('#allotee-branch-edit').val(item.Branch);
+        $('#allotee-percentage-edit').val(item.Percentage);
+
+    }).run();
+});
+
+$(document).on('click', '.remove-allotee', function () {
+
+    allotteID = $(this).data('id');
+
+    swal({
+        title: 'Are you sure you want to delete this item?',
+        text: "You won't be able to revert this action!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: 'green',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete!'
+    }).then(function (isConfirm) {
+        if (isConfirm.value == true) {
+            (new http).post("applicant.aspx/delete_allotee", {
+                id: allotteID
+            }).then(function (response) {
+
+                swal('Successfully Deleted', 'Information has been deleted successfully.', 'success');
+
+                allotees();
+
+            }).run();
+        }
+    });
+});
 
 function find_required_documents(id) {
 

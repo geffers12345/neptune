@@ -83,7 +83,7 @@ function clinics() {
     (new http).post("clinics.aspx/get", {
     }).then(function (response) {
         var items = response.d.map(item => {
-            $('#clinic').append("<option value=\"" + item.ID + "\">" + item.Name + "</option>");
+            $('#clinic, #incident-clinic').append("<option value=\"" + item.ID + "\">" + item.Name + "</option>");
         });
     }).run();
 }
